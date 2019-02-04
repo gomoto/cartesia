@@ -4,7 +4,7 @@ const canvas = <HTMLCanvasElement> document.getElementById('renderCanvas');
 
 const engine = new BABYLON.Engine(canvas, true, {preserveDrawingBuffer: true, stencil: true});
 
-function createScene(): BABYLON.Scene {
+function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine): BABYLON.Scene {
   // Create Scene object
   var scene = new BABYLON.Scene(engine);
   // Create a FreeCamera, and set its position to {x: 0, y: 5, z: -10}
@@ -26,7 +26,7 @@ function createScene(): BABYLON.Scene {
 }
 
 // Create scene
-const scene = createScene();
+const scene = createScene(canvas, engine);
 
 // The render loop
 engine.runRenderLoop(function(){
