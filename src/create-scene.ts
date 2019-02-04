@@ -5,6 +5,9 @@ export function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine): 
   const scene = new BABYLON.Scene(engine);
   // Create an ArcRotateCamera, and set its rotation target to the origin
   const camera = new BABYLON.ArcRotateCamera('mainCamera', 0, 0, 10, BABYLON.Vector3.Zero(), scene);
+  camera.inertia = 0;
+  camera.angularSensibilityX = 250;
+  camera.angularSensibilityY = 250;
   // Attach the camera to the canvas
   camera.attachControl(canvas, false);
   // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
