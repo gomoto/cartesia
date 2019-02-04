@@ -2,11 +2,9 @@ import * as BABYLON from 'babylonjs';
 
 export function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine): BABYLON.Scene {
   // Create Scene object
-  var scene = new BABYLON.Scene(engine);
-  // Create a FreeCamera, and set its position to {x: 0, y: 5, z: -10}
-  var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5, -10), scene);
-  // Target the camera to scene origin
-  camera.setTarget(BABYLON.Vector3.Zero());
+  const scene = new BABYLON.Scene(engine);
+  // Create an ArcRotateCamera, and set its rotation target to the origin
+  const camera = new BABYLON.ArcRotateCamera('mainCamera', 0, 0, 10, BABYLON.Vector3.Zero(), scene);
   // Attach the camera to the canvas
   camera.attachControl(canvas, false);
   // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
