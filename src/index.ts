@@ -5,7 +5,7 @@ const canvas = <HTMLCanvasElement> document.getElementById('renderCanvas');
 
 const engine = new BABYLON.Engine(canvas, true, {preserveDrawingBuffer: true, stencil: true});
 
-const scene = createScene(canvas, engine);
+const scene = createScene(engine);
 
 // The render loop
 engine.runRenderLoop(function(){

@@ -1,6 +1,6 @@
 import * as BABYLON from 'babylonjs';
 
-export function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine): BABYLON.Scene {
+export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   // Create Scene object
   const scene = new BABYLON.Scene(engine);
   // Create an ArcRotateCamera, and set its rotation target to the origin
@@ -9,7 +9,7 @@ export function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine): 
   camera.angularSensibilityX = 250;
   camera.angularSensibilityY = 250;
   // Attach the camera to the canvas
-  camera.attachControl(canvas, false);
+  camera.attachControl(engine.getRenderingCanvas(), false);
   // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
   var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
   // Create a built-in "sphere" shape; its constructor takes 6 params: name, segment, diameter, scene, updatable, sideOrientation
