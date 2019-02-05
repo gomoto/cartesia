@@ -6,7 +6,7 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   scene.clearColor = new BABYLON.Color4(0.5, 0.5, 0.5, 1);
 
   // Create an ArcRotateCamera, and set its rotation target to the origin
-  const camera = new BABYLON.ArcRotateCamera('mainCamera', 0, 0, 10, BABYLON.Vector3.Zero(), scene);
+  const camera = new BABYLON.ArcRotateCamera('mainCamera', Math.PI/4, Math.PI/8, 10, BABYLON.Vector3.Zero(), scene);
   camera.inertia = 0;
   camera.angularSensibilityX = 250;
   camera.angularSensibilityY = 250;
@@ -26,7 +26,7 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
   var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene, false);
 
-  const lines = createXYGrid(-10, 10, -10, 10);
+  const lines = createXYGrid(-10, 5, -4, 2);
 
   const linesystem = BABYLON.MeshBuilder.CreateLineSystem('axes', {
     lines,
