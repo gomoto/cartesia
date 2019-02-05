@@ -26,18 +26,7 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
   var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene, false);
 
-  const lines = [
-    // x-axis
-    [
-      new BABYLON.Vector3(-10, 0, 0),
-      new BABYLON.Vector3(10, 0, 0),
-    ],
-    // y-axis
-    [
-      new BABYLON.Vector3(0, -10, 0),
-      new BABYLON.Vector3(0, 10, 0),
-    ],
-  ];
+  const lines = createXYGrid(-10, 10, -10, 10);
 
   const linesystem = BABYLON.MeshBuilder.CreateLineSystem('axes', {
     lines,
@@ -45,4 +34,20 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   }, scene);
 
   return scene;
+}
+
+function createXYGrid(xMin: number, xMax: number, yMin: number, yMax: number): BABYLON.Vector3[][] {
+  const xLines: [BABYLON.Vector3, BABYLON.Vector3][] = [];
+  for (let x = xMin; x <= xMax; x++) {
+    xLines.push([new BABYLON.Vector3(x, yMin), new BABYLON.Vector3(x, yMax)]);
+  }
+  const yLines: [BABYLON.Vector3, BABYLON.Vector3][] = [];
+  for (let y = yMin; y <= yMax; y++) {
+    yLines.push([new BABYLON.Vector3(xMin, y), new BABYLON.Vector3(xMax, y)]);
+  }
+  const lines = [
+    ...xLines,
+    ...yLines,
+  ];
+  return lines;
 }
