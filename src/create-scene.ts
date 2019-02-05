@@ -26,5 +26,23 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
   var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene, false);
 
+  const lines = [
+    // x-axis
+    [
+      new BABYLON.Vector3(-10, 0, 0),
+      new BABYLON.Vector3(10, 0, 0),
+    ],
+    // y-axis
+    [
+      new BABYLON.Vector3(0, -10, 0),
+      new BABYLON.Vector3(0, 10, 0),
+    ],
+  ];
+
+  const linesystem = BABYLON.MeshBuilder.CreateLineSystem('axes', {
+    lines,
+    updatable: true,
+  }, scene);
+
   return scene;
 }
