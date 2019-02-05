@@ -3,7 +3,17 @@ import { createScene } from './create-scene';
 
 const canvas = <HTMLCanvasElement> document.getElementById('renderCanvas');
 
-const engine = new BABYLON.Engine(canvas, true, {preserveDrawingBuffer: true, stencil: true});
+const enableAntialiasing = true;
+const adaptToDeviceRatio = true;
+const engine = new BABYLON.Engine(
+  canvas,
+  enableAntialiasing,
+  {
+    preserveDrawingBuffer: true,
+    stencil: true
+  },
+  adaptToDeviceRatio
+);
 
 const scene = createScene(engine);
 
