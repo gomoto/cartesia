@@ -30,7 +30,10 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
     points: [BABYLON.Vector3.Zero(), new BABYLON.Vector3(0, 0, 100)],
   }, scene);
 
+  const orientingPlane = new BABYLON.Plane(0, 1, 0, 0);
+  orientingPlane.normalize();
   const plane = BABYLON.MeshBuilder.CreatePlane('plane1', {
+    sourcePlane: orientingPlane,
     height: 10,
     width: 10,
     sideOrientation: BABYLON.Mesh.DOUBLESIDE,
