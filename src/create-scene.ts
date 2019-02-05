@@ -6,7 +6,7 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   scene.clearColor = new BABYLON.Color4(0.5, 0.5, 0.5, 1);
 
   // Create an ArcRotateCamera, and set its rotation target to the origin
-  const camera = new BABYLON.ArcRotateCamera('mainCamera', Math.PI/4, Math.PI/8, 10, BABYLON.Vector3.Zero(), scene);
+  const camera = new BABYLON.ArcRotateCamera('mainCamera', Math.PI/4 /* within xz plane */, Math.PI/8 /* within xy plane */, 10, BABYLON.Vector3.Zero(), scene);
   camera.inertia = 0;
   camera.angularSensibilityX = 250;
   camera.angularSensibilityY = 250;
@@ -17,17 +17,17 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
   var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
 
-  // Create a built-in "sphere" shape; its constructor takes 6 params: name, segment, diameter, scene, updatable, sideOrientation
-  var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene, false, BABYLON.Mesh.FRONTSIDE);
+  const sphere = BABYLON.Mesh.CreateSphere('sphere1', 32, 1, scene, false, BABYLON.Mesh.FRONTSIDE);
 
-  // Move the sphere upward 1/2 of its height
-  sphere.position.y = 1;
+  const xyGridLines = createXYGrid(-10, 5, -4, 2);
 
-  const lines = createXYGrid(-10, 5, -4, 2);
-
-  const linesystem = BABYLON.MeshBuilder.CreateLineSystem('axes', {
-    lines,
+  const xyGrid = BABYLON.MeshBuilder.CreateLineSystem('xyGrid', {
+    lines: xyGridLines,
     updatable: true,
+  }, scene);
+
+  const zAxis = BABYLON.MeshBuilder.CreateLines('zAxis', {
+    points: [BABYLON.Vector3.Zero(), new BABYLON.Vector3(0, 0, 100)],
   }, scene);
 
   const plane = BABYLON.MeshBuilder.CreatePlane('plane1', {
@@ -44,7 +44,7 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   return scene;
 }
 
-function createXYGrid(xMin: number, xMax: number, yMin: number, yMax: number): BABYLON.Vector3[][] {
+function createXYGrid(xMin: number, xMax: number, yMin: number, yMax: number): [BABYLON.Vector3, BABYLON.Vector3][] {
   const xLines: [BABYLON.Vector3, BABYLON.Vector3][] = [];
   for (let x = xMin; x <= xMax; x++) {
     xLines.push([new BABYLON.Vector3(x, yMin), new BABYLON.Vector3(x, yMax)]);
