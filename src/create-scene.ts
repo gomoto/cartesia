@@ -31,7 +31,7 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   }, scene);
   zAxis.color = new BABYLON.Color3(0, 0, 1); // blue
 
-  const orientingPlane = new BABYLON.Plane(0, 1, 0, 0);
+  const orientingPlane = new BABYLON.Plane(0, 1, 0, -1);
   orientingPlane.normalize();
   const plane = BABYLON.MeshBuilder.CreatePlane('plane1', {
     sourcePlane: orientingPlane,
