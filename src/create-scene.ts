@@ -23,9 +23,6 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   // Move the sphere upward 1/2 of its height
   sphere.position.y = 1;
 
-  // Create a built-in "ground" shape; its constructor takes 6 params : name, width, height, subdivision, scene, updatable
-  var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene, false);
-
   const lines = createXYGrid(-10, 5, -4, 2);
 
   const linesystem = BABYLON.MeshBuilder.CreateLineSystem('axes', {
