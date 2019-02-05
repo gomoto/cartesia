@@ -33,6 +33,17 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
     updatable: true,
   }, scene);
 
+  const plane = BABYLON.MeshBuilder.CreatePlane('plane1', {
+    height: 10,
+    width: 10,
+    sideOrientation: BABYLON.Mesh.DOUBLESIDE,
+  }, scene);
+
+  const planeMaterial = new BABYLON.StandardMaterial('mat1', scene);
+  planeMaterial.diffuseColor = new BABYLON.Color3(1, 0, 1);
+
+  plane.material = planeMaterial;
+
   return scene;
 }
 
