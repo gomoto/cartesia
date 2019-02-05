@@ -29,6 +29,7 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   const zAxis = BABYLON.MeshBuilder.CreateLines('zAxis', {
     points: [BABYLON.Vector3.Zero(), new BABYLON.Vector3(0, 0, 100)],
   }, scene);
+  zAxis.color = new BABYLON.Color3(0, 0, 1); // blue
 
   const orientingPlane = new BABYLON.Plane(0, 1, 0, 0);
   orientingPlane.normalize();
