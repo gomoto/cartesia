@@ -8,6 +8,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { ControlPanel } from './ControlPanel';
 import { connect, Provider } from 'react-redux';
+import { createGrid } from './create-grid';
+import { createMiscellaneous } from './create-miscellaneous';
 
 const store = createStore(reducer);
 
@@ -26,6 +28,9 @@ const engine = new BABYLON.Engine(
 );
 
 const scene = createScene(engine);
+
+createGrid(scene);
+createMiscellaneous(scene);
 
 // The render loop
 engine.runRenderLoop(function(){
