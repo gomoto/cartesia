@@ -24,6 +24,14 @@ export function reducer(state: State = initialState, action: Action): State {
         points: newPoints,
       };
     }
+    case 'REMOVE_ANY_POINT': {
+      const [_removedPoint0, ...newPoints] = state.points;
+      return {
+        ...state,
+        points: newPoints,
+      };
+      break;
+    }
     default: {
       return state;
     }
