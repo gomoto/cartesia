@@ -10,6 +10,7 @@ import { ControlPanel } from './ControlPanel';
 import { connect, Provider } from 'react-redux';
 import { createGrid } from './create-grid';
 import { createMiscellaneous } from './create-miscellaneous';
+import './index.css';
 
 const store = createStore(reducer);
 
