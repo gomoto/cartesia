@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "babylonjs": "^3.3.0"
+    "babylonjs": "^3.3.0",
+    "redux": "^4.0.1",
+    "reselect": "^4.0.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "parcel": "^1.11.0",
