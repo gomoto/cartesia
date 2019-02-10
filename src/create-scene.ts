@@ -18,6 +18,7 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
 
   const sphere = BABYLON.Mesh.CreateSphere('sphere1', 32, 1, scene, false, BABYLON.Mesh.FRONTSIDE);
+  sphere.position.y = 2;
 
   const xyGridLines = createXYGrid(-10, 5, -4, 2);
 
@@ -44,6 +45,62 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   planeMaterial.diffuseColor = new BABYLON.Color3(1, 0, 1);
 
   plane.material = planeMaterial;
+
+  const pointParticleSystem = new BABYLON.SolidParticleSystem('pointParticleSystem', scene, {
+    enableDepthSort: true,
+    isPickable: true,
+  });
+  const pointModel = BABYLON.MeshBuilder.CreateSphere('pointModel', {}, scene);
+  const pointModelId = pointParticleSystem.addShape(pointModel, 20);
+  pointModel.dispose();
+  pointParticleSystem.buildMesh();
+  // pointParticleSystem.computeParticleTexture = false;
+  // Translucent particles
+  const pointMaterial = new BABYLON.StandardMaterial('pointMaterial', scene);
+  pointMaterial.alpha = 0.85;
+  pointParticleSystem.mesh.material = pointMaterial;
+  pointParticleSystem.updateParticle = (particle) => {
+    particle.position.x = particle.idx - pointParticleSystem.nbParticles / 2;
+    return particle;
+  }
+  pointParticleSystem.setParticles();
+  // refreshVisibleSize forces BBox recomputation
+  pointParticleSystem.refreshVisibleSize();
+  // pickable particles
+  scene.onPointerObservable.add((pointerInfo, eventState) => {
+    // return if not a pointer tap
+    if (pointerInfo.type !== BABYLON.PointerEventTypes.POINTERTAP) {
+      return;
+    }
+    const pickResult = pointerInfo.pickInfo;
+    // return if not pointParticleSystem mesh
+    if (pickResult.pickedMesh !== pointParticleSystem.mesh) {
+      return;
+    }
+    // get the mesh picked face
+    const meshFaceId = pickResult.faceId;
+    // return if nothing picked
+    if (meshFaceId === -1) {
+      return;
+    }
+    // get the picked particle idx from the pickedParticles array
+    const idx = pointParticleSystem.pickedParticles[meshFaceId].idx;
+    // get the picked particle
+    const particle = pointParticleSystem.particles[idx];
+    // turn it red
+    particle.color.r = 1;
+    particle.color.b = 0;
+    particle.color.g = 0;
+    // drop it
+    particle.velocity.y = -1;
+    // draw particles
+    pointParticleSystem.setParticles();
+  });
+
+  scene.onBeforeRenderObservable.add(() => {
+    // when particles are translucent, we need to recompute particle depth sort on each render!
+    pointParticleSystem.setParticles();
+  });
 
   return scene;
 }
