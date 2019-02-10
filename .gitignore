@@ -1,3 +1,2 @@
-.cache/
-dist/
+react-app-env.d.ts
 node_modules/

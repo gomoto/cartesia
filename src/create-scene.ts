@@ -12,7 +12,7 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   camera.angularSensibilityY = 250;
 
   // Attach the camera to the canvas
-  camera.attachControl(engine.getRenderingCanvas(), false);
+  camera.attachControl(engine.getRenderingCanvas() as HTMLCanvasElement, false);
 
   // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
   var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
@@ -73,6 +73,9 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
       return;
     }
     const pickResult = pointerInfo.pickInfo;
+    if (!pickResult) {
+      return;
+    }
     // return if not pointParticleSystem mesh
     if (pickResult.pickedMesh !== pointParticleSystem.mesh) {
       return;
@@ -87,12 +90,15 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
     const idx = pointParticleSystem.pickedParticles[meshFaceId].idx;
     // get the picked particle
     const particle = pointParticleSystem.particles[idx];
+    if (!particle) {
+      return;
+    }
     // turn it red
-    particle.color.r = 1;
-    particle.color.b = 0;
-    particle.color.g = 0;
-    // drop it
-    particle.velocity.y = -1;
+    if (particle.color) {
+      particle.color.r = 1;
+      particle.color.b = 0;
+      particle.color.g = 0;
+    }
     // draw particles
     pointParticleSystem.setParticles();
   });

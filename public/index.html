@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
     <title>Cartesia</title>
@@ -18,21 +18,19 @@
             touch-action: none;
         }
 
-        #buttons {
-            position: absolute;
-            top: 16px;
-            left: 16px;
+        #controlPanel {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: auto;
+            width: 200px;
         }
     </style>
 </head>
 <body>
     <canvas id="renderCanvas"></canvas>
-    <div id="buttons">
-        <button id="addPoint">Add point</button>
-        <button id="addManyPoints">Add 3 points</button>
-        <button id="removePoint">Remove point</button>
-        <button id="removeAllPoints">Remove all points</button>
-    </div>
-    <script src="./index.ts"></script>
+    <section id="controlPanel"></section>
+    <!-- react-scripts build step appends script tags for the bundled scripts here at the end of <body> -->
 </body>
 </html>

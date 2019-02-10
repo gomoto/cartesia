@@ -1,11 +1,25 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "jsx": "preserve",
     "lib": [
       "es2017",
       "dom"
     ],
-    "module": "commonjs",
-    "noImplicitAny": true
-  }
+    "module": "esnext",
+    "noImplicitAny": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "include": [
+    "src"
+  ]
 }

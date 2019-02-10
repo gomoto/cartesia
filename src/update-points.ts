@@ -8,7 +8,7 @@ import {
 /**
  * Modify points in scene based on current and previous application state.
  */
-export function updatePoints(scene: BABYLON.Scene, currentState: State, previousState: State): void {
+export function updatePoints(scene: BABYLON.Scene, currentState: State, previousState: State | null): void {
   const currentPoints = stateSelector.getPoints(currentState);
   let enteringPoints: CartesianPoint[];
   let exitingPoints: CartesianPoint[];
@@ -28,6 +28,8 @@ export function updatePoints(scene: BABYLON.Scene, currentState: State, previous
   });
   _forEach(exitingPoints, (point) => {
     const sphere = scene.getMeshByName(point.id);
-    sphere.dispose();
+    if (sphere) {
+      sphere.dispose();
+    }
   });
 }
