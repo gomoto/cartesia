@@ -2,12 +2,8 @@ import * as BABYLON from 'babylonjs';
 import { createScene } from './create-scene';
 import { createStore } from 'redux';
 import { reducer } from './reducer';
-import * as stateSelector from './selector';
-import { State, CartesianPoint } from './state';
-import {
-  differenceBy as _differenceBy,
-  forEach as _forEach,
-} from 'lodash';
+import { State } from './state';
+import { updateSceneFromState } from './update-scene-from-state';
 
 const store = createStore(reducer);
 
@@ -41,27 +37,7 @@ window.addEventListener('resize', function(){
 let previousState: State | null = null;
 store.subscribe(() => {
   const currentState = store.getState();
-  const currentPoints = stateSelector.getPoints(currentState);
-  let enteringPoints: CartesianPoint[];
-  let exitingPoints: CartesianPoint[];
-  if (!previousState) {
-    enteringPoints = currentPoints;
-    exitingPoints = [];
-  } else {
-    const previousPoints = stateSelector.getPoints(previousState);
-    enteringPoints = _differenceBy(currentPoints, previousPoints, point => point.id);
-    exitingPoints = _differenceBy(previousPoints, currentPoints, point => point.id);
-  }
-  _forEach(enteringPoints, (point) => {
-    const sphere = BABYLON.Mesh.CreateSphere(point.id, 32, 1, scene, false, BABYLON.Mesh.FRONTSIDE);
-    sphere.position.x = point.x;
-    sphere.position.y = point.y;
-    sphere.position.z = point.z;
-  });
-  _forEach(exitingPoints, (point) => {
-    const sphere = scene.getMeshByName(point.id);
-    sphere.dispose();
-  });
+  updateSceneFromState(scene, currentState, previousState);
   previousState = currentState;
 });
 
