@@ -51,7 +51,9 @@ store.subscribe(() => {
 });
 
 const mapStateToProps = (state: State) => {
-  return {};
+  return {
+    points: state.points
+  };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
