@@ -3,7 +3,8 @@ import * as redux from 'redux';
 export type Action = (
   AddPoint |
   AddManyPoints |
-  RemoveOnePoint
+  RemoveOnePoint |
+  RemoveAllPoints
 );
 
 export interface AddPoint extends redux.Action {
@@ -24,4 +25,8 @@ export interface AddManyPoints extends redux.Action {
 
 export interface RemoveOnePoint extends redux.Action {
   type: 'REMOVE_ONE_POINT';
+}
+
+export interface RemoveAllPoints extends redux.Action {
+  type: 'REMOVE_ALL_POINTS';
 }

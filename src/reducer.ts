@@ -49,7 +49,12 @@ export function reducer(state: State = initialState, action: Action): State {
         ...state,
         points: newPoints,
       };
-      break;
+    }
+    case 'REMOVE_ALL_POINTS': {
+      return {
+        ...state,
+        points: [],
+      };
     }
     default: {
       return state;
