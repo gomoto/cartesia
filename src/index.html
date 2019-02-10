@@ -18,23 +18,20 @@
             touch-action: none;
         }
 
-        #addPoint {
+        #buttons {
             position: absolute;
             top: 16px;
-            left: 16px;
-        }
-
-        #removePoint {
-            position: absolute;
-            top: 48px;
             left: 16px;
         }
     </style>
 </head>
 <body>
     <canvas id="renderCanvas"></canvas>
-    <button id="addPoint">Add point</button>
-    <button id="removePoint">Remove point</button>
+    <div id="buttons">
+        <button id="addPoint">Add point</button>
+        <button id="addManyPoints">Add 3 points</button>
+        <button id="removePoint">Remove point</button>
+    </div>
     <script src="./index.ts"></script>
 </body>
 </html>
