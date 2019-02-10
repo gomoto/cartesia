@@ -77,5 +77,5 @@ document.getElementById('addManyPoints').onclick = function() {
 }
 
 document.getElementById('removePoint').onclick = function() {
-  store.dispatch({type: 'REMOVE_ANY_POINT'});
+  store.dispatch({type: 'REMOVE_ONE_POINT'});
 }
