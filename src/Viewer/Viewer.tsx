@@ -80,7 +80,9 @@ export class Viewer extends React.Component<ViewerProps> {
           this.gridMesh = createGrid(this.scene, this.props.currentGrid);
         }
       }
-      updateObjects(this.scene, this.props.currentObjects, this.props.previousObjects);
+      if (this.props.currentObjects !== this.props.previousObjects) {
+        updateObjects(this.scene, this.props.currentObjects, this.props.previousObjects);
+      }
     }
   }
 
