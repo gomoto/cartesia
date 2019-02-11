@@ -21,21 +21,25 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
           itemLayout="horizontal"
           dataSource={this.props.objects}
           renderItem={(o: CartesianObject) => {
+            let displayObjectType: string;
             let objectSpecificContent: React.ReactNode;
             switch (o.objectType) {
               case 'point': {
-                objectSpecificContent = (
-                  <List.Item.Meta
-                    avatar={<Checkbox checked={o.isSelected}/>}
-                    title={`${o.position.x}, ${o.position.y}, ${o.position.z}`}
-                    description="Point"
-                  />
-                );
+                displayObjectType = 'Point';
+                objectSpecificContent = `${o.position.x}, ${o.position.y}, ${o.position.z}`;
                 break;
+              }
+              default: {
+                displayObjectType = '';
+                objectSpecificContent = '';
               }
             }
             return (
               <List.Item>
+                <List.Item.Meta
+                  avatar={<Checkbox checked={o.isSelected}/>}
+                  title={displayObjectType}
+                />
                 {objectSpecificContent}
               </List.Item>
             );
