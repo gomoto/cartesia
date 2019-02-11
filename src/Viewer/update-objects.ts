@@ -28,17 +28,7 @@ export function updateObjects(scene: BABYLON.Scene, currentState: State, previou
   _forEach(enteringObjects, (o) => {
     switch (o.objectType) {
       case 'point': {
-        const sphere = BABYLON.Mesh.CreateSphere(o.id, 8, 0.2, scene, false, BABYLON.Mesh.FRONTSIDE);
-        sphere.position.x = o.position.x;
-        sphere.position.y = o.position.y;
-        sphere.position.z = o.position.z;
-        if (sphere) {
-          if (o.isSelected) {
-            sphere.material = scene.getMaterialByName(materialIds.points.selected);
-          } else {
-            sphere.material = scene.getMaterialByName(materialIds.points.unselected);
-          }
-        }
+        BABYLON.Mesh.CreateSphere(o.id, 8, 0.2, scene, false, BABYLON.Mesh.FRONTSIDE);
         break;
       }
     }
@@ -49,7 +39,7 @@ export function updateObjects(scene: BABYLON.Scene, currentState: State, previou
       sphere.dispose();
     }
   });
-  _forEach(updatingObjects, (o) => {
+  _forEach([...enteringObjects, ...updatingObjects], (o) => {
     switch (o.objectType) {
       case 'point': {
         const sphere = scene.getMeshByName(o.id);
