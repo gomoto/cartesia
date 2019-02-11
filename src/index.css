@@ -7,7 +7,7 @@
 }
 .ControlPanel {
   flex: 0 0 auto;
-  width: 200px;
+  width: 400px;
 }
 .Viewer {
   flex: 1 0 auto;
