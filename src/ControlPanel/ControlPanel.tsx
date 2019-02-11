@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Checkbox, Divider, List, InputNumber } from 'antd';
+import { Button, Checkbox, Divider, Form, List, Input, InputNumber } from 'antd';
 import './ControlPanel.css';
 import { CartesianGrid, CartesianObject, Vector3 } from '../state';
 
@@ -20,6 +20,14 @@ export interface ControlPanelProps {
 export class ControlPanel extends React.Component<ControlPanelProps> {
   render() {
     const numberOfPoints = this.props.objects.length;
+    const labelCol = {
+      span: 4,
+      offset: 0,
+    };
+    const wrapperCol = {
+      span: 20,
+      offset: 0,
+    };
     return (
       <div className="ControlPanel">
         <div>{numberOfPoints} object{numberOfPoints === 1 ? '' : 's'}</div>
@@ -71,7 +79,35 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
 
         <Divider />
         <header>Grid</header>
-        {/* <InputNumber value={o.position.x} onChange={(x = 0) => this.props.onPointPositionChange(o, {...o.position, x})} /> */}
+        <Form>
+          <Form.Item label="x" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <Input.Group>
+              <InputNumber value={this.props.grid.xMin} />
+              <InputNumber value={this.props.grid.xMax} />
+            </Input.Group>
+          </Form.Item>
+          <Form.Item label="y" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <Input.Group>
+              <InputNumber value={this.props.grid.yMin} />
+              <InputNumber value={this.props.grid.yMax} />
+            </Input.Group>
+          </Form.Item>
+          <Form.Item label="z" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <Input.Group>
+              <InputNumber value={this.props.grid.zMin} />
+              <InputNumber value={this.props.grid.zMax} />
+            </Input.Group>
+          </Form.Item>
+          <Form.Item label="step" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <InputNumber value={this.props.grid.step} />
+          </Form.Item>
+          <Form.Item label="color" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <InputNumber value={this.props.grid.color.r} />
+            <InputNumber value={this.props.grid.color.g} />
+            <InputNumber value={this.props.grid.color.b} />
+          </Form.Item>
+        </Form>
+
       </div>
     );
   }
