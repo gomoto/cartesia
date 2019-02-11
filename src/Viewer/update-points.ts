@@ -22,9 +22,9 @@ export function updatePoints(scene: BABYLON.Scene, currentState: State, previous
   }
   _forEach(enteringPoints, (point) => {
     const sphere = BABYLON.Mesh.CreateSphere(point.id, 32, 1, scene, false, BABYLON.Mesh.FRONTSIDE);
-    sphere.position.x = point.x;
-    sphere.position.y = point.y;
-    sphere.position.z = point.z;
+    sphere.position.x = point.position.x;
+    sphere.position.y = point.position.y;
+    sphere.position.z = point.position.z;
   });
   _forEach(exitingPoints, (point) => {
     const sphere = scene.getMeshByName(point.id);

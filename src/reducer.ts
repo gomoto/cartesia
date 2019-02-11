@@ -11,9 +11,12 @@ export function reducer(state: State = initialState, action: Action): State {
     case 'ADD_POINT': {
       const newPoint: CartesianPoint = {
         id: uuidv4(),
-        x: 0,
-        y: 0,
-        z: 0,
+        objectType: 'point',
+        position: {
+          x: 0,
+          y: 0,
+          z: 0,
+        },
       };
       const newPoints = [
         ...state.points,
@@ -29,9 +32,12 @@ export function reducer(state: State = initialState, action: Action): State {
       for (let i = 0; i < action.payload.numberOfPoints; i++) {
         addedPoints.push({
           id: uuidv4(),
-          x: 5 * Math.random(),
-          y: 5 * Math.random(),
-          z: 5 * Math.random(),
+          objectType: 'point',
+          position: {
+            x: 5 * Math.random(),
+            y: 5 * Math.random(),
+            z: 5 * Math.random(),
+          }
         });
       }
       const newPoints = [
