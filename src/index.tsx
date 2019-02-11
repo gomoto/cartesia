@@ -1,6 +1,7 @@
 import * as BABYLON from 'babylonjs';
 import { createScene } from './create-scene';
 import { createStore, Dispatch } from 'redux';
+import { AddPointAction } from './actions';
 import { reducer } from './reducer';
 import { State } from './state';
 import { updateSceneFromState } from './update-scene-from-state';
@@ -59,10 +60,10 @@ const mapStateToProps = (state: State) => {
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     onAddPoint: () => {
-      const x = 5 * Math.random();
-      const y = 5 * Math.random();
-      const z = 5 * Math.random();
-      dispatch({type: 'ADD_POINT', payload: {x, y, z}});
+      const action: AddPointAction = {
+        type: 'ADD_POINT',
+      };
+      dispatch(action);
     },
     onAddManyPoints: () => {
       dispatch({type: 'ADD_MANY_POINTS', payload: {numberOfPoints: 3}});

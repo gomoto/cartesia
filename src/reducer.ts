@@ -9,11 +9,11 @@ const initialState: State = {
 export function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
     case 'ADD_POINT': {
-      const newPoint = {
+      const newPoint: CartesianPoint = {
         id: uuidv4(),
-        x: action.payload.x,
-        y: action.payload.y,
-        z: action.payload.z,
+        x: 0,
+        y: 0,
+        z: 0,
       };
       const newPoints = [
         ...state.points,

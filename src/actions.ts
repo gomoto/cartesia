@@ -1,19 +1,17 @@
 import * as redux from 'redux';
 
 export type Action = (
-  AddPoint |
+  AddPointAction |
   AddManyPoints |
   RemoveOnePoint |
   RemoveAllPoints
 );
 
-export interface AddPoint extends redux.Action {
+/**
+ * Add new point at (0, 0, 0)
+ */
+export interface AddPointAction extends redux.Action {
   type: 'ADD_POINT';
-  payload: {
-    x: number;
-    y: number;
-    z: number;
-  }
 }
 
 export interface AddManyPoints extends redux.Action {
