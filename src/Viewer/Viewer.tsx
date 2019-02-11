@@ -3,6 +3,7 @@ import { State } from '../state';
 import * as BABYLON from 'babylonjs';
 import { createScene } from './create-scene';
 import { createGrid } from './create-grid';
+import { createMaterials } from './materials';
 import { createMiscellaneous } from './create-miscellaneous';
 import { updateSceneFromState } from './update-scene-from-state';
 import './Viewer.css';
@@ -34,6 +35,7 @@ export class Viewer extends React.Component<ViewerProps> {
     );
 
     const scene = createScene(engine);
+    createMaterials(scene);
     createGrid(scene);
     createMiscellaneous(scene);
 
