@@ -28,11 +28,11 @@ export function reducer(state: State = initialState, action: Action): State {
         objects: newObjects,
       };
     }
-    case 'REMOVE_ONE_POINT': {
-      const [_removedPoint0, ...newPoints] = state.objects;
+    case 'REMOVE_SELECTED_OBJECTS': {
+      const newObjects = state.objects.filter((o) => !o.isSelected);
       return {
         ...state,
-        objects: newPoints,
+        objects: newObjects,
       };
     }
     case 'REMOVE_ALL_OBJECTS': {

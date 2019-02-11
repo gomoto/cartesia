@@ -3,7 +3,7 @@ import { Vector3 } from './state';
 
 export type Action = (
   AddPointAction |
-  RemoveOnePoint |
+  RemoveSelectedObjectsAction |
   RemoveAllObjects |
   SelectObjectAction |
   UnselectObjectAction |
@@ -17,8 +17,8 @@ export interface AddPointAction extends redux.Action {
   type: 'ADD_POINT';
 }
 
-export interface RemoveOnePoint extends redux.Action {
-  type: 'REMOVE_ONE_POINT';
+export interface RemoveSelectedObjectsAction extends redux.Action {
+  type: 'REMOVE_SELECTED_OBJECTS';
 }
 
 export interface RemoveAllObjects extends redux.Action {

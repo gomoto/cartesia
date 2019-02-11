@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       };
       dispatch(action);
     },
-    onRemovePoint: () => {
-      dispatch({type: 'REMOVE_ONE_POINT'});
+    onRemoveSelectedObjects: () => {
+      dispatch({type: 'REMOVE_SELECTED_OBJECTS'});
     },
     onRemoveAllObjects: () => {
       dispatch({type: 'REMOVE_ALL_OBJECTS'});
