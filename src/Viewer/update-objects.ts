@@ -28,7 +28,7 @@ export function updateObjects(scene: BABYLON.Scene, currentState: State, previou
   _forEach(enteringObjects, (o) => {
     switch (o.objectType) {
       case 'point': {
-        const sphere = BABYLON.Mesh.CreateSphere(o.id, 32, 1, scene, false, BABYLON.Mesh.FRONTSIDE);
+        const sphere = BABYLON.Mesh.CreateSphere(o.id, 8, 0.2, scene, false, BABYLON.Mesh.FRONTSIDE);
         sphere.position.x = o.position.x;
         sphere.position.y = o.position.y;
         sphere.position.z = o.position.z;
