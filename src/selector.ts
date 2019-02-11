@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { State, CartesianPoint } from './state';
+import { State, CartesianObject } from './state';
 
-export function getPoints(state: State): CartesianPoint[] {
-  return state.points;
+export function getObjects(state: State): CartesianObject[] {
+  return state.objects;
 }

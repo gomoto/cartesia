@@ -3,7 +3,7 @@ import { Action } from './actions';
 const uuidv4 = require('uuid/v4');
 
 const initialState: State = {
-  points: [],
+  objects: [],
 };
 
 export function reducer(state: State = initialState, action: Action): State {
@@ -18,13 +18,13 @@ export function reducer(state: State = initialState, action: Action): State {
           z: 0,
         },
       };
-      const newPoints = [
-        ...state.points,
+      const newObjects = [
+        ...state.objects,
         newPoint,
       ];
       return {
         ...state,
-        points: newPoints,
+        objects: newObjects,
       };
     }
     case 'ADD_MANY_POINTS': {
@@ -41,25 +41,25 @@ export function reducer(state: State = initialState, action: Action): State {
         });
       }
       const newPoints = [
-        ...state.points,
+        ...state.objects,
         ...addedPoints,
       ];
       return {
         ...state,
-        points: newPoints,
+        objects: newPoints,
       };
     }
     case 'REMOVE_ONE_POINT': {
-      const [_removedPoint0, ...newPoints] = state.points;
+      const [_removedPoint0, ...newPoints] = state.objects;
       return {
         ...state,
-        points: newPoints,
+        objects: newPoints,
       };
     }
     case 'REMOVE_ALL_POINTS': {
       return {
         ...state,
-        points: [],
+        objects: [],
       };
     }
     default: {

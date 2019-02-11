@@ -1,5 +1,5 @@
 export interface State {
-  points: CartesianPoint[];
+  objects: CartesianObject[];
 }
 
 export interface Vector3 {

@@ -6,7 +6,7 @@ import { AddPointAction } from '../actions';
 
 const mapStateToProps = (state: State) => {
   return {
-    points: state.points
+    objects: state.objects
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {
