@@ -1,6 +1,6 @@
 import * as BABYLON from 'babylonjs';
 import { State } from '../state';
-import { updateObjects } from './update-points';
+import { updateObjects } from './update-objects';
 
 /**
  * Modify scene based on current and previous application state.
