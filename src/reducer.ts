@@ -35,7 +35,7 @@ export function reducer(state: State = initialState, action: Action): State {
         objects: newPoints,
       };
     }
-    case 'REMOVE_ALL_POINTS': {
+    case 'REMOVE_ALL_OBJECTS': {
       return {
         ...state,
         objects: [],

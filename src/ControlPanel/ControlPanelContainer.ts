@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     onRemovePoint: () => {
       dispatch({type: 'REMOVE_ONE_POINT'});
     },
-    onRemoveAllPoints: () => {
-      dispatch({type: 'REMOVE_ALL_POINTS'});
+    onRemoveAllObjects: () => {
+      dispatch({type: 'REMOVE_ALL_OBJECTS'});
     },
     onSelectObject: (o: CartesianObject) => {
       if (o.isSelected) {
