@@ -3,6 +3,15 @@ import { Action } from './actions';
 const uuidv4 = require('uuid/v4');
 
 const initialState: State = {
+  grid: {
+    xMin: -8,
+    xMax: 8,
+    yMin: -8,
+    yMax: 8,
+    zMin: -8,
+    zMax: 8,
+    step: 4,
+  },
   objects: [],
 };
 

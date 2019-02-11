@@ -1,4 +1,5 @@
 export interface State {
+  grid: CartesianGrid;
   objects: CartesianObject[];
 }
 
@@ -27,3 +28,13 @@ export type CartesianObject = (
   CartesianPoint |
   CartesianLine
 );
+
+export interface CartesianGrid {
+  xMin: number;
+  xMax: number;
+  yMin: number;
+  yMax: number;
+  zMin: number;
+  zMax: number;
+  step: number;
+}

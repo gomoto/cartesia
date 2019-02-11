@@ -7,6 +7,7 @@ import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-und
 
 const mapStateToProps = (state: StateWithHistory<State>) => {
   return {
+    grid: state.present.grid,
     objects: state.present.objects,
     canUndo: state.past.length > 0,
     canRedo: state.future.length > 0,

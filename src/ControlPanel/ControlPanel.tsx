@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Button, Checkbox, List, InputNumber } from 'antd';
+import { Button, Checkbox, Divider, List, InputNumber } from 'antd';
 import './ControlPanel.css';
-import { CartesianObject, Vector3 } from '../state';
+import { CartesianGrid, CartesianObject, Vector3 } from '../state';
 
 export interface ControlPanelProps {
+  grid: CartesianGrid;
   objects: CartesianObject[];
   onAddPoint(): void;
   onRemoveSelectedObjects(): void;
@@ -67,6 +68,10 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
         <Button onClick={this.props.onRemoveAllObjects.bind(this)}>Remove all objects</Button>
         <Button onClick={this.props.onUndo.bind(this)} disabled={!this.props.canUndo}>Undo</Button>
         <Button onClick={this.props.onRedo.bind(this)} disabled={!this.props.canRedo}>Redo</Button>
+
+        <Divider />
+        <header>Grid</header>
+        {/* <InputNumber value={o.position.x} onChange={(x = 0) => this.props.onPointPositionChange(o, {...o.position, x})} /> */}
       </div>
     );
   }

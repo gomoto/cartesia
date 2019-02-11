@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CartesianObject } from '../state';
+import { CartesianObject, CartesianGrid } from '../state';
 import * as BABYLON from 'babylonjs';
 import { createScene } from './create-scene';
 import { createGrid } from './create-grid';
@@ -10,6 +10,7 @@ import { onMeshClick } from './on-mesh-click';
 import { updateObjects } from './update-objects';
 
 export interface ViewerProps {
+  grid: CartesianGrid;
   previousObjects: CartesianObject[];
   currentObjects: CartesianObject[];
   onSelectObject(object: CartesianObject): void;
@@ -41,7 +42,7 @@ export class Viewer extends React.Component<ViewerProps> {
     const scene = createScene(engine);
 
     createMaterials(scene);
-    createGrid(scene);
+    createGrid(scene, this.props.grid);
     createMiscellaneous(scene);
     onMeshClick(scene, (mesh) => {
       const o = this.props.currentObjects.find(o => o.id === mesh.name);
