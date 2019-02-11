@@ -1,5 +1,5 @@
 import * as BABYLON from 'babylonjs';
-import { State } from './state';
+import { State } from '../state';
 import { updatePoints } from './update-points';
 
 /**

@@ -1,5 +1,5 @@
-import { State, CartesianPoint } from './state';
-import * as stateSelector from './selector';
+import { State, CartesianPoint } from '../state';
+import * as stateSelector from '../selector';
 import {
   differenceBy as _differenceBy,
   forEach as _forEach,
