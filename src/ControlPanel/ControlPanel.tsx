@@ -6,7 +6,6 @@ import { CartesianObject, Vector3 } from '../state';
 export interface ControlPanelProps {
   objects: CartesianObject[];
   onAddPoint(): void;
-  onAddManyPoints(): void;
   onRemovePoint(): void;
   onRemoveAllPoints(): void;
   onSelectObject(object: CartesianObject): void;
@@ -60,7 +59,6 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
           }}
         />
         <button onClick={this.props.onAddPoint.bind(this)}>Add point</button>
-        <button onClick={this.props.onAddManyPoints.bind(this)}>Add 3 objects</button>
         <button onClick={this.props.onRemovePoint.bind(this)}>Remove point</button>
         <button onClick={this.props.onRemoveAllPoints.bind(this)}>Remove all objects</button>
       </div>

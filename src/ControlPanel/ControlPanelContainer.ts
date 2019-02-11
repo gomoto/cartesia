@@ -17,9 +17,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       };
       dispatch(action);
     },
-    onAddManyPoints: () => {
-      dispatch({type: 'ADD_MANY_POINTS', payload: {numberOfPoints: 3}});
-    },
     onRemovePoint: () => {
       dispatch({type: 'REMOVE_ONE_POINT'});
     },

@@ -28,29 +28,6 @@ export function reducer(state: State = initialState, action: Action): State {
         objects: newObjects,
       };
     }
-    case 'ADD_MANY_POINTS': {
-      const addedPoints: CartesianPoint[] = [];
-      for (let i = 0; i < action.payload.numberOfPoints; i++) {
-        addedPoints.push({
-          id: uuidv4(),
-          objectType: 'point',
-          isSelected: true,
-          position: {
-            x: parseFloat((5 * Math.random()).toFixed(3)),
-            y: parseFloat((5 * Math.random()).toFixed(3)),
-            z: parseFloat((5 * Math.random()).toFixed(3)),
-          }
-        });
-      }
-      const newPoints = [
-        ...state.objects,
-        ...addedPoints,
-      ];
-      return {
-        ...state,
-        objects: newPoints,
-      };
-    }
     case 'REMOVE_ONE_POINT': {
       const [_removedPoint0, ...newPoints] = state.objects;
       return {

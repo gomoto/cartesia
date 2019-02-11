@@ -3,7 +3,6 @@ import { Vector3 } from './state';
 
 export type Action = (
   AddPointAction |
-  AddManyPoints |
   RemoveOnePoint |
   RemoveAllPoints |
   SelectObjectAction |
@@ -16,13 +15,6 @@ export type Action = (
  */
 export interface AddPointAction extends redux.Action {
   type: 'ADD_POINT';
-}
-
-export interface AddManyPoints extends redux.Action {
-  type: 'ADD_MANY_POINTS';
-  payload: {
-    numberOfPoints: number;
-  }
 }
 
 export interface RemoveOnePoint extends redux.Action {
