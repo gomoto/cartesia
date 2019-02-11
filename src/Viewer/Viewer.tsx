@@ -74,9 +74,11 @@ export class Viewer extends React.Component<ViewerProps> {
   componentDidUpdate() {
     if (this.scene) {
       if (this.gridMesh) {
-        // Recreate grid. Can't get LineSystem updatable to work here. Should it?
-        this.gridMesh.dispose();
-        this.gridMesh = createGrid(this.scene, this.props.currentGrid);
+        if (this.props.currentGrid !== this.props.previousGrid) {
+          // Recreate grid. Can't get LineSystem updatable to work here. Should it?
+          this.gridMesh.dispose();
+          this.gridMesh = createGrid(this.scene, this.props.currentGrid);
+        }
       }
       updateObjects(this.scene, this.props.currentObjects, this.props.previousObjects);
     }
