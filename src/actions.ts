@@ -1,5 +1,5 @@
 import * as redux from 'redux';
-import { Vector3 } from './state';
+import { Vector3, CartesianGrid } from './state';
 
 export type Action = (
   AddPointAction |
@@ -7,7 +7,8 @@ export type Action = (
   RemoveAllObjects |
   SelectObjectAction |
   UnselectObjectAction |
-  ChangePointPositionAction
+  ChangePointPositionAction |
+  ChangeGridAction
 );
 
 /**
@@ -44,5 +45,12 @@ export interface ChangePointPositionAction extends redux.Action {
   payload: {
     objectId: string;
     position: Vector3;
+  }
+}
+
+export interface ChangeGridAction extends redux.Action {
+  type: 'CHANGE_GRID';
+  payload: {
+    grid: CartesianGrid;
   }
 }

@@ -4,7 +4,7 @@ import { CartesianGrid } from '../state';
 /**
  * Create grid in scene.
  */
-export function createGrid(scene: BABYLON.Scene, grid: CartesianGrid): void {
+export function createGrid(scene: BABYLON.Scene, grid: CartesianGrid): BABYLON.LinesMesh {
   const {
     xMin,
     xMax,
@@ -41,9 +41,11 @@ export function createGrid(scene: BABYLON.Scene, grid: CartesianGrid): void {
 
   const gridMesh = BABYLON.MeshBuilder.CreateLineSystem('grid', {
     lines,
-    updatable: true,
+    // updatable: true,
   }, scene);
 
   const { r, g, b } = color;
   gridMesh.color = new BABYLON.Color3(r, g, b);
+
+  return gridMesh;
 }

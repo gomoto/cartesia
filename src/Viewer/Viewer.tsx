@@ -10,7 +10,8 @@ import { onMeshClick } from './on-mesh-click';
 import { updateObjects } from './update-objects';
 
 export interface ViewerProps {
-  grid: CartesianGrid;
+  currentGrid: CartesianGrid;
+  previousGrid: CartesianGrid;
   previousObjects: CartesianObject[];
   currentObjects: CartesianObject[];
   onSelectObject(object: CartesianObject): void;
@@ -20,6 +21,7 @@ export class Viewer extends React.Component<ViewerProps> {
   private canvas: HTMLCanvasElement | null = null;
   private engine: BABYLON.Engine | null = null;
   private scene: BABYLON.Scene | null = null;
+  private gridMesh: BABYLON.LinesMesh | null = null;
 
   componentDidMount() {
     // Ref callback is guaranteed to be called before componentDidMount fires.
@@ -42,7 +44,7 @@ export class Viewer extends React.Component<ViewerProps> {
     const scene = createScene(engine);
 
     createMaterials(scene);
-    createGrid(scene, this.props.grid);
+    this.gridMesh = createGrid(scene, this.props.currentGrid);
     createMiscellaneous(scene);
     onMeshClick(scene, (mesh) => {
       const o = this.props.currentObjects.find(o => o.id === mesh.name);
@@ -71,6 +73,11 @@ export class Viewer extends React.Component<ViewerProps> {
   // When props update, update scene.
   componentDidUpdate() {
     if (this.scene) {
+      if (this.gridMesh) {
+        // Recreate grid. Can't get LineSystem updatable to work here. Should it?
+        this.gridMesh.dispose();
+        this.gridMesh = createGrid(this.scene, this.props.currentGrid);
+      }
       updateObjects(this.scene, this.props.currentObjects, this.props.previousObjects);
     }
   }

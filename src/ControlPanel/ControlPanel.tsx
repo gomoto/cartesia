@@ -5,6 +5,7 @@ import { CartesianGrid, CartesianObject, Vector3 } from '../state';
 
 export interface ControlPanelProps {
   grid: CartesianGrid;
+  onGridChange(grid: CartesianGrid): void;
   objects: CartesianObject[];
   onAddPoint(): void;
   onRemoveSelectedObjects(): void;
@@ -82,29 +83,29 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
         <Form>
           <Form.Item label="x" labelCol={labelCol} wrapperCol={wrapperCol}>
             <Input.Group>
-              <InputNumber value={this.props.grid.xMin} />
-              <InputNumber value={this.props.grid.xMax} />
+              <InputNumber value={this.props.grid.xMin} onChange={(xMin = 0) => this.props.onGridChange({...this.props.grid, xMin})}/>
+              <InputNumber value={this.props.grid.xMax} onChange={(xMax = 0) => this.props.onGridChange({...this.props.grid, xMax})}/>
             </Input.Group>
           </Form.Item>
           <Form.Item label="y" labelCol={labelCol} wrapperCol={wrapperCol}>
             <Input.Group>
-              <InputNumber value={this.props.grid.yMin} />
-              <InputNumber value={this.props.grid.yMax} />
+              <InputNumber value={this.props.grid.yMin} onChange={(yMin = 0) => this.props.onGridChange({...this.props.grid, yMin})}/>
+              <InputNumber value={this.props.grid.yMax} onChange={(yMax = 0) => this.props.onGridChange({...this.props.grid, yMax})}/>
             </Input.Group>
           </Form.Item>
           <Form.Item label="z" labelCol={labelCol} wrapperCol={wrapperCol}>
             <Input.Group>
-              <InputNumber value={this.props.grid.zMin} />
-              <InputNumber value={this.props.grid.zMax} />
+              <InputNumber value={this.props.grid.zMin} onChange={(zMin = 0) => this.props.onGridChange({...this.props.grid, zMin})}/>
+              <InputNumber value={this.props.grid.zMax} onChange={(zMax = 0) => this.props.onGridChange({...this.props.grid, zMax})}/>
             </Input.Group>
           </Form.Item>
           <Form.Item label="step" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <InputNumber value={this.props.grid.step} />
+            <InputNumber value={this.props.grid.step} onChange={(step = 0) => this.props.onGridChange({...this.props.grid, step})}/>
           </Form.Item>
           <Form.Item label="color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <InputNumber value={this.props.grid.color.r} />
-            <InputNumber value={this.props.grid.color.g} />
-            <InputNumber value={this.props.grid.color.b} />
+            <InputNumber value={this.props.grid.color.r} onChange={(r = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, r}})}/>
+            <InputNumber value={this.props.grid.color.g} onChange={(g = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, g}})}/>
+            <InputNumber value={this.props.grid.color.b} onChange={(b = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, b}})}/>
           </Form.Item>
         </Form>
 

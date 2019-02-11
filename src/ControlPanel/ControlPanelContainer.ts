@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { State, CartesianObject, Vector3 } from '../state';
+import { State, CartesianObject, Vector3, CartesianGrid } from '../state';
 import { ControlPanel } from './ControlPanel';
-import { AddPointAction, SelectObjectAction, UnselectObjectAction, ChangePointPositionAction } from '../actions';
+import { AddPointAction, SelectObjectAction, UnselectObjectAction, ChangePointPositionAction, ChangeGridAction } from '../actions';
 import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-undo';
 
 const mapStateToProps = (state: StateWithHistory<State>) => {
@@ -15,6 +15,13 @@ const mapStateToProps = (state: StateWithHistory<State>) => {
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
+    onGridChange: (grid: CartesianGrid) => {
+      const action: ChangeGridAction = {
+        type: 'CHANGE_GRID',
+        payload: {grid},
+      };
+      dispatch(action);
+    },
     onAddPoint: () => {
       const action: AddPointAction = {
         type: 'ADD_POINT',

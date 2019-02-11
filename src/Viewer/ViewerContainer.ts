@@ -8,12 +8,14 @@ import { StateWithHistory } from 'redux-undo';
 // Track previous state
 let _previousState: StateWithHistory<State> | null = null;
 const mapStateToProps = (state: StateWithHistory<State>) => {
-  const grid = state.present.grid;
+  const currentGrid = state.present.grid;
+  const previousGrid = _previousState ? _previousState.present.grid : currentGrid;
   const currentObjects = state.present.objects;
   const previousObjects = _previousState ? _previousState.present.objects : []; // use saved previous state
   _previousState = state; // save previous state for next call
   return {
-    grid,
+    currentGrid,
+    previousGrid,
     currentObjects,
     previousObjects,
   };

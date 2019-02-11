@@ -108,6 +108,12 @@ export function reducer(state: State = initialState, action: Action): State {
         objects: newObjects,
       };
     }
+    case 'CHANGE_GRID': {
+      return {
+        ...state,
+        grid: action.payload.grid,
+      };
+    }
     default: {
       return state;
     }
