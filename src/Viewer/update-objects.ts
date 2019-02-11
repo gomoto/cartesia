@@ -1,5 +1,4 @@
-import { State, CartesianObject, CartesianPoint } from '../state';
-import * as stateSelector from '../selector';
+import { CartesianObject, CartesianPoint } from '../state';
 import {
   differenceBy as _differenceBy,
   forEach as _forEach,
@@ -11,24 +10,11 @@ import { updatePoint } from './update-point';
 /**
  * Modify objects in scene based on current and previous application state.
  */
-export function updateObjects(scene: BABYLON.Scene, currentState: State, previousState: State | null): void {
-  const currentObjects = stateSelector.getObjects(currentState);
-  let enteringObjects: CartesianObject[];
-  let exitingObjects: CartesianObject[];
-  let updatingCurrentObjects: CartesianObject[];
-  let updatingPreviousObjects: CartesianObject[];
-  if (!previousState) {
-    enteringObjects = currentObjects;
-    exitingObjects = [];
-    updatingCurrentObjects = [];
-    updatingPreviousObjects = [];
-  } else {
-    const previousObjects = stateSelector.getObjects(previousState);
-    enteringObjects = _differenceBy(currentObjects, previousObjects, o => o.id);
-    exitingObjects = _differenceBy(previousObjects, currentObjects, o => o.id);
-    updatingCurrentObjects = _intersectionBy(currentObjects, previousObjects, o => o.id);
-    updatingPreviousObjects = _intersectionBy(previousObjects, currentObjects, o => o.id);
-  }
+export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObject[], previousObjects: CartesianObject[]): void {
+  const enteringObjects = _differenceBy(currentObjects, previousObjects, o => o.id);
+  const exitingObjects = _differenceBy(previousObjects, currentObjects, o => o.id);
+  const updatingCurrentObjects = _intersectionBy(currentObjects, previousObjects, o => o.id);
+  const updatingPreviousObjects = _intersectionBy(previousObjects, currentObjects, o => o.id);
   _forEach(exitingObjects, (o) => {
     const sphere = scene.getMeshByName(o.id);
     if (sphere) {

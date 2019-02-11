@@ -7,12 +7,12 @@ import { Viewer } from './Viewer';
 // Track previous state
 let _previousState: State | null = null;
 const mapStateToProps = (state: State) => {
-  const currentState = state;
-  const previousState = _previousState; // use saved previous state
+  const currentObjects = state.objects;
+  const previousObjects = _previousState ? _previousState.objects : []; // use saved previous state
   _previousState = state; // save previous state for next call
   return {
-    previousState,
-    currentState,
+    previousObjects,
+    currentObjects,
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {

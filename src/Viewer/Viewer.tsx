@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { State, CartesianObject } from '../state';
+import { CartesianObject } from '../state';
 import * as BABYLON from 'babylonjs';
 import { createScene } from './create-scene';
 import { createGrid } from './create-grid';
 import { createMaterials } from './materials';
 import { createMiscellaneous } from './create-miscellaneous';
-import { updateSceneFromState } from './update-scene-from-state';
 import './Viewer.css';
 import { onMeshClick } from './on-mesh-click';
+import { updateObjects } from './update-objects';
 
 export interface ViewerProps {
-  previousState: State | null;
-  currentState: State;
+  previousObjects: CartesianObject[];
+  currentObjects: CartesianObject[];
   onSelectObject(object: CartesianObject): void;
 }
 
@@ -44,7 +44,7 @@ export class Viewer extends React.Component<ViewerProps> {
     createGrid(scene);
     createMiscellaneous(scene);
     onMeshClick(scene, (mesh) => {
-      const o = this.props.currentState.objects.find(o => o.id === mesh.name);
+      const o = this.props.currentObjects.find(o => o.id === mesh.name);
       if (!o) {
         return;
       }
@@ -70,7 +70,7 @@ export class Viewer extends React.Component<ViewerProps> {
   // When props update, update scene.
   componentDidUpdate() {
     if (this.scene) {
-      updateSceneFromState(this.scene, this.props.currentState, this.props.previousState);
+      updateObjects(this.scene, this.props.currentObjects, this.props.previousObjects);
     }
   }
 
