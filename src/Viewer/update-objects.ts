@@ -25,18 +25,18 @@ export function updateObjects(scene: BABYLON.Scene, currentState: State, previou
     exitingObjects = _differenceBy(previousObjects, currentObjects, o => o.id);
     updatingObjects = _intersectionBy(currentObjects, previousObjects, o => o.id);
   }
+  _forEach(exitingObjects, (o) => {
+    const sphere = scene.getMeshByName(o.id);
+    if (sphere) {
+      sphere.dispose();
+    }
+  });
   _forEach(enteringObjects, (o) => {
     switch (o.objectType) {
       case 'point': {
         BABYLON.Mesh.CreateSphere(o.id, 8, 0.2, scene, false, BABYLON.Mesh.FRONTSIDE);
         break;
       }
-    }
-  });
-  _forEach(exitingObjects, (o) => {
-    const sphere = scene.getMeshByName(o.id);
-    if (sphere) {
-      sphere.dispose();
     }
   });
   _forEach([...enteringObjects, ...updatingObjects], (o) => {
