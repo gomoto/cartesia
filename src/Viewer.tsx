@@ -62,7 +62,7 @@ export class Viewer extends React.Component<ViewerProps> {
 
   render() {
     return (
-      <div className="viewer">
+      <div className="Viewer">
         <canvas ref={this.onCanvasRefChange} />
       </div>
     );

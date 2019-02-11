@@ -5,10 +5,10 @@
   height: 100%;
   width: 100%;
 }
-.controlPanel {
+.ControlPanel {
   flex: 0 0 auto;
   width: 200px;
 }
-.viewer {
+.Viewer {
   flex: 1 0 auto;
 }

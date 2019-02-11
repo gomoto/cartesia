@@ -14,7 +14,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
   render() {
     const numberOfPoints = this.props.points.length;
     return (
-      <div className="controlPanel">
+      <div className="ControlPanel">
         <div>{numberOfPoints} point{numberOfPoints === 1 ? '' : 's'}</div>
         <button onClick={this.props.onAddPoint.bind(this)}>Add point</button>
         <button onClick={this.props.onAddManyPoints.bind(this)}>Add 3 points</button>

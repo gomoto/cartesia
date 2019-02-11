@@ -1,10 +1,10 @@
-.viewer {
+.Viewer {
   position: relative;
 }
-.viewer canvas {
+.Viewer canvas {
   /**
-   * canvas is positioned relative to viewer container.
-   * viewer container is allowed to size itself before canvas is painted in it.
+   * canvas is positioned relative to Viewer container.
+   * Viewer container is allowed to size itself before canvas is painted in it.
    */
   position: absolute;
   top: 0;
