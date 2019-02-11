@@ -21,19 +21,19 @@ export function updateObjects(scene: BABYLON.Scene, currentState: State, previou
     updatingObjects = [];
   } else {
     const previousObjects = stateSelector.getObjects(previousState);
-    enteringObjects = _differenceBy(currentObjects, previousObjects, object => object.id);
-    exitingObjects = _differenceBy(previousObjects, currentObjects, object => object.id);
+    enteringObjects = _differenceBy(currentObjects, previousObjects, o => o.id);
+    exitingObjects = _differenceBy(previousObjects, currentObjects, o => o.id);
     updatingObjects = _intersectionBy(currentObjects, previousObjects, o => o.id);
   }
-  _forEach(enteringObjects, (object) => {
-    switch (object.objectType) {
+  _forEach(enteringObjects, (o) => {
+    switch (o.objectType) {
       case 'point': {
-        const sphere = BABYLON.Mesh.CreateSphere(object.id, 32, 1, scene, false, BABYLON.Mesh.FRONTSIDE);
-        sphere.position.x = object.position.x;
-        sphere.position.y = object.position.y;
-        sphere.position.z = object.position.z;
+        const sphere = BABYLON.Mesh.CreateSphere(o.id, 32, 1, scene, false, BABYLON.Mesh.FRONTSIDE);
+        sphere.position.x = o.position.x;
+        sphere.position.y = o.position.y;
+        sphere.position.z = o.position.z;
         if (sphere) {
-          if (object.isSelected) {
+          if (o.isSelected) {
             sphere.material = scene.getMaterialByName(materialIds.points.selected);
           } else {
             sphere.material = scene.getMaterialByName(materialIds.points.unselected);
@@ -43,8 +43,8 @@ export function updateObjects(scene: BABYLON.Scene, currentState: State, previou
       }
     }
   });
-  _forEach(exitingObjects, (object) => {
-    const sphere = scene.getMeshByName(object.id);
+  _forEach(exitingObjects, (o) => {
+    const sphere = scene.getMeshByName(o.id);
     if (sphere) {
       sphere.dispose();
     }
