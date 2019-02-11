@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { State } from './state';
+import { State } from '../state';
 import { ControlPanel } from './ControlPanel';
-import { AddPointAction } from './actions';
+import { AddPointAction } from '../actions';
 
 const mapStateToProps = (state: State) => {
   return {

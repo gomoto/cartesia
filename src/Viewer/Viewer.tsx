@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { State } from './state';
+import { State } from '../state';
 import * as BABYLON from 'babylonjs';
-import { createScene } from './create-scene';
-import { createGrid } from './create-grid';
-import { createMiscellaneous } from './create-miscellaneous';
-import { updateSceneFromState } from './update-scene-from-state';
+import { createScene } from '../create-scene';
+import { createGrid } from '../create-grid';
+import { createMiscellaneous } from '../create-miscellaneous';
+import { updateSceneFromState } from '../update-scene-from-state';
 import './Viewer.css';
 
 export interface ViewerProps {

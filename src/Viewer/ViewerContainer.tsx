@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { State } from './state';
+import { State } from '../state';
 import { Viewer } from './Viewer';
 
 // Track previous state

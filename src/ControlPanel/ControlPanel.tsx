@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './ControlPanel.css';
-import { CartesianPoint } from './state';
+import { CartesianPoint } from '../state';
 
 export interface ControlPanelProps {
   points: CartesianPoint[];

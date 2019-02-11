@@ -3,8 +3,8 @@ import * as ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { reducer } from './reducer';
 import { Provider } from 'react-redux';
-import { ControlPanelContainer } from './ControlPanelContainer';
-import { ViewerContainer } from './ViewerContainer';
+import { ControlPanelContainer } from './ControlPanel/ControlPanelContainer';
+import { ViewerContainer } from './Viewer/ViewerContainer';
 import './index.css';
 
 const store = createStore(reducer);
