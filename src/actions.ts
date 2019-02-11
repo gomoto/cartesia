@@ -1,4 +1,5 @@
 import * as redux from 'redux';
+import { Vector3 } from './state';
 
 export type Action = (
   AddPointAction |
@@ -6,7 +7,8 @@ export type Action = (
   RemoveOnePoint |
   RemoveAllPoints |
   SelectObjectAction |
-  UnselectObjectAction
+  UnselectObjectAction |
+  ChangePointPositionAction
 );
 
 /**
@@ -42,5 +44,13 @@ export interface UnselectObjectAction extends redux.Action {
   type: 'UNSELECT_OBJECT';
   payload: {
     objectId: string;
+  }
+}
+
+export interface ChangePointPositionAction extends redux.Action {
+  type: 'CHANGE_POINT_POSITION';
+  payload: {
+    objectId: string;
+    position: Vector3;
   }
 }

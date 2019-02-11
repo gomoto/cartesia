@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Checkbox, List } from 'antd';
+import { Checkbox, List, InputNumber } from 'antd';
 import './ControlPanel.css';
-import { CartesianObject } from '../state';
+import { CartesianObject, Vector3 } from '../state';
 
 export interface ControlPanelProps {
   objects: CartesianObject[];
@@ -10,6 +10,7 @@ export interface ControlPanelProps {
   onRemovePoint(): void;
   onRemoveAllPoints(): void;
   onSelectObject(object: CartesianObject): void;
+  onPointPositionChange(object: CartesianObject, position: Vector3): void;
 }
 
 export class ControlPanel extends React.Component<ControlPanelProps> {
@@ -27,7 +28,13 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
             switch (o.objectType) {
               case 'point': {
                 displayObjectType = 'Point';
-                objectSpecificContent = `${o.position.x}, ${o.position.y}, ${o.position.z}`;
+                objectSpecificContent = (
+                  <div>
+                    <InputNumber value={o.position.x} onChange={(x = 0) => this.props.onPointPositionChange(o, {...o.position, x})} />
+                    <InputNumber value={o.position.y} onChange={(y = 0) => this.props.onPointPositionChange(o, {...o.position, y})} />
+                    <InputNumber value={o.position.z} onChange={(z = 0) => this.props.onPointPositionChange(o, {...o.position, z})} />
+                  </div>
+                );
                 break;
               }
               default: {

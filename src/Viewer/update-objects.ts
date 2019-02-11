@@ -54,6 +54,9 @@ export function updateObjects(scene: BABYLON.Scene, currentState: State, previou
       case 'point': {
         const sphere = scene.getMeshByName(o.id);
         if (sphere) {
+          sphere.position.x = o.position.x;
+          sphere.position.y = o.position.y;
+          sphere.position.z = o.position.z;
           if (o.isSelected) {
             sphere.material = scene.getMaterialByName(materialIds.points.selected);
           } else {

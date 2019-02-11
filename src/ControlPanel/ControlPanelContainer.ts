@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { State, CartesianObject } from '../state';
+import { State, CartesianObject, Vector3 } from '../state';
 import { ControlPanel } from './ControlPanel';
-import { AddPointAction, SelectObjectAction, UnselectObjectAction } from '../actions';
+import { AddPointAction, SelectObjectAction, UnselectObjectAction, ChangePointPositionAction } from '../actions';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -40,6 +40,13 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         };
         dispatch(action);
       }
+    },
+    onPointPositionChange: (o: CartesianObject, position: Vector3) => {
+      const action: ChangePointPositionAction = {
+        type: 'CHANGE_POINT_POSITION',
+        payload: {objectId: o.id, position},
+      };
+      dispatch(action);
     },
   }
 };

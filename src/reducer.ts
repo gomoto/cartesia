@@ -1,4 +1,4 @@
-import { State, CartesianPoint } from './state';
+import { State, CartesianPoint, CartesianObject } from './state';
 import { Action } from './actions';
 const uuidv4 = require('uuid/v4');
 
@@ -36,9 +36,9 @@ export function reducer(state: State = initialState, action: Action): State {
           objectType: 'point',
           isSelected: true,
           position: {
-            x: 5 * Math.random(),
-            y: 5 * Math.random(),
-            z: 5 * Math.random(),
+            x: parseFloat((5 * Math.random()).toFixed(3)),
+            y: parseFloat((5 * Math.random()).toFixed(3)),
+            z: parseFloat((5 * Math.random()).toFixed(3)),
           }
         });
       }
@@ -92,6 +92,23 @@ export function reducer(state: State = initialState, action: Action): State {
               isSelected: false,
             };
           }
+        }
+        return o;
+      });
+      return {
+        ...state,
+        objects: newObjects,
+      };
+    }
+    case 'CHANGE_POINT_POSITION': {
+      const newObjects = state.objects.map(o => {
+        if (o.id === action.payload.objectId) {
+          // action implies object is CartesianPoint
+          const point = o as CartesianPoint;
+          return {
+            ...point,
+            position: action.payload.position,
+          };
         }
         return o;
       });
