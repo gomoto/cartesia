@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State } from '../state';
 import { ControlPanel } from './ControlPanel';
-import { AddPointAction } from '../actions';
+import { AddPointAction, SelectObjectAction } from '../actions';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -25,6 +25,13 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     },
     onRemoveAllPoints: () => {
       dispatch({type: 'REMOVE_ALL_POINTS'});
+    },
+    onSelectObject: (objectId: string) => {
+      const action: SelectObjectAction = {
+        type: 'SELECT_OBJECT',
+        payload: {objectId},
+      };
+      dispatch(action);
     },
   }
 };

@@ -9,6 +9,7 @@ export interface ControlPanelProps {
   onAddManyPoints(): void;
   onRemovePoint(): void;
   onRemoveAllPoints(): void;
+  onSelectObject(objectId: string): void;
 }
 
 export class ControlPanel extends React.Component<ControlPanelProps> {
@@ -34,10 +35,16 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
                 objectSpecificContent = '';
               }
             }
+            const checkbox = (
+              <Checkbox
+                checked={o.isSelected}
+                onChange={this.props.onSelectObject.bind(this, o.id)}
+              />
+            );
             return (
               <List.Item>
                 <List.Item.Meta
-                  avatar={<Checkbox checked={o.isSelected}/>}
+                  avatar={checkbox}
                   title={displayObjectType}
                 />
                 {objectSpecificContent}
