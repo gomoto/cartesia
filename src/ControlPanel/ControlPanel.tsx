@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { List } from 'antd';
+import { Checkbox, List } from 'antd';
 import './ControlPanel.css';
 import { CartesianObject } from '../state';
 
@@ -26,7 +26,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
               case 'point': {
                 objectSpecificContent = (
                   <List.Item.Meta
-                    avatar=""
+                    avatar={<Checkbox checked={o.isSelected}/>}
                     title={`${o.position.x}, ${o.position.y}, ${o.position.z}`}
                     description="Point"
                   />

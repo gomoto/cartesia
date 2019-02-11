@@ -12,6 +12,7 @@ export function reducer(state: State = initialState, action: Action): State {
       const newPoint: CartesianPoint = {
         id: uuidv4(),
         objectType: 'point',
+        isSelected: false,
         position: {
           x: 0,
           y: 0,
@@ -33,6 +34,7 @@ export function reducer(state: State = initialState, action: Action): State {
         addedPoints.push({
           id: uuidv4(),
           objectType: 'point',
+          isSelected: true,
           position: {
             x: 5 * Math.random(),
             y: 5 * Math.random(),
