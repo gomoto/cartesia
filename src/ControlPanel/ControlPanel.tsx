@@ -16,7 +16,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
     const numberOfPoints = this.props.objects.length;
     return (
       <div className="ControlPanel">
-        <div>{numberOfPoints} point{numberOfPoints === 1 ? '' : 's'}</div>
+        <div>{numberOfPoints} object{numberOfPoints === 1 ? '' : 's'}</div>
         <List
           itemLayout="horizontal"
           dataSource={this.props.objects}
@@ -25,10 +25,11 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
             switch (o.objectType) {
               case 'point': {
                 objectSpecificContent = (
-                  <div>
-                    <span>Point</span>
-                    <span>{o.position.x}, {o.position.y}, {o.position.z}</span>
-                  </div>
+                  <List.Item.Meta
+                    avatar=""
+                    title={`${o.position.x}, ${o.position.y}, ${o.position.z}`}
+                    description="Point"
+                  />
                 );
                 break;
               }
