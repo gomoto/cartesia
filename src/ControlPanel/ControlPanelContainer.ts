@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { State, CartesianObject, Vector3 } from '../state';
 import { ControlPanel } from './ControlPanel';
 import { AddPointAction, SelectObjectAction, UnselectObjectAction, ChangePointPositionAction } from '../actions';
+import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-undo';
 
-const mapStateToProps = (state: State) => {
+const mapStateToProps = (state: StateWithHistory<State>) => {
   return {
-    objects: state.objects
+    objects: state.present.objects,
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -44,6 +45,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         payload: {objectId: o.id, position},
       };
       dispatch(action);
+    },
+    onUndo: () => {
+      dispatch({type: ReduxUndoActionTypes.UNDO});
+    },
+    onRedo: () => {
+      dispatch({type: ReduxUndoActionTypes.REDO});
     },
   }
 };

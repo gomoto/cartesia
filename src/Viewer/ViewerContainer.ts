@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { State, CartesianObject } from '../state';
 import { SelectObjectAction, UnselectObjectAction } from '../actions';
 import { Viewer } from './Viewer';
+import { StateWithHistory } from 'redux-undo';
 
 // Track previous state
-let _previousState: State | null = null;
-const mapStateToProps = (state: State) => {
-  const currentObjects = state.objects;
-  const previousObjects = _previousState ? _previousState.objects : []; // use saved previous state
+let _previousState: StateWithHistory<State> | null = null;
+const mapStateToProps = (state: StateWithHistory<State>) => {
+  const currentObjects = state.present.objects;
+  const previousObjects = _previousState ? _previousState.present.objects : []; // use saved previous state
   _previousState = state; // save previous state for next call
   return {
     previousObjects,

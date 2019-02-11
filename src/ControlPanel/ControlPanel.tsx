@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Checkbox, List, InputNumber } from 'antd';
+import { Button, Checkbox, List, InputNumber } from 'antd';
 import './ControlPanel.css';
 import { CartesianObject, Vector3 } from '../state';
 
@@ -10,6 +10,8 @@ export interface ControlPanelProps {
   onRemoveAllObjects(): void;
   onSelectObject(object: CartesianObject): void;
   onPointPositionChange(object: CartesianObject, position: Vector3): void;
+  onUndo(): void;
+  onRedo(): void;
 }
 
 export class ControlPanel extends React.Component<ControlPanelProps> {
@@ -61,6 +63,8 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
         <button onClick={this.props.onAddPoint.bind(this)}>Add point</button>
         <button onClick={this.props.onRemoveSelectedObjects.bind(this)}>Remove selected objects</button>
         <button onClick={this.props.onRemoveAllObjects.bind(this)}>Remove all objects</button>
+        <Button onClick={this.props.onUndo.bind(this)}>Undo</Button>
+        <Button onClick={this.props.onRedo.bind(this)}>Redo</Button>
       </div>
     );
   }
