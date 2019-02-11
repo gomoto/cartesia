@@ -19,6 +19,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   }
 };
 
-
-
 export const ViewerContainer = connect(mapStateToProps, mapDispatchToProps)(Viewer);
