@@ -13,6 +13,7 @@ export function createGrid(scene: BABYLON.Scene, grid: CartesianGrid): void {
     zMin,
     zMax,
     step,
+    color,
   } = grid;
 
   const lines: [BABYLON.Vector3, BABYLON.Vector3][] = [];
@@ -43,5 +44,6 @@ export function createGrid(scene: BABYLON.Scene, grid: CartesianGrid): void {
     updatable: true,
   }, scene);
 
-  gridMesh.color = new BABYLON.Color3(0.4, 0.4, 0.4);
+  const { r, g, b } = color;
+  gridMesh.color = new BABYLON.Color3(r, g, b);
 }

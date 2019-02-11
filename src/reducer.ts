@@ -11,6 +11,11 @@ const initialState: State = {
     zMin: -8,
     zMax: 8,
     step: 4,
+    color: {
+      r: 0.4,
+      g: 0.4,
+      b: 0.4,
+    },
   },
   objects: [],
 };
