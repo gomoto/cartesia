@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { State } from '../state';
+import { State, CartesianObject } from '../state';
+import { SelectObjectAction, UnselectObjectAction } from '../actions';
 import { Viewer } from './Viewer';
 
 // Track previous state
@@ -16,6 +17,21 @@ const mapStateToProps = (state: State) => {
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
+    onSelectObject: (o: CartesianObject) => {
+      if (o.isSelected) {
+        const action: UnselectObjectAction = {
+          type: 'UNSELECT_OBJECT',
+          payload: {objectId: o.id},
+        };
+        dispatch(action);
+      } else {
+        const action: SelectObjectAction = {
+          type: 'SELECT_OBJECT',
+          payload: {objectId: o.id},
+        };
+        dispatch(action);
+      }
+    },
   }
 };
 

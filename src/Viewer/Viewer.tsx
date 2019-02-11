@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { State } from '../state';
+import { State, CartesianObject } from '../state';
 import * as BABYLON from 'babylonjs';
 import { createScene } from './create-scene';
 import { createGrid } from './create-grid';
@@ -7,10 +7,12 @@ import { createMaterials } from './materials';
 import { createMiscellaneous } from './create-miscellaneous';
 import { updateSceneFromState } from './update-scene-from-state';
 import './Viewer.css';
+import { onMeshClick } from './on-mesh-click';
 
 export interface ViewerProps {
   previousState: State | null;
   currentState: State;
+  onSelectObject(object: CartesianObject): void;
 }
 
 export class Viewer extends React.Component<ViewerProps> {
@@ -22,6 +24,7 @@ export class Viewer extends React.Component<ViewerProps> {
     // Ref callback is guaranteed to be called before componentDidMount fires.
     // https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
 
+    // Create engine
     const enableAntialiasing = true;
     const adaptToDeviceRatio = true;
     const engine = new BABYLON.Engine(
@@ -34,10 +37,19 @@ export class Viewer extends React.Component<ViewerProps> {
       adaptToDeviceRatio
     );
 
+    // Create scene
     const scene = createScene(engine);
+
     createMaterials(scene);
     createGrid(scene);
     createMiscellaneous(scene);
+    onMeshClick(scene, (mesh) => {
+      const o = this.props.currentState.objects.find(o => o.id === mesh.name);
+      if (!o) {
+        return;
+      }
+      this.props.onSelectObject(o);
+    });
 
     // The render loop
     engine.runRenderLoop(function() {
