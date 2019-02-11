@@ -1,1 +1,14 @@
 @import '~antd/dist/antd.css';
+
+#root {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.controlPanel {
+  flex: 0 0 auto;
+  width: 200px;
+}
+.viewer {
+  flex: 1 0 auto;
+}
