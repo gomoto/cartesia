@@ -38,10 +38,12 @@ export type CartesianObject = (
 export interface CartesianGrid {
   xMin: number;
   xMax: number;
+  xStep: number;
   yMin: number;
   yMax: number;
+  yStep: number;
   zMin: number;
   zMax: number;
-  step: number;
+  zStep: number;
   color: Color3;
 }

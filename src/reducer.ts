@@ -6,11 +6,13 @@ const initialState: State = {
   grid: {
     xMin: -8,
     xMax: 8,
+    xStep: 4,
     yMin: -8,
     yMax: 8,
+    yStep: 4,
     zMin: -8,
     zMax: 8,
-    step: 4,
+    zStep: 4,
     color: {
       r: 0.4,
       g: 0.4,
