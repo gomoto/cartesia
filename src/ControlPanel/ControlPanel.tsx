@@ -103,9 +103,9 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
             </Input.Group>
           </Form.Item>
           <Form.Item label="color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <InputNumber value={this.props.grid.color.r} onChange={(r = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, r}})}/>
-            <InputNumber value={this.props.grid.color.g} onChange={(g = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, g}})}/>
-            <InputNumber value={this.props.grid.color.b} onChange={(b = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, b}})}/>
+            <InputNumber value={this.props.grid.color.r} min={0} max={1} step={.1} onChange={(r = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, r}})}/>
+            <InputNumber value={this.props.grid.color.g} min={0} max={1} step={.1} onChange={(g = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, g}})}/>
+            <InputNumber value={this.props.grid.color.b} min={0} max={1} step={.1} onChange={(b = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, b}})}/>
           </Form.Item>
         </Form>
 
