@@ -82,6 +82,24 @@ export function reducer(state: State = initialState, action: Action): State {
         objects: newObjects,
       };
     }
+    case 'UNSELECT_OBJECT': {
+      const objects = state.objects;
+      const newObjects = objects.map(o => {
+        if (o.id === action.payload.objectId) {
+          if (o.isSelected) {
+            return {
+              ...o,
+              isSelected: false,
+            };
+          }
+        }
+        return o;
+      });
+      return {
+        ...state,
+        objects: newObjects,
+      };
+    }
     default: {
       return state;
     }

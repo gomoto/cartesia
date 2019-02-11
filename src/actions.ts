@@ -5,7 +5,8 @@ export type Action = (
   AddManyPoints |
   RemoveOnePoint |
   RemoveAllPoints |
-  SelectObjectAction
+  SelectObjectAction |
+  UnselectObjectAction
 );
 
 /**
@@ -32,6 +33,13 @@ export interface RemoveAllPoints extends redux.Action {
 
 export interface SelectObjectAction extends redux.Action {
   type: 'SELECT_OBJECT';
+  payload: {
+    objectId: string;
+  }
+}
+
+export interface UnselectObjectAction extends redux.Action {
+  type: 'UNSELECT_OBJECT';
   payload: {
     objectId: string;
   }

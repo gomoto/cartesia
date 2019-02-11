@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { State } from '../state';
+import { State, CartesianObject } from '../state';
 import { ControlPanel } from './ControlPanel';
-import { AddPointAction, SelectObjectAction } from '../actions';
+import { AddPointAction, SelectObjectAction, UnselectObjectAction } from '../actions';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -26,12 +26,20 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     onRemoveAllPoints: () => {
       dispatch({type: 'REMOVE_ALL_POINTS'});
     },
-    onSelectObject: (objectId: string) => {
-      const action: SelectObjectAction = {
-        type: 'SELECT_OBJECT',
-        payload: {objectId},
-      };
-      dispatch(action);
+    onSelectObject: (o: CartesianObject) => {
+      if (o.isSelected) {
+        const action: UnselectObjectAction = {
+          type: 'UNSELECT_OBJECT',
+          payload: {objectId: o.id},
+        };
+        dispatch(action);
+      } else {
+        const action: SelectObjectAction = {
+          type: 'SELECT_OBJECT',
+          payload: {objectId: o.id},
+        };
+        dispatch(action);
+      }
     },
   }
 };
