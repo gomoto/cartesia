@@ -9,6 +9,7 @@ export interface ControlPanelProps {
   objects: CartesianObject[];
   onAddPoint(): void;
   onRemoveSelectedObjects(): void;
+  canRemoveSelectedObjects: boolean;
   onRemoveAllObjects(): void;
   onSelectObject(object: CartesianObject): void;
   onPointPositionChange(object: CartesianObject, position: Vector3): void;
@@ -73,7 +74,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
           }}
         />
         <Button onClick={this.props.onAddPoint.bind(this)}>Add point</Button>
-        <Button onClick={this.props.onRemoveSelectedObjects.bind(this)}>Remove selected objects</Button>
+        <Button onClick={this.props.onRemoveSelectedObjects.bind(this)} disabled={!this.props.canRemoveSelectedObjects}>Remove selected objects</Button>
         <Button onClick={this.props.onRemoveAllObjects.bind(this)}>Remove all objects</Button>
         <Button onClick={this.props.onUndo.bind(this)} disabled={!this.props.canUndo}>Undo</Button>
         <Button onClick={this.props.onRedo.bind(this)} disabled={!this.props.canRedo}>Redo</Button>

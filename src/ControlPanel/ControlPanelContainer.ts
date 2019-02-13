@@ -4,6 +4,7 @@ import { State, CartesianObject, Vector3, CartesianGrid } from '../state';
 import { ControlPanel } from './ControlPanel';
 import { AddPointAction, SelectObjectAction, UnselectObjectAction, ChangePointPositionAction, ChangeGridAction } from '../actions';
 import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-undo';
+import { countSelectedObjects } from '../selector';
 
 const mapStateToProps = (state: StateWithHistory<State>) => {
   return {
@@ -11,6 +12,7 @@ const mapStateToProps = (state: StateWithHistory<State>) => {
     objects: state.present.objects,
     canUndo: state.past.length > 0,
     canRedo: state.future.length > 0,
+    canRemoveSelectedObjects: countSelectedObjects(state.present) > 0,
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {
