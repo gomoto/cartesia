@@ -44,7 +44,8 @@ export class Viewer extends React.Component<ViewerProps> {
     const scene = createScene(engine);
 
     createMaterials(scene);
-    this.gridMesh = createGrid(scene, this.props.currentGrid);
+    const gridMesh = createGrid(scene, this.props.currentGrid);
+    gridMesh.isPickable = false;
     createMiscellaneous(scene);
     onMeshClick(scene, (mesh) => {
       const o = this.props.currentObjects.find(o => o.id === mesh.name);
@@ -64,6 +65,7 @@ export class Viewer extends React.Component<ViewerProps> {
 
     this.engine = engine;
     this.scene = scene;
+    this.gridMesh = gridMesh;
   }
 
   componentWillUnmount() {
