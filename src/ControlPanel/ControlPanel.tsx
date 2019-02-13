@@ -10,6 +10,7 @@ export interface ControlPanelProps {
   onAddPoint(): void;
   onRemoveSelectedObjects(): void;
   canRemoveSelectedObjects: boolean;
+  numberOfSelectedObjects: number;
   onRemoveAllObjects(): void;
   onSelectObject(object: CartesianObject): void;
   onPointPositionChange(object: CartesianObject, position: Vector3): void;
@@ -21,7 +22,8 @@ export interface ControlPanelProps {
 
 export class ControlPanel extends React.Component<ControlPanelProps> {
   render() {
-    const numberOfPoints = this.props.objects.length;
+    const numberOfObjects = this.props.objects.length;
+    const numberOfSelectedObjects = this.props.numberOfSelectedObjects;
     const labelCol = {
       span: 4,
       offset: 0,
@@ -32,7 +34,11 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
     };
     return (
       <div className="ControlPanel">
-        <div>{numberOfPoints} object{numberOfPoints === 1 ? '' : 's'}</div>
+        <div>
+          <span>{numberOfObjects} object{numberOfObjects === 1 ? '' : 's'}</span>
+          <span> / </span>
+          <span>{numberOfSelectedObjects} selected</span>
+        </div>
         <List
           itemLayout="horizontal"
           dataSource={this.props.objects}

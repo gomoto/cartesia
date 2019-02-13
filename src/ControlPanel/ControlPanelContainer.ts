@@ -13,6 +13,7 @@ const mapStateToProps = (state: StateWithHistory<State>) => {
     canUndo: state.past.length > 0,
     canRedo: state.future.length > 0,
     canRemoveSelectedObjects: countSelectedObjects(state.present) > 0,
+    numberOfSelectedObjects: countSelectedObjects(state.present),
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {
