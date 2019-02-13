@@ -93,6 +93,30 @@ export function reducer(state: State = initialState, action: Action): State {
         objects: newObjects,
       };
     }
+    case 'TRANSLATE_SELECTED_OBJECTS': {
+      const newObjects = state.objects.map(o => {
+        if (o.isSelected) {
+          const { dx = 0, dy = 0, dz = 0 } = action.payload;
+          switch (o.objectType) {
+            case 'point': {
+              return {
+                ...o,
+                position: {
+                  x: o.position.x + dx,
+                  y: o.position.y + dy,
+                  z: o.position.z + dz,
+                }
+              };
+            }
+          }
+        }
+        return o;
+      });
+      return {
+        ...state,
+        objects: newObjects,
+      };
+    }
     case 'CHANGE_POINT_POSITION': {
       const newObjects = state.objects.map(o => {
         if (o.id === action.payload.objectId) {

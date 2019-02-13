@@ -16,6 +16,8 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
 
   // Attach the camera to the canvas
   camera.attachControl(engine.getRenderingCanvas() as HTMLCanvasElement, false);
+  // Disconnet keyboard arrows from camera rotation
+  camera.inputs.remove(camera.inputs.attached.keyboard);
 
   // Create a basic light, aiming 0, 1, 0 - meaning, to the sky
   const light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);

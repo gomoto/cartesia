@@ -7,6 +7,7 @@ export type Action = (
   RemoveAllObjects |
   SelectObjectAction |
   UnselectObjectAction |
+  TranslateSelectedObjectsAction |
   ChangePointPositionAction |
   ChangeGridAction
 );
@@ -37,6 +38,15 @@ export interface UnselectObjectAction extends redux.Action {
   type: 'UNSELECT_OBJECT';
   payload: {
     objectId: string;
+  }
+}
+
+export interface TranslateSelectedObjectsAction extends redux.Action {
+  type: 'TRANSLATE_SELECTED_OBJECTS';
+  payload: {
+    dx?: number;
+    dy?: number;
+    dz?: number;
   }
 }
 
