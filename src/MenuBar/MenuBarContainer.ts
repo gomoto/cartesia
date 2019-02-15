@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State } from '../state';
 import { MenuBar } from './MenuBar';
-import { AddPointAction, RemoveSelectedObjectsAction, RemoveAllObjects } from '../actions';
+import { AddPointAction, RemoveSelectedObjectsAction, RemoveAllObjectsAction } from '../actions';
 import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-undo';
 import { countSelectedObjects } from '../selector';
 
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       dispatch<RemoveSelectedObjectsAction>({type: 'REMOVE_SELECTED_OBJECTS'});
     },
     onRemoveAllObjects: () => {
-      dispatch<RemoveAllObjects>({type: 'REMOVE_ALL_OBJECTS'});
+      dispatch<RemoveAllObjectsAction>({type: 'REMOVE_ALL_OBJECTS'});
     },
     onUndo: () => {
       dispatch({type: ReduxUndoActionTypes.UNDO});

@@ -4,7 +4,7 @@ import { Vector3, CartesianGrid } from './state';
 export type Action = (
   AddPointAction |
   RemoveSelectedObjectsAction |
-  RemoveAllObjects |
+  RemoveAllObjectsAction |
   SelectObjectAction |
   UnselectObjectAction |
   TranslateSelectedObjectsAction |
@@ -23,7 +23,7 @@ export interface RemoveSelectedObjectsAction extends redux.Action {
   type: 'REMOVE_SELECTED_OBJECTS';
 }
 
-export interface RemoveAllObjects extends redux.Action {
+export interface RemoveAllObjectsAction extends redux.Action {
   type: 'REMOVE_ALL_OBJECTS';
 }
 
