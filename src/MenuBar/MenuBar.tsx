@@ -30,7 +30,6 @@ export class MenuBar extends React.Component<MenuBarProps> {
           </Menu.Item>
           <Menu.Item className="MenuBar-MenuItem" onClick={this.props.onRemoveAllObjects.bind(this)}>
             <span>Remove all objects</span>
-            <span className="MenuBar-MenuItem-shortcut">Delete</span>
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.Divider />
