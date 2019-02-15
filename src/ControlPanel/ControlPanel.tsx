@@ -99,6 +99,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
               <InputNumber value={this.props.grid.xMin} step={this.props.grid.xStep} max={this.props.grid.xMax} onChange={(xMin = 0) => this.props.onGridChange({...this.props.grid, xMin})}/>
               <InputNumber value={this.props.grid.xMax} step={this.props.grid.xStep} min={this.props.grid.xMin} onChange={(xMax = 0) => this.props.onGridChange({...this.props.grid, xMax})}/>
               <InputNumber value={this.props.grid.xStep} onChange={(xStep = 0) => this.props.onGridChange({...this.props.grid, xStep})}/>
+              <InputNumber value={this.props.grid.xStepMajor} onChange={(xStepMajor = 0) => this.props.onGridChange({...this.props.grid, xStepMajor})}/>
             </Input.Group>
           </Form.Item>
           <Form.Item label="y" labelCol={labelCol} wrapperCol={wrapperCol}>
@@ -106,6 +107,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
               <InputNumber value={this.props.grid.yMin} step={this.props.grid.yStep} max={this.props.grid.yMax} onChange={(yMin = 0) => this.props.onGridChange({...this.props.grid, yMin})}/>
               <InputNumber value={this.props.grid.yMax} step={this.props.grid.yStep} min={this.props.grid.yMin} onChange={(yMax = 0) => this.props.onGridChange({...this.props.grid, yMax})}/>
               <InputNumber value={this.props.grid.yStep} onChange={(yStep = 0) => this.props.onGridChange({...this.props.grid, yStep})}/>
+              <InputNumber value={this.props.grid.yStepMajor} onChange={(yStepMajor = 0) => this.props.onGridChange({...this.props.grid, yStepMajor})}/>
             </Input.Group>
           </Form.Item>
           <Form.Item label="z" labelCol={labelCol} wrapperCol={wrapperCol}>
@@ -113,12 +115,18 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
               <InputNumber value={this.props.grid.zMin} step={this.props.grid.zStep} max={this.props.grid.zMax} onChange={(zMin = 0) => this.props.onGridChange({...this.props.grid, zMin})}/>
               <InputNumber value={this.props.grid.zMax} step={this.props.grid.zStep} min={this.props.grid.zMin} onChange={(zMax = 0) => this.props.onGridChange({...this.props.grid, zMax})}/>
               <InputNumber value={this.props.grid.zStep} onChange={(zStep = 0) => this.props.onGridChange({...this.props.grid, zStep})}/>
+              <InputNumber value={this.props.grid.zStepMajor} onChange={(zStepMajor = 0) => this.props.onGridChange({...this.props.grid, zStepMajor})}/>
             </Input.Group>
           </Form.Item>
           <Form.Item label="color" labelCol={labelCol} wrapperCol={wrapperCol}>
             <InputNumber value={this.props.grid.color.r} min={0} max={1} step={.1} onChange={(r = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, r}})}/>
             <InputNumber value={this.props.grid.color.g} min={0} max={1} step={.1} onChange={(g = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, g}})}/>
             <InputNumber value={this.props.grid.color.b} min={0} max={1} step={.1} onChange={(b = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, b}})}/>
+          </Form.Item>
+          <Form.Item label="major color" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <InputNumber value={this.props.grid.colorMajor.r} min={0} max={1} step={.1} onChange={(r = 1) => this.props.onGridChange({...this.props.grid, colorMajor: {...this.props.grid.colorMajor, r}})}/>
+            <InputNumber value={this.props.grid.colorMajor.g} min={0} max={1} step={.1} onChange={(g = 1) => this.props.onGridChange({...this.props.grid, colorMajor: {...this.props.grid.colorMajor, g}})}/>
+            <InputNumber value={this.props.grid.colorMajor.b} min={0} max={1} step={.1} onChange={(b = 1) => this.props.onGridChange({...this.props.grid, colorMajor: {...this.props.grid.colorMajor, b}})}/>
           </Form.Item>
         </Form>
 
