@@ -4,6 +4,7 @@ const uuidv4 = require('uuid/v4');
 
 const initialState: State = {
   grid: {
+    isVisible: true,
     xMin: -8,
     xMax: 8,
     xStep: 4,

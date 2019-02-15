@@ -49,5 +49,7 @@ export function createGrid(scene: BABYLON.Scene, grid: CartesianGrid): BABYLON.L
   const { r, g, b } = color;
   gridMesh.color = new BABYLON.Color3(r, g, b);
 
+  gridMesh.visibility = grid.isVisible ? 1 : 0;
+
   return gridMesh;
 }

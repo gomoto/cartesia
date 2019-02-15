@@ -88,6 +88,12 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
         <Divider />
         <header>Grid</header>
         <Form>
+          <Form.Item>
+            <Checkbox
+              checked={this.props.grid.isVisible}
+              onChange={() => this.props.onGridChange({...this.props.grid, isVisible: !this.props.grid.isVisible})}
+            ></Checkbox>
+          </Form.Item>
           <Form.Item label="x" labelCol={labelCol} wrapperCol={wrapperCol}>
             <Input.Group>
               <InputNumber value={this.props.grid.xMin} step={this.props.grid.xStep} max={this.props.grid.xMax} onChange={(xMin = 0) => this.props.onGridChange({...this.props.grid, xMin})}/>

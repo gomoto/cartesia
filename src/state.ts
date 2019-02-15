@@ -36,6 +36,7 @@ export type CartesianObject = (
 );
 
 export interface CartesianGrid {
+  isVisible: boolean;
   xMin: number;
   xMax: number;
   xStep: number;
