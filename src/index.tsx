@@ -5,7 +5,7 @@ import undoable, { ActionCreators as ReduxUndoActionCreators } from 'redux-undo'
 import { reducer } from './reducer';
 import { Provider } from 'react-redux';
 import { ControlPanelContainer } from './ControlPanel/ControlPanelContainer';
-import { MenuBar } from './MenuBar/MenuBar';
+import { MenuBarContainer } from './MenuBar/MenuBarContainer';
 import { ViewerContainer } from './Viewer/ViewerContainer';
 import mousetrap from 'mousetrap';
 import { RemoveSelectedObjectsAction, TranslateSelectedObjectsAction } from './actions';
@@ -64,7 +64,7 @@ mousetrap.bind(['option+plus', 'option+='], () => {
 ReactDOM.render((
   <Provider store={store}>
     <div className="MenuBarContainer">
-      <MenuBar />
+      <MenuBarContainer />
     </div>
     <div className="viewport">
       <div className="ControlPanelContainer">
