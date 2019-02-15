@@ -53,7 +53,7 @@ mousetrap.bind('option+-', () => {
     payload: { dz: -1 }
   });
 });
-mousetrap.bind('option+plus', () => {
+mousetrap.bind(['option+plus', 'option+='], () => {
   store.dispatch<TranslateSelectedObjectsAction>({
     type: 'TRANSLATE_SELECTED_OBJECTS',
     payload: { dz: 1 }
