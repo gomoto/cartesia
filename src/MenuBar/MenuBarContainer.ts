@@ -4,12 +4,13 @@ import { State } from '../state';
 import { MenuBar } from './MenuBar';
 import { AddPointAction, RemoveSelectedObjectsAction, RemoveAllObjectsAction } from '../actions';
 import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-undo';
-import { countSelectedObjects } from '../selector';
+import { countObjects, countSelectedObjects } from '../selector';
 
 const mapStateToProps = (state: StateWithHistory<State>) => {
   return {
     canUndo: state.past.length > 0,
     canRedo: state.future.length > 0,
+    canRemoveAllObjects: countObjects(state.present) > 0,
     canRemoveSelectedObjects: countSelectedObjects(state.present) > 0,
   };
 };

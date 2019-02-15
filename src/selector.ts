@@ -6,6 +6,13 @@ export function getObjects(state: State): CartesianObject[] {
   return state.objects;
 }
 
+export const countObjects = createSelector(
+  [getObjects],
+  (objects) => {
+    return objects.length;
+  }
+)
+
 export const countSelectedObjects = createSelector(
   [getObjects],
   (objects) => {

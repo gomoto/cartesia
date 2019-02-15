@@ -5,6 +5,7 @@ import './MenuBar.css';
 export interface MenuBarProps {
   onAddPoint(): void;
   onRemoveAllObjects(): void;
+  canRemoveAllObjects: boolean;
   onRemoveSelectedObjects(): void;
   canRemoveSelectedObjects: boolean;
   onUndo(): void;
@@ -28,7 +29,7 @@ export class MenuBar extends React.Component<MenuBarProps> {
             <span>Remove selected objects</span>
             <span className="MenuBar-MenuItem-shortcut">Delete</span>
           </Menu.Item>
-          <Menu.Item className="MenuBar-MenuItem" onClick={this.props.onRemoveAllObjects.bind(this)}>
+          <Menu.Item className="MenuBar-MenuItem" onClick={this.props.onRemoveAllObjects.bind(this)} disabled={!this.props.canRemoveAllObjects}>
             <span>Remove all objects</span>
           </Menu.Item>
         </Menu.SubMenu>
