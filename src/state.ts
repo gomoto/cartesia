@@ -40,11 +40,15 @@ export interface CartesianGrid {
   xMin: number;
   xMax: number;
   xStep: number;
+  xStepMajor: number;
   yMin: number;
   yMax: number;
   yStep: number;
+  yStepMajor: number;
   zMin: number;
   zMax: number;
   zStep: number;
+  zStepMajor: number;
   color: Color3;
+  colorMajor: Color3;
 }
