@@ -1,0 +1,27 @@
+.MenuBar {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: 0 16px;
+  border-bottom: 1px solid #dddddd;
+  cursor: pointer;
+}
+.MenuBar-MenuItem {
+  display: flex;
+  justify-content: space-between;
+  min-width: 64px;
+}
+.MenuBar-MenuItem-shortcut {
+  margin-left: 24px;
+}
+.MenuBar-link {
+  flex: 0 0 auto;
+  font-weight: 400;
+  padding: 0 8px;
+}
+.MenuBar-link:hover {
+  background-color: #f0f0f0;
+}
+.MenuBar-main-link {
+  font-weight: 700;
+}

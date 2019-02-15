@@ -1,14 +1,28 @@
 @import '~antd/dist/antd.css';
 
 #root {
-  display: flex;
   height: 100%;
   width: 100%;
 }
-.ControlPanel {
+/* Define CSS variables */
+:root {
+  --height: 24px;
+}
+.MenuBarContainer {
+  display: block;
+  width: 100%;
+  height: var(--height);
+}
+.viewport {
+  display: flex;
+  width: 100%;
+  height: calc(100% - var(--height));
+  overflow: hidden;
+}
+.ControlPanelContainer {
   flex: 0 0 auto;
   width: 400px;
 }
-.Viewer {
+.ViewerContainer {
   flex: 1 0 auto;
 }
