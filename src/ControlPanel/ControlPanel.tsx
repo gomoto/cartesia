@@ -25,11 +25,11 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
     const numberOfObjects = this.props.objects.length;
     const numberOfSelectedObjects = this.props.numberOfSelectedObjects;
     const labelCol = {
-      span: 4,
+      span: 10,
       offset: 0,
     };
     const wrapperCol = {
-      span: 20,
+      span: 14,
       offset: 0,
     };
     return (
@@ -88,32 +88,44 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
         <Divider />
         <header>Grid</header>
         <Form>
-          <Form.Item>
+          <Form.Item label="Visibility" labelCol={labelCol} wrapperCol={wrapperCol}>
             <Checkbox
               checked={this.props.grid.isVisible}
               onChange={() => this.props.onGridChange({...this.props.grid, isVisible: !this.props.grid.isVisible})}
             ></Checkbox>
           </Form.Item>
-          <Form.Item label="x" labelCol={labelCol} wrapperCol={wrapperCol}>
+          <Form.Item label="x min/max" labelCol={labelCol} wrapperCol={wrapperCol}>
             <Input.Group>
               <InputNumber value={this.props.grid.xMin} step={this.props.grid.xStep} max={this.props.grid.xMax} onChange={(xMin = 0) => this.props.onGridChange({...this.props.grid, xMin})}/>
               <InputNumber value={this.props.grid.xMax} step={this.props.grid.xStep} min={this.props.grid.xMin} onChange={(xMax = 0) => this.props.onGridChange({...this.props.grid, xMax})}/>
+            </Input.Group>
+          </Form.Item>
+          <Form.Item label="x step minor/major" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <Input.Group>
               <InputNumber value={this.props.grid.xStep} onChange={(xStep = 0) => this.props.onGridChange({...this.props.grid, xStep})}/>
               <InputNumber value={this.props.grid.xStepMajor} onChange={(xStepMajor = 0) => this.props.onGridChange({...this.props.grid, xStepMajor})}/>
             </Input.Group>
           </Form.Item>
-          <Form.Item label="y" labelCol={labelCol} wrapperCol={wrapperCol}>
+          <Form.Item label="y min/max" labelCol={labelCol} wrapperCol={wrapperCol}>
             <Input.Group>
               <InputNumber value={this.props.grid.yMin} step={this.props.grid.yStep} max={this.props.grid.yMax} onChange={(yMin = 0) => this.props.onGridChange({...this.props.grid, yMin})}/>
               <InputNumber value={this.props.grid.yMax} step={this.props.grid.yStep} min={this.props.grid.yMin} onChange={(yMax = 0) => this.props.onGridChange({...this.props.grid, yMax})}/>
+            </Input.Group>
+          </Form.Item>
+          <Form.Item label="y step minor/major" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <Input.Group>
               <InputNumber value={this.props.grid.yStep} onChange={(yStep = 0) => this.props.onGridChange({...this.props.grid, yStep})}/>
               <InputNumber value={this.props.grid.yStepMajor} onChange={(yStepMajor = 0) => this.props.onGridChange({...this.props.grid, yStepMajor})}/>
             </Input.Group>
           </Form.Item>
-          <Form.Item label="z" labelCol={labelCol} wrapperCol={wrapperCol}>
+          <Form.Item label="z min/max" labelCol={labelCol} wrapperCol={wrapperCol}>
             <Input.Group>
               <InputNumber value={this.props.grid.zMin} step={this.props.grid.zStep} max={this.props.grid.zMax} onChange={(zMin = 0) => this.props.onGridChange({...this.props.grid, zMin})}/>
               <InputNumber value={this.props.grid.zMax} step={this.props.grid.zStep} min={this.props.grid.zMin} onChange={(zMax = 0) => this.props.onGridChange({...this.props.grid, zMax})}/>
+            </Input.Group>
+          </Form.Item>
+          <Form.Item label="z step minor/major" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <Input.Group>
               <InputNumber value={this.props.grid.zStep} onChange={(zStep = 0) => this.props.onGridChange({...this.props.grid, zStep})}/>
               <InputNumber value={this.props.grid.zStepMajor} onChange={(zStepMajor = 0) => this.props.onGridChange({...this.props.grid, zStepMajor})}/>
             </Input.Group>
