@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CartesianObject, CartesianGrid } from '../state';
+import { CartesianObject, CartesianGrid, Color3 } from '../state';
 import * as BABYLON from 'babylonjs';
 import { createScene } from './create-scene';
 import { createGrid } from './create-grid';
@@ -8,8 +8,10 @@ import { createMiscellaneous } from './create-miscellaneous';
 import './Viewer.css';
 import { onMeshClick } from './on-mesh-click';
 import { updateObjects } from './update-objects';
+import { updateClearColor } from './update-clear-color';
 
 export interface ViewerProps {
+  backgroundColor: Color3;
   currentGrid: CartesianGrid;
   previousGrid: CartesianGrid;
   previousObjects: CartesianObject[];
@@ -42,7 +44,7 @@ export class Viewer extends React.Component<ViewerProps> {
 
     // Create scene
     const scene = createScene(engine);
-
+    updateClearColor(scene, this.props.backgroundColor);
     createMaterials(scene);
     const gridMesh = createGrid(scene, this.props.currentGrid);
     gridMesh.isPickable = false;
@@ -75,6 +77,7 @@ export class Viewer extends React.Component<ViewerProps> {
   // When props update, update scene.
   componentDidUpdate() {
     if (this.scene) {
+      updateClearColor(this.scene, this.props.backgroundColor);
       if (this.gridMesh) {
         if (this.props.currentGrid !== this.props.previousGrid) {
           // Recreate grid. Can't get LineSystem updatable to work here. Should it?

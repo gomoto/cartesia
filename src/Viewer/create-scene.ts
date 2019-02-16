@@ -6,7 +6,6 @@ import * as BABYLON from 'babylonjs';
 export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   // Create Scene object
   const scene = new BABYLON.Scene(engine);
-  scene.clearColor = new BABYLON.Color4(0.5, 0.5, 0.5, 1);
 
   // Create an ArcRotateCamera, and set its rotation target to the origin
   const camera = new BABYLON.ArcRotateCamera('mainCamera', Math.PI/4 /* within xz plane */, Math.PI/8 /* within xy plane */, 10, BABYLON.Vector3.Zero(), scene);
