@@ -4,9 +4,9 @@ const uuidv4 = require('uuid/v4');
 
 const initialState: State = {
   backgroundColor: {
-    r: 0.5,
-    g: 0.5,
-    b: 0.5,
+    r: 0.9,
+    g: 0.9,
+    b: 0.9,
   },
   grid: {
     isVisible: true,
@@ -23,14 +23,14 @@ const initialState: State = {
     zStep: 4,
     zStepMajor: 8,
     color: {
-      r: 0.4,
-      g: 0.4,
-      b: 0.4,
-    },
-    colorMajor: {
       r: 0.8,
       g: 0.8,
       b: 0.8,
+    },
+    colorMajor: {
+      r: 0.6,
+      g: 0.6,
+      b: 0.6,
     },
   },
   objects: [],
