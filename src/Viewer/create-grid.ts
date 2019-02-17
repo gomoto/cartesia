@@ -32,27 +32,53 @@ export function createGrid(scene: BABYLON.Scene, grid: CartesianGrid): BABYLON.L
   const lines: [BABYLON.Vector3, BABYLON.Vector3][] = [];
 
   // Grid lines should be centered around 0 in all three dimensions
-  const xs: number[] = [];
-  const ys: number[] = [];
-  const zs: number[] = [];
 
-  // x values
+  // Major values
+  const xMajor: number[] = [];
+  const yMajor: number[] = [];
+  const zMajor: number[] = [];
+  const xMinRoundedMajor = Math.ceil(xMin / xStepMajor) * xStepMajor; // first x value greater than xMin
+  for (let x = xMinRoundedMajor; x <= xMax; x += xStepMajor) {
+    xMajor.push(x);
+  }
+  const yMinRoundedMajor = Math.ceil(yMin / yStepMajor) * yStepMajor; // first y value greater than yMin
+  for (let y = yMinRoundedMajor; y <= yMax; y += yStepMajor) {
+    yMajor.push(y);
+  }
+  const zMinRoundedMajor = Math.ceil(zMin / zStepMajor) * zStepMajor; // first z value greater than zMin
+  for (let z = zMinRoundedMajor; z <= zMax; z += zStepMajor) {
+    zMajor.push(z);
+  }
+
+  // Minor values, excluding major values
+  const xMinor: number[] = [];
+  const yMinor: number[] = [];
+  const zMinor: number[] = [];
   const xMinRounded = Math.ceil(xMin / xStep) * xStep; // first x value greater than xMin
   for (let x = xMinRounded; x <= xMax; x += xStep) {
-    xs.push(x);
+    if (x % xStepMajor === 0) {
+      continue;
+    }
+    xMinor.push(x);
   }
-
-  // y values
   const yMinRounded = Math.ceil(yMin / yStep) * yStep; // first y value greater than yMin
   for (let y = yMinRounded; y <= yMax; y += yStep) {
-    ys.push(y);
+    if (y % yStepMajor === 0) {
+      continue;
+    }
+    yMinor.push(y);
   }
-
-  // z values
   const zMinRounded = Math.ceil(zMin / zStep) * zStep; // first z value greater than zMin
   for (let z = zMinRounded; z <= zMax; z += zStep) {
-    zs.push(z);
+    if (z % zStepMajor === 0) {
+      continue;
+    }
+    zMinor.push(z);
   }
+
+  const xs = [...xMajor, ...xMinor];
+  const ys = [...yMajor, ...yMinor];
+  const zs = [...zMajor, ...zMinor];
 
   // x → y → z
   xs.forEach((x) => {
