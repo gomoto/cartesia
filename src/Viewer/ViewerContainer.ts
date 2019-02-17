@@ -2,7 +2,8 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State, CartesianObject } from '../state';
 import { SelectObjectAction, UnselectObjectAction } from '../actions';
-import { Viewer, ViewerReadableProps, ViewerCallableProps, DifferentialProps } from './Viewer';
+import { Viewer } from './Viewer';
+import { ViewerReadableProps, ViewerCallableProps, DifferentialProps } from './ViewerProps';
 import { StateWithHistory } from 'redux-undo';
 
 // Track previous state
