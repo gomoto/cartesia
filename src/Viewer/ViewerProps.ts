@@ -1,21 +1,12 @@
-import { CartesianObject, CartesianGrid, HexColor3 } from '../state';
+import { CartesianObject } from '../state';
+import { BabylonViewerInput, Differential } from '../babylon-viewer/BabylonViewer';
 
 export interface ViewerProps {
-  readable: DifferentialProps<ViewerReadableProps>;
+  readable: ViewerReadableProps;
   callable: ViewerCallableProps;
 }
 
-export interface DifferentialProps<T> {
-  previous: T;
-  current: T;
-}
-
-export interface ViewerReadableProps {
-  backgroundColor: HexColor3;
-  selectionColor: HexColor3;
-  grid: CartesianGrid;
-  objects: CartesianObject[];
-}
+export type ViewerReadableProps = Differential<BabylonViewerInput>;
 
 export interface ViewerCallableProps {
   onSelectObject(object: CartesianObject): void;

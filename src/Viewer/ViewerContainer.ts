@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { State, CartesianObject } from '../state';
 import { SelectObjectAction, UnselectObjectAction } from '../actions';
 import { Viewer } from './Viewer';
-import { ViewerReadableProps, ViewerCallableProps, DifferentialProps } from './ViewerProps';
+import { ViewerReadableProps, ViewerCallableProps } from './ViewerProps';
 import { StateWithHistory } from 'redux-undo';
+import { BabylonViewerInput } from '../babylon-viewer/BabylonViewer';
 
 // Track previous state
 let _previousState: StateWithHistory<State> | null = null;
@@ -18,7 +19,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return { callable: getCallableProps(dispatch) }
 };
 
-function getReadableProps(currentState:StateWithHistory<State>, previousState: StateWithHistory<State> | null): DifferentialProps<ViewerReadableProps> {
+function getReadableProps(currentState:StateWithHistory<State>, previousState: StateWithHistory<State> | null): ViewerReadableProps {
   return {
     previous: getReadablePropsFromState(previousState || currentState),
     current: getReadablePropsFromState(currentState),
@@ -45,7 +46,7 @@ function getCallableProps(dispatch: Dispatch): ViewerCallableProps {
   };
 }
 
-function getReadablePropsFromState(state: StateWithHistory<State>): ViewerReadableProps {
+function getReadablePropsFromState(state: StateWithHistory<State>): BabylonViewerInput {
   const backgroundColor = state.present.backgroundColor;
   const selectionColor = state.present.selectionColor;
   const grid = state.present.grid;
