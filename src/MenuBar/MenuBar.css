@@ -3,7 +3,7 @@
   height: 100%;
   width: 100%;
   padding: 0 16px;
-  border-bottom: 1px solid #dddddd;
+  border-bottom: var(--border);
   cursor: pointer;
 }
 .MenuBar-MenuItem {
