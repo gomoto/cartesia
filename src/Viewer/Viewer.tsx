@@ -9,6 +9,7 @@ import './Viewer.css';
 import { onMeshClick } from './on-mesh-click';
 import { updateObjects } from './update-objects';
 import { updateClearColor } from './update-clear-color';
+import { updateObjectSelection } from './update-object-selection';
 
 export interface ViewerProps {
   backgroundColor: HexColor3;
@@ -24,6 +25,7 @@ export class Viewer extends React.Component<ViewerProps> {
   private engine: BABYLON.Engine | null = null;
   private scene: BABYLON.Scene | null = null;
   private gridMesh: BABYLON.LinesMesh | null = null;
+  private highlightLayer: BABYLON.HighlightLayer | null = null;
 
   componentDidMount() {
     // Ref callback is guaranteed to be called before componentDidMount fires.
@@ -45,6 +47,7 @@ export class Viewer extends React.Component<ViewerProps> {
     // Create scene
     const scene = createScene(engine);
     updateClearColor(scene, this.props.backgroundColor);
+    const highlightLayer = new BABYLON.HighlightLayer('highlight', scene);
     createMaterials(scene);
     const gridMesh = createGrid(scene, this.props.currentGrid);
     gridMesh.isPickable = false;
@@ -68,6 +71,7 @@ export class Viewer extends React.Component<ViewerProps> {
     this.engine = engine;
     this.scene = scene;
     this.gridMesh = gridMesh;
+    this.highlightLayer = highlightLayer;
   }
 
   componentWillUnmount() {
@@ -87,6 +91,9 @@ export class Viewer extends React.Component<ViewerProps> {
       }
       if (this.props.currentObjects !== this.props.previousObjects) {
         updateObjects(this.scene, this.props.currentObjects, this.props.previousObjects);
+      }
+      if (this.props.currentObjects !== this.props.previousObjects /* or selection color changed */) {
+        updateObjectSelection(this.scene, this.highlightLayer!, this.props.currentObjects, new BABYLON.Color3(0, 1, 0));
       }
     }
   }

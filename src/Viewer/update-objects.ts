@@ -34,11 +34,15 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
   const updatingPreviousObjectsById = _keyBy(updatingPreviousObjects, o => o.id);
 
   _forEach([...enteringObjects, ...updatingCurrentObjects], (o) => {
+    const objectMesh = scene.getMeshByName(o.id);
+    if (!objectMesh) {
+      return;
+    }
     switch (o.objectType) {
       case 'point': {
         const currentPoint = o;
         const previousPoint = updatingPreviousObjectsById[o.id] as CartesianPoint;
-        updatePoint(scene, currentPoint, previousPoint);
+        updatePoint(objectMesh, currentPoint, previousPoint);
         break;
       }
     }
