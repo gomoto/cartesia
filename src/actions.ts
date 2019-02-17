@@ -1,5 +1,5 @@
 import * as redux from 'redux';
-import { Vector3, CartesianGrid } from './state';
+import { Vector3, CartesianGrid, Color3 } from './state';
 
 export type Action = (
   AddPointAction |
@@ -9,7 +9,8 @@ export type Action = (
   UnselectObjectAction |
   TranslateSelectedObjectsAction |
   ChangePointPositionAction |
-  ChangeGridAction
+  ChangeGridAction |
+  ChangeBackgroundColorAction
 );
 
 /**
@@ -62,5 +63,12 @@ export interface ChangeGridAction extends redux.Action {
   type: 'CHANGE_GRID';
   payload: {
     grid: CartesianGrid;
+  }
+}
+
+export interface ChangeBackgroundColorAction extends redux.Action {
+  type: 'CHANGE_BACKGROUND_COLOR';
+  payload: {
+    color: Color3;
   }
 }

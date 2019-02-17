@@ -154,6 +154,12 @@ export function reducer(state: State = initialState, action: Action): State {
         grid: action.payload.grid,
       };
     }
+    case 'CHANGE_BACKGROUND_COLOR': {
+      return {
+        ...state,
+        backgroundColor: action.payload.color,
+      };
+    }
     default: {
       return state;
     }

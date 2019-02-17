@@ -1,13 +1,14 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { State, CartesianObject, Vector3, CartesianGrid } from '../state';
+import { State, CartesianObject, Vector3, CartesianGrid, Color3 } from '../state';
 import { ControlPanel } from './ControlPanel';
-import { AddPointAction, SelectObjectAction, UnselectObjectAction, ChangePointPositionAction, ChangeGridAction } from '../actions';
+import { AddPointAction, SelectObjectAction, UnselectObjectAction, ChangePointPositionAction, ChangeGridAction, ChangeBackgroundColorAction } from '../actions';
 import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-undo';
 import { countSelectedObjects } from '../selector';
 
 const mapStateToProps = (state: StateWithHistory<State>) => {
   return {
+    backgroundColor: state.present.backgroundColor,
     grid: state.present.grid,
     objects: state.present.objects,
     canUndo: state.past.length > 0,
@@ -18,6 +19,12 @@ const mapStateToProps = (state: StateWithHistory<State>) => {
 };
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
+    onBackgroundColorChange: (color: Color3) => {
+      dispatch<ChangeBackgroundColorAction>({
+        type: 'CHANGE_BACKGROUND_COLOR',
+        payload: { color },
+      });
+    },
     onGridChange: (grid: CartesianGrid) => {
       const action: ChangeGridAction = {
         type: 'CHANGE_GRID',

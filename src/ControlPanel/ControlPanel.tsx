@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Button, Checkbox, Divider, Form, List, Input, InputNumber } from 'antd';
 import './ControlPanel.css';
-import { CartesianGrid, CartesianObject, Vector3 } from '../state';
+import { CartesianGrid, CartesianObject, Vector3, Color3 } from '../state';
 
 export interface ControlPanelProps {
+  backgroundColor: Color3;
+  onBackgroundColorChange(color: Color3): void;
   grid: CartesianGrid;
   onGridChange(grid: CartesianGrid): void;
   objects: CartesianObject[];
@@ -73,6 +75,14 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
         />
 
         <Divider />
+
+        <Form>
+        <Form.Item label="Background color" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <InputNumber value={this.props.backgroundColor.r} min={0} max={1} step={.1} onChange={(r = 1) => this.props.onBackgroundColorChange({...this.props.backgroundColor, r})}/>
+            <InputNumber value={this.props.backgroundColor.g} min={0} max={1} step={.1} onChange={(g = 1) => this.props.onBackgroundColorChange({...this.props.backgroundColor, g})}/>
+            <InputNumber value={this.props.backgroundColor.b} min={0} max={1} step={.1} onChange={(b = 1) => this.props.onBackgroundColorChange({...this.props.backgroundColor, b})}/>
+          </Form.Item>
+        </Form>
 
         <header>Grid</header>
         <Form>
