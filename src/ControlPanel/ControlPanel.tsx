@@ -81,17 +81,19 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
 
         <Form>
           <Form.Item label="Background color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <ColorPicker
-              animation="slide-up"
-              color={this.props.backgroundColor}
-              enableAlpha={false}
-              onChange={(event: {color: HexColor3}) => {
-                // Color picker sometimes fires despite unchanged color
-                if (event.color !== this.props.backgroundColor) {
-                  this.props.onBackgroundColorChange(event.color);
-                }
-              }}
-            />
+            <div className="ControlPanel-ColorPicker-container">
+              <ColorPicker
+                animation="slide-up"
+                color={this.props.backgroundColor}
+                enableAlpha={false}
+                onChange={(event: {color: HexColor3}) => {
+                  // Color picker sometimes fires despite unchanged color
+                  if (event.color !== this.props.backgroundColor) {
+                    this.props.onBackgroundColorChange(event.color);
+                  }
+                }}
+              />
+            </div>
           </Form.Item>
         </Form>
 
@@ -140,30 +142,34 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
             </Input.Group>
           </Form.Item>
           <Form.Item label="color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <ColorPicker
-              animation="slide-up"
-              color={this.props.grid.color}
-              enableAlpha={false}
-              onChange={(event: {color: HexColor3}) => {
-                // Color picker sometimes fires despite unchanged color
-                if (event.color !== this.props.grid.color) {
-                  this.props.onGridChange({...this.props.grid, color: event.color});
-                }
-              }}
-            />
+            <div className="ControlPanel-ColorPicker-container">
+              <ColorPicker
+                animation="slide-up"
+                color={this.props.grid.color}
+                enableAlpha={false}
+                onChange={(event: {color: HexColor3}) => {
+                  // Color picker sometimes fires despite unchanged color
+                  if (event.color !== this.props.grid.color) {
+                    this.props.onGridChange({...this.props.grid, color: event.color});
+                  }
+                }}
+              />
+            </div>
           </Form.Item>
           <Form.Item label="major color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <ColorPicker
-              animation="slide-up"
-              color={this.props.grid.colorMajor}
-              enableAlpha={false}
-              onChange={(event: {color: HexColor3}) => {
-                // Color picker sometimes fires despite unchanged color
-                if (event.color !== this.props.grid.colorMajor) {
-                  this.props.onGridChange({...this.props.grid, colorMajor: event.color});
-                }
-              }}
-            />
+            <div className="ControlPanel-ColorPicker-container">
+              <ColorPicker
+                animation="slide-up"
+                color={this.props.grid.colorMajor}
+                enableAlpha={false}
+                onChange={(event: {color: HexColor3}) => {
+                  // Color picker sometimes fires despite unchanged color
+                  if (event.color !== this.props.grid.colorMajor) {
+                    this.props.onGridChange({...this.props.grid, colorMajor: event.color});
+                  }
+                }}
+              />
+            </div>
           </Form.Item>
         </Form>
 
