@@ -23,8 +23,10 @@ export function createGrid(scene: BABYLON.Scene, grid: CartesianGrid): BABYLON.L
   } = grid;
 
   // Use separate colors for major and minor grid lines
-  const MINOR_COLOR_PAIR: [BABYLON.Color4, BABYLON.Color4] = [new BABYLON.Color4(color.r, color.g, color.b), new BABYLON.Color4(color.r, color.g, color.b)];
-  const MAJOR_COLOR_PAIR: [BABYLON.Color4, BABYLON.Color4] = [new BABYLON.Color4(colorMajor.r, colorMajor.g, colorMajor.b), new BABYLON.Color4(colorMajor.r, colorMajor.g, colorMajor.b)];
+  const MINOR_COLOR = BABYLON.Color3.FromHexString(color).toColor4();
+  const MAJOR_COLOR = BABYLON.Color3.FromHexString(colorMajor).toColor4();
+  const MINOR_COLOR_PAIR: [BABYLON.Color4, BABYLON.Color4] = [MINOR_COLOR, MINOR_COLOR];
+  const MAJOR_COLOR_PAIR: [BABYLON.Color4, BABYLON.Color4] = [MAJOR_COLOR, MAJOR_COLOR];
 
   const colors: [BABYLON.Color4, BABYLON.Color4][] = [];
   const lines: [BABYLON.Vector3, BABYLON.Vector3][] = [];

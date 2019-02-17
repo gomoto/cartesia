@@ -88,7 +88,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
               onChange={(event: {color: HexColor3}) => {
                 // Color picker sometimes fires despite unchanged color
                 if (event.color !== this.props.backgroundColor) {
-                  this.props.onBackgroundColorChange(event.color)
+                  this.props.onBackgroundColorChange(event.color);
                 }
               }}
             />
@@ -140,14 +140,30 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
             </Input.Group>
           </Form.Item>
           <Form.Item label="color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <InputNumber value={this.props.grid.color.r} min={0} max={1} step={.1} onChange={(r = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, r}})}/>
-            <InputNumber value={this.props.grid.color.g} min={0} max={1} step={.1} onChange={(g = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, g}})}/>
-            <InputNumber value={this.props.grid.color.b} min={0} max={1} step={.1} onChange={(b = 1) => this.props.onGridChange({...this.props.grid, color: {...this.props.grid.color, b}})}/>
+            <ColorPicker
+              animation="slide-up"
+              color={this.props.grid.color}
+              enableAlpha={false}
+              onChange={(event: {color: HexColor3}) => {
+                // Color picker sometimes fires despite unchanged color
+                if (event.color !== this.props.grid.color) {
+                  this.props.onGridChange({...this.props.grid, color: event.color});
+                }
+              }}
+            />
           </Form.Item>
           <Form.Item label="major color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <InputNumber value={this.props.grid.colorMajor.r} min={0} max={1} step={.1} onChange={(r = 1) => this.props.onGridChange({...this.props.grid, colorMajor: {...this.props.grid.colorMajor, r}})}/>
-            <InputNumber value={this.props.grid.colorMajor.g} min={0} max={1} step={.1} onChange={(g = 1) => this.props.onGridChange({...this.props.grid, colorMajor: {...this.props.grid.colorMajor, g}})}/>
-            <InputNumber value={this.props.grid.colorMajor.b} min={0} max={1} step={.1} onChange={(b = 1) => this.props.onGridChange({...this.props.grid, colorMajor: {...this.props.grid.colorMajor, b}})}/>
+            <ColorPicker
+              animation="slide-up"
+              color={this.props.grid.colorMajor}
+              enableAlpha={false}
+              onChange={(event: {color: HexColor3}) => {
+                // Color picker sometimes fires despite unchanged color
+                if (event.color !== this.props.grid.colorMajor) {
+                  this.props.onGridChange({...this.props.grid, colorMajor: event.color});
+                }
+              }}
+            />
           </Form.Item>
         </Form>
 

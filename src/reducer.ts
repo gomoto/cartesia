@@ -1,4 +1,4 @@
-import { State, CartesianPoint, CartesianObject } from './state';
+import { State, CartesianPoint } from './state';
 import { Action } from './actions';
 const uuidv4 = require('uuid/v4');
 
@@ -18,16 +18,8 @@ const initialState: State = {
     zMax: 8,
     zStep: 4,
     zStepMajor: 8,
-    color: {
-      r: 0.8,
-      g: 0.8,
-      b: 0.8,
-    },
-    colorMajor: {
-      r: 0.6,
-      g: 0.6,
-      b: 0.6,
-    },
+    color: '#CCCCCC',
+    colorMajor: '#999999',
   },
   objects: [],
 };

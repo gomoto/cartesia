@@ -10,12 +10,6 @@ export interface Vector3 {
   z: number;
 }
 
-export interface Color3 {
-  r: number;
-  g: number;
-  b: number;
-}
-
 export interface CartesianPoint {
   id: string;
   objectType: 'point';
@@ -50,8 +44,8 @@ export interface CartesianGrid {
   zMax: number;
   zStep: number;
   zStepMajor: number;
-  color: Color3;
-  colorMajor: Color3;
+  color: HexColor3;
+  colorMajor: HexColor3;
 }
 
 export type HexColor3 = string;
