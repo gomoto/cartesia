@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { Button, Checkbox, Divider, Form, List, Input, InputNumber } from 'antd';
+import { Checkbox, Divider, Form, List, Input, InputNumber } from 'antd';
 import './ControlPanel.css';
 import { CartesianGrid, CartesianObject, Vector3, HexColor3 } from '../state';
+
+const ColorPicker = require('rc-color-picker');
+import 'rc-color-picker/assets/index.css';
 
 export interface ControlPanelProps {
   backgroundColor: HexColor3;
@@ -77,8 +80,18 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
         <Divider />
 
         <Form>
-        <Form.Item label="Background color" labelCol={labelCol} wrapperCol={wrapperCol}>
-          <Input value={this.props.backgroundColor} onChange={(event) => this.props.onBackgroundColorChange(event.target.value)}></Input>
+          <Form.Item label="Background color" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <ColorPicker
+              animation="slide-up"
+              color={this.props.backgroundColor}
+              enableAlpha={false}
+              onChange={(event: {color: HexColor3}) => {
+                // Color picker sometimes fires despite unchanged color
+                if (event.color !== this.props.backgroundColor) {
+                  this.props.onBackgroundColorChange(event.color)
+                }
+              }}
+            />
           </Form.Item>
         </Form>
 

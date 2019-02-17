@@ -16,6 +16,7 @@
     "babylonjs": "^3.3.0",
     "lodash": "^4.17.11",
     "mousetrap": "^1.6.2",
+    "rc-color-picker": "1.2.6",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-redux": "^6.0.0",
