@@ -3,11 +3,7 @@ import { Action } from './actions';
 const uuidv4 = require('uuid/v4');
 
 const initialState: State = {
-  backgroundColor: {
-    r: 0.9,
-    g: 0.9,
-    b: 0.9,
-  },
+  backgroundColor: '#E5E5E5',
   grid: {
     isVisible: true,
     xMin: -8,

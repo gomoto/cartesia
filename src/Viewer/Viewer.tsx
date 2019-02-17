@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CartesianObject, CartesianGrid, Color3 } from '../state';
+import { CartesianObject, CartesianGrid, HexColor3 } from '../state';
 import * as BABYLON from 'babylonjs';
 import { createScene } from './create-scene';
 import { createGrid } from './create-grid';
@@ -11,7 +11,7 @@ import { updateObjects } from './update-objects';
 import { updateClearColor } from './update-clear-color';
 
 export interface ViewerProps {
-  backgroundColor: Color3;
+  backgroundColor: HexColor3;
   currentGrid: CartesianGrid;
   previousGrid: CartesianGrid;
   previousObjects: CartesianObject[];
