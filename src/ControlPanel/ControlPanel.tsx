@@ -9,6 +9,8 @@ import 'rc-color-picker/assets/index.css';
 export interface ControlPanelProps {
   backgroundColor: HexColor3;
   onBackgroundColorChange(color: HexColor3): void;
+  selectionColor: HexColor3;
+  onSelectionColorChange(color: HexColor3): void;
   grid: CartesianGrid;
   onGridChange(grid: CartesianGrid): void;
   objects: CartesianObject[];
@@ -90,6 +92,21 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
                   // Color picker sometimes fires despite unchanged color
                   if (event.color !== this.props.backgroundColor) {
                     this.props.onBackgroundColorChange(event.color);
+                  }
+                }}
+              />
+            </div>
+          </Form.Item>
+          <Form.Item label="Selection color" labelCol={labelCol} wrapperCol={wrapperCol}>
+            <div className="ControlPanel-ColorPicker-container">
+              <ColorPicker
+                animation="slide-up"
+                color={this.props.selectionColor}
+                enableAlpha={false}
+                onChange={(event: {color: HexColor3}) => {
+                  // Color picker sometimes fires despite unchanged color
+                  if (event.color !== this.props.selectionColor) {
+                    this.props.onSelectionColorChange(event.color);
                   }
                 }}
               />

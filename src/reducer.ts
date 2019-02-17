@@ -149,6 +149,12 @@ export function reducer(state: State = initialState, action: Action): State {
         backgroundColor: action.payload.color,
       };
     }
+    case 'CHANGE_SELECTION_COLOR': {
+      return {
+        ...state,
+        selectionColor: action.payload.color,
+      };
+    }
     default: {
       return state;
     }

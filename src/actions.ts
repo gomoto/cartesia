@@ -10,7 +10,8 @@ export type Action = (
   TranslateSelectedObjectsAction |
   ChangePointPositionAction |
   ChangeGridAction |
-  ChangeBackgroundColorAction
+  ChangeBackgroundColorAction |
+  ChangeSelectionColorAction
 );
 
 /**
@@ -68,6 +69,13 @@ export interface ChangeGridAction extends redux.Action {
 
 export interface ChangeBackgroundColorAction extends redux.Action {
   type: 'CHANGE_BACKGROUND_COLOR';
+  payload: {
+    color: HexColor3;
+  }
+}
+
+export interface ChangeSelectionColorAction extends redux.Action {
+  type: 'CHANGE_SELECTION_COLOR';
   payload: {
     color: HexColor3;
   }
