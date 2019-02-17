@@ -12,13 +12,23 @@ import { updateClearColor } from './update-clear-color';
 import { updateObjectSelection } from './update-object-selection';
 
 export interface ViewerProps {
+  readable: DifferentialProps<ViewerReadableProps>;
+  callable: ViewerCallableProps;
+}
+
+export interface DifferentialProps<T> {
+  previous: T;
+  current: T;
+}
+
+export interface ViewerReadableProps {
   backgroundColor: HexColor3;
-  currentSelectionColor: HexColor3;
-  previousSelectionColor: HexColor3;
-  currentGrid: CartesianGrid;
-  previousGrid: CartesianGrid;
-  previousObjects: CartesianObject[];
-  currentObjects: CartesianObject[];
+  selectionColor: HexColor3;
+  grid: CartesianGrid;
+  objects: CartesianObject[];
+}
+
+export interface ViewerCallableProps {
   onSelectObject(object: CartesianObject): void;
 }
 
@@ -48,18 +58,18 @@ export class Viewer extends React.Component<ViewerProps> {
 
     // Create scene
     const scene = createScene(engine);
-    updateClearColor(scene, this.props.backgroundColor);
+    updateClearColor(scene, this.props.readable.current.backgroundColor);
     const highlightLayer = new BABYLON.HighlightLayer('highlight', scene);
     createMaterials(scene);
-    const gridMesh = createGrid(scene, this.props.currentGrid);
+    const gridMesh = createGrid(scene, this.props.readable.current.grid);
     gridMesh.isPickable = false;
     createMiscellaneous(scene);
     onMeshClick(scene, (mesh) => {
-      const o = this.props.currentObjects.find(o => o.id === mesh.name);
+      const o = this.props.readable.current.objects.find(o => o.id === mesh.name);
       if (!o) {
         return;
       }
-      this.props.onSelectObject(o);
+      this.props.callable.onSelectObject(o);
     });
 
     // The render loop
@@ -83,19 +93,19 @@ export class Viewer extends React.Component<ViewerProps> {
   // When props update, update scene.
   componentDidUpdate() {
     if (this.scene) {
-      updateClearColor(this.scene, this.props.backgroundColor);
+      updateClearColor(this.scene, this.props.readable.current.backgroundColor);
       if (this.gridMesh) {
-        if (this.props.currentGrid !== this.props.previousGrid) {
+        if (this.props.readable.current.grid !== this.props.readable.previous.grid) {
           // Recreate grid. Can't get LineSystem updatable to work here. Should it?
           this.gridMesh.dispose();
-          this.gridMesh = createGrid(this.scene, this.props.currentGrid);
+          this.gridMesh = createGrid(this.scene, this.props.readable.current.grid);
         }
       }
-      if (this.props.currentObjects !== this.props.previousObjects) {
-        updateObjects(this.scene, this.props.currentObjects, this.props.previousObjects);
+      if (this.props.readable.current.objects !== this.props.readable.previous.objects) {
+        updateObjects(this.scene, this.props.readable.current.objects, this.props.readable.previous.objects);
       }
-      if (this.props.currentObjects !== this.props.previousObjects || this.props.previousSelectionColor !== this.props.currentSelectionColor) {
-        updateObjectSelection(this.scene, this.highlightLayer!, this.props.currentObjects, this.props.currentSelectionColor);
+      if (this.props.readable.current.objects !== this.props.readable.previous.objects || this.props.readable.previous.selectionColor !== this.props.readable.current.selectionColor) {
+        updateObjectSelection(this.scene, this.highlightLayer!, this.props.readable.current.objects, this.props.readable.current.selectionColor);
       }
     }
   }
