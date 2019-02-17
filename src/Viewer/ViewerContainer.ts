@@ -9,6 +9,7 @@ import { StateWithHistory } from 'redux-undo';
 let _previousState: StateWithHistory<State> | null = null;
 const mapStateToProps = (state: StateWithHistory<State>) => {
   const backgroundColor = state.present.backgroundColor;
+  const selectionColor = state.present.selectionColor;
   const currentGrid = state.present.grid;
   const previousGrid = _previousState ? _previousState.present.grid : currentGrid;
   const currentObjects = state.present.objects;
@@ -16,6 +17,7 @@ const mapStateToProps = (state: StateWithHistory<State>) => {
   _previousState = state; // save previous state for next call
   return {
     backgroundColor,
+    selectionColor,
     currentGrid,
     previousGrid,
     currentObjects,

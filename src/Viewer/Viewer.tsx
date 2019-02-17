@@ -13,6 +13,7 @@ import { updateObjectSelection } from './update-object-selection';
 
 export interface ViewerProps {
   backgroundColor: HexColor3;
+  selectionColor: HexColor3;
   currentGrid: CartesianGrid;
   previousGrid: CartesianGrid;
   previousObjects: CartesianObject[];
@@ -93,7 +94,7 @@ export class Viewer extends React.Component<ViewerProps> {
         updateObjects(this.scene, this.props.currentObjects, this.props.previousObjects);
       }
       if (this.props.currentObjects !== this.props.previousObjects /* or selection color changed */) {
-        updateObjectSelection(this.scene, this.highlightLayer!, this.props.currentObjects, new BABYLON.Color3(0, 1, 0));
+        updateObjectSelection(this.scene, this.highlightLayer!, this.props.currentObjects, this.props.selectionColor);
       }
     }
   }

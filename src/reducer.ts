@@ -4,6 +4,7 @@ const uuidv4 = require('uuid/v4');
 
 const initialState: State = {
   backgroundColor: '#E5E5E5',
+  selectionColor: '#00FF00',
   grid: {
     isVisible: true,
     xMin: -8,

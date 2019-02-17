@@ -1,5 +1,6 @@
 export interface State {
   backgroundColor: HexColor3;
+  selectionColor: HexColor3;
   grid: CartesianGrid;
   objects: CartesianObject[];
 }
