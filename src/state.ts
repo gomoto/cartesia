@@ -34,17 +34,17 @@ export interface CartesianGrid {
   isVisible: boolean;
   xMin: number;
   xMax: number;
-  xStep: number;
+  xStepMinor: number;
   xStepMajor: number;
   yMin: number;
   yMax: number;
-  yStep: number;
+  yStepMinor: number;
   yStepMajor: number;
   zMin: number;
   zMax: number;
-  zStep: number;
+  zStepMinor: number;
   zStepMajor: number;
-  color: HexColor3;
+  colorMinor: HexColor3;
   colorMajor: HexColor3;
 }
 

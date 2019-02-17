@@ -8,22 +8,22 @@ export function createGrid(scene: BABYLON.Scene, grid: CartesianGrid): BABYLON.L
   const {
     xMin,
     xMax,
-    xStep,
+    xStepMinor,
     xStepMajor,
     yMin,
     yMax,
-    yStep,
+    yStepMinor,
     yStepMajor,
     zMin,
     zMax,
-    zStep,
+    zStepMinor,
     zStepMajor,
-    color,
+    colorMinor,
     colorMajor,
   } = grid;
 
   // Use separate colors for major and minor grid lines
-  const MINOR_COLOR = BABYLON.Color3.FromHexString(color).toColor4();
+  const MINOR_COLOR = BABYLON.Color3.FromHexString(colorMinor).toColor4();
   const MAJOR_COLOR = BABYLON.Color3.FromHexString(colorMajor).toColor4();
   const MINOR_COLOR_PAIR: [BABYLON.Color4, BABYLON.Color4] = [MINOR_COLOR, MINOR_COLOR];
   const MAJOR_COLOR_PAIR: [BABYLON.Color4, BABYLON.Color4] = [MAJOR_COLOR, MAJOR_COLOR];
@@ -54,22 +54,22 @@ export function createGrid(scene: BABYLON.Scene, grid: CartesianGrid): BABYLON.L
   const xMinor: number[] = [];
   const yMinor: number[] = [];
   const zMinor: number[] = [];
-  const xMinRounded = Math.ceil(xMin / xStep) * xStep; // first x value greater than xMin
-  for (let x = xMinRounded; x <= xMax; x += xStep) {
+  const xMinRounded = Math.ceil(xMin / xStepMinor) * xStepMinor; // first x value greater than xMin
+  for (let x = xMinRounded; x <= xMax; x += xStepMinor) {
     if (x % xStepMajor === 0) {
       continue;
     }
     xMinor.push(x);
   }
-  const yMinRounded = Math.ceil(yMin / yStep) * yStep; // first y value greater than yMin
-  for (let y = yMinRounded; y <= yMax; y += yStep) {
+  const yMinRounded = Math.ceil(yMin / yStepMinor) * yStepMinor; // first y value greater than yMin
+  for (let y = yMinRounded; y <= yMax; y += yStepMinor) {
     if (y % yStepMajor === 0) {
       continue;
     }
     yMinor.push(y);
   }
-  const zMinRounded = Math.ceil(zMin / zStep) * zStep; // first z value greater than zMin
-  for (let z = zMinRounded; z <= zMax; z += zStep) {
+  const zMinRounded = Math.ceil(zMin / zStepMinor) * zStepMinor; // first z value greater than zMin
+  for (let z = zMinRounded; z <= zMax; z += zStepMinor) {
     if (z % zStepMajor === 0) {
       continue;
     }
