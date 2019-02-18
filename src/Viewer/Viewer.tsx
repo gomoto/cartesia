@@ -1,9 +1,19 @@
 import * as React from 'react';
-import { ViewerProps } from './ViewerProps';
 import { BabylonViewer } from '../babylon-viewer/BabylonViewer';
 import { createBabylonViewer } from '../babylon-viewer/create-babylon-viewer';
 import { updateBabylonViewer } from '../babylon-viewer/update-babylon-viewer';
 import './Viewer.css';
+
+import { CartesianObject } from '../state';
+import { BabylonViewerInput } from '../babylon-viewer/BabylonViewer';
+
+export type ViewerProps = ViewerReadableProps & ViewerCallableProps;
+
+export type ViewerReadableProps = BabylonViewerInput;
+
+export interface ViewerCallableProps {
+  onSelectObject(object: CartesianObject): void;
+}
 
 export class Viewer extends React.Component<ViewerProps> {
   private canvas: HTMLCanvasElement | null = null;
@@ -13,11 +23,11 @@ export class Viewer extends React.Component<ViewerProps> {
   componentDidMount() {
     // Ref callback is guaranteed to be called before componentDidMount fires.
     // https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
-    this.viewer = createBabylonViewer(this.canvas!, this.props.readable, {
+    this.viewer = createBabylonViewer(this.canvas!, this.props, {
       onObjectClick: (objectId) => {
-        const o = this.props.readable.objects.find(o => o.id === objectId);
+        const o = this.props.objects.find(o => o.id === objectId);
         if (o) {
-          this.props.callable.onSelectObject(o);
+          this.props.onSelectObject(o);
         }
       }
     });
@@ -36,7 +46,7 @@ export class Viewer extends React.Component<ViewerProps> {
   componentDidUpdate() {
     // componentDidMount guaranteed to be called before componentDidUpdate
     // this.viewer and this.previousProps are initialized there.
-    updateBabylonViewer(this.viewer!, this.props.readable, this.previousProps!.readable);
+    updateBabylonViewer(this.viewer!, this.props, this.previousProps!);
     this.previousProps = this.props; // save for next time
   }
 
