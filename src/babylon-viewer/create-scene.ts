@@ -8,7 +8,7 @@ export function createScene(engine: BABYLON.Engine): BABYLON.Scene {
   const scene = new BABYLON.Scene(engine);
 
   // Create an ArcRotateCamera, and set its rotation target to the origin
-  const camera = new BABYLON.ArcRotateCamera('mainCamera', Math.PI/4 /* within xz plane */, Math.PI/8 /* within xy plane */, 10, BABYLON.Vector3.Zero(), scene);
+  const camera = new BABYLON.ArcRotateCamera('mainCamera', - Math.PI/4 /* within xz plane */, Math.PI/8 /* within xy plane */, 50, BABYLON.Vector3.Zero(), scene);
   camera.inertia = 0;
   camera.angularSensibilityX = 250;
   camera.angularSensibilityY = 250;
