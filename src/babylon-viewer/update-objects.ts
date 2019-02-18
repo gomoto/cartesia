@@ -44,7 +44,7 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
         const currentSphere = o;
         const previousSphere = <CartesianSphere | undefined> updatingPreviousObjectsById[o.id];
         if (currentSphere !== previousSphere) {
-          updateSphere(scene, currentSphere);
+          updateSphere(scene, currentSphere, previousSphere);
         }
         break;
       }
