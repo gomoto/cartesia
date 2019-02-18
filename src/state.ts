@@ -17,6 +17,7 @@ export interface CartesianSphere {
   isSelected: boolean;
   position: Vector3;
   scaling: Vector3;
+  isScalingProportional: boolean;
 }
 
 export interface CartesianLine {

@@ -61,9 +61,47 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
                       <InputNumber value={o.position.z} onChange={(z = 0) => this.props.onSpherePositionChange(o, {...o.position, z})} />
                     </Form.Item>
                     <Form.Item label="Scaling">
-                      <InputNumber value={o.scaling.x} onChange={(x = 0) => this.props.onSphereScalingChange(o, {...o.scaling, x})} />
-                      <InputNumber value={o.scaling.y} onChange={(y = 0) => this.props.onSphereScalingChange(o, {...o.scaling, y})} />
-                      <InputNumber value={o.scaling.z} onChange={(z = 0) => this.props.onSphereScalingChange(o, {...o.scaling, z})} />
+                      <InputNumber value={o.scaling.x} onChange={(x = 0) => {
+                        if (o.isScalingProportional) {
+                          const relativeScaling = x / o.scaling.x;
+                          this.props.onSphereScalingChange(o, {
+                            x,
+                            y: o.scaling.y * relativeScaling,
+                            z: o.scaling.z * relativeScaling,
+                          });
+                          return;
+                        }
+                        this.props.onSphereScalingChange(o, {...o.scaling, x});
+                      }} />
+                      <InputNumber value={o.scaling.y} onChange={(y = 0) => {
+                        if (o.isScalingProportional) {
+                          const relativeScaling = y / o.scaling.y;
+                          this.props.onSphereScalingChange(o, {
+                            x: o.scaling.x * relativeScaling,
+                            y,
+                            z: o.scaling.z * relativeScaling,
+                          });
+                          return;
+                        }
+                        this.props.onSphereScalingChange(o, {...o.scaling, y});
+                      }} />
+                      <InputNumber value={o.scaling.z} onChange={(z = 0) => {
+                        if (o.isScalingProportional) {
+                          const relativeScaling = z / o.scaling.z;
+                          this.props.onSphereScalingChange(o, {
+                            x: o.scaling.x * relativeScaling,
+                            y: o.scaling.y * relativeScaling,
+                            z,
+                          });
+                          return;
+                        }
+                        this.props.onSphereScalingChange(o, {...o.scaling, z});
+                      }} />
+                    </Form.Item>
+                    <Form.Item label="Proportional scaling">
+                      <Checkbox
+                        checked={o.isScalingProportional}
+                      />
                     </Form.Item>
                   </Form>
                 );

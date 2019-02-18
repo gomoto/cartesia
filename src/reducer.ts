@@ -42,6 +42,7 @@ export function reducer(state: State = initialState, action: Action): State {
           y: 2,
           z: 2,
         },
+        isScalingProportional: true,
       };
       const newObjects = [
         ...state.objects,
