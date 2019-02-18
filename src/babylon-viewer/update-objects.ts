@@ -24,7 +24,12 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
   _forEach(enteringObjects, (o) => {
     switch (o.objectType) {
       case 'sphere': {
-        BABYLON.Mesh.CreateSphere(o.id, 8, 0.2, scene, false, BABYLON.Mesh.FRONTSIDE);
+        BABYLON.MeshBuilder.CreateSphere(o.id, {
+          segments: 16,
+          diameter: 1,
+          updatable: false,
+          sideOrientation: BABYLON.Mesh.FRONTSIDE,
+        }, scene);
         break;
       }
     }
