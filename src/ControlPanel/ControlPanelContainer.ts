@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State, CartesianObject, Vector3, CartesianGrid, HexColor3 } from '../state';
 import { ControlPanel } from './ControlPanel';
-import { AddSphereAction, SelectObjectAction, UnselectObjectAction, ChangeSpherePositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction, ChangeSphereScalingAction } from '../actions';
+import { AddSphereAction, SelectObjectAction, UnselectObjectAction, ChangeSpherePositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction, ChangeSphereScalingAction, RemoveSelectedObjectsAction, RemoveAllObjectsAction } from '../actions';
 import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-undo';
 import { countSelectedObjects } from '../selector';
 
@@ -33,52 +33,46 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       });
     },
     onGridChange: (grid: CartesianGrid) => {
-      const action: ChangeGridAction = {
+      dispatch<ChangeGridAction>({
         type: 'CHANGE_GRID',
         payload: {grid},
-      };
-      dispatch(action);
+      });
     },
     onAddSphere: () => {
-      const action: AddSphereAction = {
+      dispatch<AddSphereAction>({
         type: 'ADD_SPHERE',
-      };
-      dispatch(action);
+      });
     },
     onRemoveSelectedObjects: () => {
-      dispatch({type: 'REMOVE_SELECTED_OBJECTS'});
+      dispatch<RemoveSelectedObjectsAction>({type: 'REMOVE_SELECTED_OBJECTS'});
     },
     onRemoveAllObjects: () => {
-      dispatch({type: 'REMOVE_ALL_OBJECTS'});
+      dispatch<RemoveAllObjectsAction>({type: 'REMOVE_ALL_OBJECTS'});
     },
     onSelectObject: (o: CartesianObject) => {
       if (o.isSelected) {
-        const action: UnselectObjectAction = {
+        dispatch<UnselectObjectAction>({
           type: 'UNSELECT_OBJECT',
           payload: {objectId: o.id},
-        };
-        dispatch(action);
+        });
       } else {
-        const action: SelectObjectAction = {
+        dispatch<SelectObjectAction>({
           type: 'SELECT_OBJECT',
           payload: {objectId: o.id},
-        };
-        dispatch(action);
+        });
       }
     },
     onSpherePositionChange: (o: CartesianObject, position: Vector3) => {
-      const action: ChangeSpherePositionAction = {
+      dispatch<ChangeSpherePositionAction>({
         type: 'CHANGE_SPHERE_POSITION',
         payload: {objectId: o.id, position},
-      };
-      dispatch(action);
+      });
     },
     onSphereScalingChange: (o: CartesianObject, scaling: Vector3) => {
-      const action: ChangeSphereScalingAction = {
+      dispatch<ChangeSphereScalingAction>({
         type: 'CHANGE_SPHERE_SCALING',
         payload: {objectId: o.id, scaling},
-      };
-      dispatch(action);
+      });
     },
     onUndo: () => {
       dispatch({type: ReduxUndoActionTypes.UNDO});

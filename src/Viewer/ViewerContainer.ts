@@ -31,17 +31,15 @@ function getCallableProps(dispatch: Dispatch): ViewerCallableProps {
   return {
     onSelectObject: (o: CartesianObject) => {
       if (o.isSelected) {
-        const action: UnselectObjectAction = {
+        dispatch<UnselectObjectAction>({
           type: 'UNSELECT_OBJECT',
           payload: {objectId: o.id},
-        };
-        dispatch(action);
+        });
       } else {
-        const action: SelectObjectAction = {
+        dispatch<SelectObjectAction>({
           type: 'SELECT_OBJECT',
           payload: {objectId: o.id},
-        };
-        dispatch(action);
+        });
       }
     },
   };
