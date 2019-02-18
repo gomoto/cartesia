@@ -13,8 +13,3 @@ export interface BabylonViewerInput {
   grid: CartesianGrid;
   objects: CartesianObject[];
 }
-
-export interface Differential<T> {
-  previous: T;
-  current: T;
-}

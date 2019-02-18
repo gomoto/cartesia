@@ -1,4 +1,4 @@
-import { BabylonViewer, BabylonViewerInput, Differential } from './BabylonViewer';
+import { BabylonViewer, BabylonViewerInput } from './BabylonViewer';
 import { createGrid } from './create-grid';
 import { createMaterials } from './materials';
 import { createMiscellaneous } from './create-miscellaneous';
@@ -6,7 +6,7 @@ import { createScene } from './create-scene';
 import { updateClearColor } from './update-clear-color';
 import { onMeshClick } from './on-mesh-click';
 
-export function createBabylonViewer(canvas: HTMLCanvasElement, input: Differential<BabylonViewerInput>, listeners: Listeners): BabylonViewer {
+export function createBabylonViewer(canvas: HTMLCanvasElement, input: BabylonViewerInput, listeners: Listeners): BabylonViewer {
   // Create engine
   const enableAntialiasing = true;
   const adaptToDeviceRatio = true;
@@ -22,10 +22,10 @@ export function createBabylonViewer(canvas: HTMLCanvasElement, input: Differenti
 
   // Create scene
   const scene = createScene(engine);
-  updateClearColor(scene, input.current.backgroundColor);
+  updateClearColor(scene, input.backgroundColor);
   const highlightLayer = new BABYLON.HighlightLayer('highlight', scene);
   createMaterials(scene);
-  const gridMesh = createGrid(scene, input.current.grid);
+  const gridMesh = createGrid(scene, input.grid);
   gridMesh.isPickable = false;
   createMiscellaneous(scene);
   onMeshClick(scene, (mesh) => {

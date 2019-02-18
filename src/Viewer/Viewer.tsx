@@ -8,13 +8,14 @@ import './Viewer.css';
 export class Viewer extends React.Component<ViewerProps> {
   private canvas: HTMLCanvasElement | null = null;
   private viewer: BabylonViewer | null = null;
+  private previousProps: ViewerProps | null = null;
 
   componentDidMount() {
     // Ref callback is guaranteed to be called before componentDidMount fires.
     // https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
     this.viewer = createBabylonViewer(this.canvas!, this.props.readable, {
       onObjectClick: (objectId) => {
-        const o = this.props.readable.current.objects.find(o => o.id === objectId);
+        const o = this.props.readable.objects.find(o => o.id === objectId);
         if (o) {
           this.props.callable.onSelectObject(o);
         }
@@ -33,7 +34,10 @@ export class Viewer extends React.Component<ViewerProps> {
   componentDidUpdate() {
     // componentDidMount, where viewer is initialized, is
     // guaranteed to be called before componentDidUpdate
-    updateBabylonViewer(this.viewer!, this.props.readable);
+    const currentInput = this.props.readable;
+    const previousInput = this.previousProps ? this.previousProps.readable : this.props.readable;
+    updateBabylonViewer(this.viewer!, currentInput, previousInput);
+    this.previousProps = this.props; // save for next time
   }
 
   render() {

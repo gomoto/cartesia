@@ -1,20 +1,20 @@
-import { BabylonViewer, BabylonViewerInput, Differential } from './BabylonViewer';
+import { BabylonViewer, BabylonViewerInput } from './BabylonViewer';
 import { createGrid } from './create-grid';
 import { updateClearColor } from './update-clear-color';
 import { updateObjects } from './update-objects';
 import { updateObjectSelection } from './update-object-selection';
 
-export function updateBabylonViewer(viewer: BabylonViewer, input: Differential<BabylonViewerInput>): void {
-  updateClearColor(viewer.scene, input.current.backgroundColor);
-  if (input.current.grid !== input.previous.grid) {
+export function updateBabylonViewer(viewer: BabylonViewer, currentInput: BabylonViewerInput, previousInput: BabylonViewerInput): void {
+  updateClearColor(viewer.scene, currentInput.backgroundColor);
+  if (currentInput.grid !== previousInput.grid) {
     // Recreate grid. Can't get LineSystem updatable to work here. Should it?
     viewer.gridMesh.dispose();
-    viewer.gridMesh = createGrid(viewer.scene, input.current.grid);
+    viewer.gridMesh = createGrid(viewer.scene, currentInput.grid);
   }
-  if (input.current.objects !== input.previous.objects) {
-    updateObjects(viewer.scene, input.current.objects, input.previous.objects);
+  if (currentInput.objects !== previousInput.objects) {
+    updateObjects(viewer.scene, currentInput.objects, previousInput.objects);
   }
-  if (input.current.objects !== input.previous.objects || input.previous.selectionColor !== input.current.selectionColor) {
-    updateObjectSelection(viewer.scene, viewer.highlightLayer!, input.current.objects, input.current.selectionColor);
+  if (currentInput.objects !== previousInput.objects || previousInput.selectionColor !== currentInput.selectionColor) {
+    updateObjectSelection(viewer.scene, viewer.highlightLayer!, currentInput.objects, currentInput.selectionColor);
   }
 }

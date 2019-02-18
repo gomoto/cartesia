@@ -1,12 +1,12 @@
 import { CartesianObject } from '../state';
-import { BabylonViewerInput, Differential } from '../babylon-viewer/BabylonViewer';
+import { BabylonViewerInput } from '../babylon-viewer/BabylonViewer';
 
 export interface ViewerProps {
   readable: ViewerReadableProps;
   callable: ViewerCallableProps;
 }
 
-export type ViewerReadableProps = Differential<BabylonViewerInput>;
+export type ViewerReadableProps = BabylonViewerInput;
 
 export interface ViewerCallableProps {
   onSelectObject(object: CartesianObject): void;

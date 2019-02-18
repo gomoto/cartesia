@@ -5,24 +5,25 @@ import { SelectObjectAction, UnselectObjectAction } from '../actions';
 import { Viewer } from './Viewer';
 import { ViewerReadableProps, ViewerCallableProps } from './ViewerProps';
 import { StateWithHistory } from 'redux-undo';
-import { BabylonViewerInput } from '../babylon-viewer/BabylonViewer';
 
-// Track previous state
-let _previousState: StateWithHistory<State> | null = null;
 const mapStateToProps = (state: StateWithHistory<State>) => {
-  const previousState = _previousState; // capture previous state
-  _previousState = state; // save previous state for next call
-  return { readable: getReadableProps(state, previousState) };
+  return { readable: getReadableProps(state) };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return { callable: getCallableProps(dispatch) }
 };
 
-function getReadableProps(currentState:StateWithHistory<State>, previousState: StateWithHistory<State> | null): ViewerReadableProps {
+function getReadableProps(state: StateWithHistory<State>): ViewerReadableProps {
+  const backgroundColor = state.present.backgroundColor;
+  const selectionColor = state.present.selectionColor;
+  const grid = state.present.grid;
+  const objects = state.present.objects;
   return {
-    previous: getReadablePropsFromState(previousState || currentState),
-    current: getReadablePropsFromState(currentState),
+    backgroundColor,
+    selectionColor,
+    grid,
+    objects,
   };
 }
 
@@ -44,19 +45,6 @@ function getCallableProps(dispatch: Dispatch): ViewerCallableProps {
       }
     },
   };
-}
-
-function getReadablePropsFromState(state: StateWithHistory<State>): BabylonViewerInput {
-  const backgroundColor = state.present.backgroundColor;
-  const selectionColor = state.present.selectionColor;
-  const grid = state.present.grid;
-  const objects = state.present.objects;
-  return {
-    backgroundColor,
-    selectionColor,
-    grid,
-    objects,
-  }
 }
 
 export const ViewerContainer = connect(mapStateToProps, mapDispatchToProps)(Viewer);
