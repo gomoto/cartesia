@@ -17,6 +17,7 @@ export interface ControlPanelProps {
   numberOfSelectedObjects: number;
   onSelectObject(object: CartesianObject): void;
   onSpherePositionChange(object: CartesianObject, position: Vector3): void;
+  onSphereScalingChange(object: CartesianObject, scaling: Vector3): void;
 }
 
 export class ControlPanel extends React.Component<ControlPanelProps> {
@@ -48,11 +49,18 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
               case 'sphere': {
                 displayObjectType = 'Sphere';
                 objectSpecificContent = (
-                  <div>
-                    <InputNumber value={o.position.x} onChange={(x = 0) => this.props.onSpherePositionChange(o, {...o.position, x})} />
-                    <InputNumber value={o.position.y} onChange={(y = 0) => this.props.onSpherePositionChange(o, {...o.position, y})} />
-                    <InputNumber value={o.position.z} onChange={(z = 0) => this.props.onSpherePositionChange(o, {...o.position, z})} />
-                  </div>
+                  <Form>
+                    <Form.Item label="Position">
+                      <InputNumber value={o.position.x} onChange={(x = 0) => this.props.onSpherePositionChange(o, {...o.position, x})} />
+                      <InputNumber value={o.position.y} onChange={(y = 0) => this.props.onSpherePositionChange(o, {...o.position, y})} />
+                      <InputNumber value={o.position.z} onChange={(z = 0) => this.props.onSpherePositionChange(o, {...o.position, z})} />
+                    </Form.Item>
+                    <Form.Item label="Scaling">
+                      <InputNumber value={o.scaling.x} onChange={(x = 0) => this.props.onSphereScalingChange(o, {...o.scaling, x})} />
+                      <InputNumber value={o.scaling.y} onChange={(y = 0) => this.props.onSphereScalingChange(o, {...o.scaling, y})} />
+                      <InputNumber value={o.scaling.z} onChange={(z = 0) => this.props.onSphereScalingChange(o, {...o.scaling, z})} />
+                    </Form.Item>
+                  </Form>
                 );
                 break;
               }

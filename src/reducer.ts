@@ -142,6 +142,23 @@ export function reducer(state: State = initialState, action: Action): State {
         objects: newObjects,
       };
     }
+    case 'CHANGE_SPHERE_SCALING': {
+      const newObjects = state.objects.map(o => {
+        if (o.id === action.payload.objectId) {
+          // action implies object is CartesianSphere
+          const sphere = o as CartesianSphere;
+          return {
+            ...sphere,
+            scaling: action.payload.scaling,
+          };
+        }
+        return o;
+      });
+      return {
+        ...state,
+        objects: newObjects,
+      };
+    }
     case 'CHANGE_GRID': {
       return {
         ...state,

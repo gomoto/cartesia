@@ -9,6 +9,7 @@ export type Action = (
   UnselectObjectAction |
   TranslateSelectedObjectsAction |
   ChangeSpherePositionAction |
+  ChangeSphereScalingAction |
   ChangeGridAction |
   ChangeBackgroundColorAction |
   ChangeSelectionColorAction
@@ -57,6 +58,14 @@ export interface ChangeSpherePositionAction extends redux.Action {
   payload: {
     objectId: string;
     position: Vector3;
+  }
+}
+
+export interface ChangeSphereScalingAction extends redux.Action {
+  type: 'CHANGE_SPHERE_SCALING';
+  payload: {
+    objectId: string;
+    scaling: Vector3;
   }
 }
 
