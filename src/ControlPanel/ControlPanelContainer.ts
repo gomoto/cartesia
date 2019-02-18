@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State, CartesianObject, Vector3, CartesianGrid, HexColor3 } from '../state';
 import { ControlPanel, ControlPanelReadableProps, ControlPanelCallableProps } from './ControlPanel';
-import { SelectObjectAction, UnselectObjectAction, ChangeSpherePositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction, ChangeSphereScalingAction } from '../actions';
+import { SelectObjectAction, UnselectObjectAction, ChangeSpherePositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction, ChangeSphereScalingAction, ChangeSphereIsScalingProportionalAction } from '../actions';
 import { StateWithHistory } from 'redux-undo';
 import { countSelectedObjects } from '../selector';
 
@@ -58,6 +58,12 @@ const mapDispatchToProps = (dispatch: Dispatch): ControlPanelCallableProps => {
       dispatch<ChangeSphereScalingAction>({
         type: 'CHANGE_SPHERE_SCALING',
         payload: {objectId: o.id, scaling},
+      });
+    },
+    onChangeSphereIsScalingProportional: (o: CartesianObject, isScalingProportional: boolean) => {
+      dispatch<ChangeSphereIsScalingProportionalAction>({
+        type: 'CHANGE_SPHERE_IS_SCALING_PROPORTIONAL',
+        payload: {objectId: o.id, isScalingProportional},
       });
     },
   }

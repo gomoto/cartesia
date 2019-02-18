@@ -10,6 +10,7 @@ export type Action = (
   TranslateSelectedObjectsAction |
   ChangeSpherePositionAction |
   ChangeSphereScalingAction |
+  ChangeSphereIsScalingProportionalAction |
   ChangeGridAction |
   ChangeBackgroundColorAction |
   ChangeSelectionColorAction
@@ -66,6 +67,14 @@ export interface ChangeSphereScalingAction extends redux.Action {
   payload: {
     objectId: string;
     scaling: Vector3;
+  }
+}
+
+export interface ChangeSphereIsScalingProportionalAction extends redux.Action {
+  type: 'CHANGE_SPHERE_IS_SCALING_PROPORTIONAL';
+  payload: {
+    objectId: string;
+    isScalingProportional: boolean;
   }
 }
 

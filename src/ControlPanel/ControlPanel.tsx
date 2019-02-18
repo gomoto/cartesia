@@ -23,6 +23,7 @@ export interface ControlPanelCallableProps {
   onSelectObject(object: CartesianObject): void;
   onSpherePositionChange(object: CartesianObject, position: Vector3): void;
   onSphereScalingChange(object: CartesianObject, scaling: Vector3): void;
+  onChangeSphereIsScalingProportional(object: CartesianObject, isScalingProportional: boolean): void;
 }
 
 export class ControlPanel extends React.Component<ControlPanelProps> {
@@ -101,6 +102,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
                     <Form.Item label="Proportional scaling">
                       <Checkbox
                         checked={o.isScalingProportional}
+                        onChange={() => this.props.onChangeSphereIsScalingProportional(o, !o.isScalingProportional)}
                       />
                     </Form.Item>
                   </Form>
