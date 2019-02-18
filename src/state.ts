@@ -11,6 +11,7 @@ export interface Vector3 {
   z: number;
 }
 
+// Ellipsoid
 export interface CartesianSphere {
   id: string;
   objectType: 'sphere';
