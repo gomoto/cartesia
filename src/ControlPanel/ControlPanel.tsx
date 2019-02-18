@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Divider } from 'antd';
 import './ControlPanel.css';
 import { CartesianGrid, CartesianObject, Vector3, HexColor3 } from '../state';
 import { ObjectCatalog } from '../ObjectCatalog/ObjectCatalog';
@@ -26,13 +25,51 @@ export interface ControlPanelCallableProps {
   onChangeObjectColor(object: CartesianObject, color: HexColor3): void;
 }
 
-export class ControlPanel extends React.Component<ControlPanelProps> {
+// Maintain internal state for now
+interface ControlPanelState {
+  activeTabType: ControlPanelTabType;
+}
+
+type ControlPanelTabType = 'objects' | 'preferences';
+
+export class ControlPanel extends React.Component<ControlPanelProps, ControlPanelState> {
+  state: ControlPanelState;
+
+  constructor(props: ControlPanelProps) {
+    super(props);
+    this.state = {
+      activeTabType: 'objects',
+    };
+  }
+
+  private getContent(): React.ReactNode {
+    switch (this.state.activeTabType) {
+      case 'objects': {
+        return <ObjectCatalog {...this.props} />;
+      }
+      case 'preferences': {
+        return <PreferenceCatalog {...this.props} />;
+      }
+    }
+  }
+
+  private setActiveTabType(tabType: ControlPanelTabType): void {
+    this.setState({
+      ...this.state,
+      activeTabType: tabType,
+    });
+  }
+
   render() {
     return (
       <div className="ControlPanel">
-        <ObjectCatalog {...this.props} />
-        <Divider />
-        <PreferenceCatalog {...this.props} />
+        <nav className="ControlPanel-tabs">
+          <div className="ControlPanel-tab" onClick={this.setActiveTabType.bind(this, 'objects')}>Objects</div>
+          <div className="ControlPanel-tab" onClick={this.setActiveTabType.bind(this, 'preferences')}>Preferences</div>
+        </nav>
+        <div className="ControlPanel-content">
+          {this.getContent()}
+        </div>
       </div>
     );
   }

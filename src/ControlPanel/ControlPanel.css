@@ -3,4 +3,19 @@
   height: 100%;
   width: 100%;
   border-right: var(--border);
+  --tab-height: 40px;
+}
+.ControlPanel-tabs {
+  display: flex;
+  border-bottom: var(--border);
+}
+.ControlPanel-tab {
+  flex: 0 0 auto;
+  height: var(--tab-height);
+  width: 80px;
+  padding: 0 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
