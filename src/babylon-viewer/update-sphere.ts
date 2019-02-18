@@ -6,14 +6,18 @@ export function updateSphere(scene: BABYLON.Scene, currentSphere: CartesianSpher
   if (!mesh) {
     return;
   }
-  mesh.position.x = currentSphere.position.x;
-  mesh.position.y = currentSphere.position.y;
-  mesh.position.z = currentSphere.position.z;
-  mesh.scaling = new BABYLON.Vector3(
-    currentSphere.scaling.x,
-    currentSphere.scaling.y,
-    currentSphere.scaling.z
-  );
+  if (!previousSphere || currentSphere.position !== previousSphere.position) {
+    mesh.position.x = currentSphere.position.x;
+    mesh.position.y = currentSphere.position.y;
+    mesh.position.z = currentSphere.position.z;
+  }
+  if (!previousSphere || currentSphere.scaling !== previousSphere.scaling) {
+    mesh.scaling = new BABYLON.Vector3(
+      currentSphere.scaling.x,
+      currentSphere.scaling.y,
+      currentSphere.scaling.z
+    );
+  }
   if (!previousSphere || currentSphere.color !== previousSphere.color) {
     const material = new BABYLON.StandardMaterial(`material-${currentSphere.id}`, scene);
     material.diffuseColor = BABYLON.Color3.FromHexString(currentSphere.color);
