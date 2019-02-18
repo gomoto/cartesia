@@ -178,6 +178,23 @@ export function reducer(state: State = initialState, action: Action): State {
         objects: newObjects,
       };
     }
+    case 'CHANGE_OBJECT_COLOR': {
+      const newObjects = state.objects.map(o => {
+        if (o.id === action.payload.objectId) {
+          // action implies object is CartesianSphere
+          const sphere = o as CartesianSphere;
+          return {
+            ...sphere,
+            color: action.payload.color,
+          };
+        }
+        return o;
+      });
+      return {
+        ...state,
+        objects: newObjects,
+      };
+    }
     case 'CHANGE_GRID': {
       return {
         ...state,

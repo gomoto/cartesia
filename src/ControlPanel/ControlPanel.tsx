@@ -24,6 +24,7 @@ export interface ControlPanelCallableProps {
   onSpherePositionChange(object: CartesianObject, position: Vector3): void;
   onSphereScalingChange(object: CartesianObject, scaling: Vector3): void;
   onChangeSphereIsScalingProportional(object: CartesianObject, isScalingProportional: boolean): void;
+  onChangeObjectColor(object: CartesianObject, color: HexColor3): void;
 }
 
 export class ControlPanel extends React.Component<ControlPanelProps> {
@@ -104,6 +105,21 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
                         checked={o.isScalingProportional}
                         onChange={() => this.props.onChangeSphereIsScalingProportional(o, !o.isScalingProportional)}
                       />
+                    </Form.Item>
+                    <Form.Item label="Color">
+                      <div className="ControlPanel-ColorPicker-container">
+                        <ColorPicker
+                          animation="slide-up"
+                          color={o.color}
+                          enableAlpha={false}
+                          onChange={(event: {color: HexColor3}) => {
+                            // Color picker sometimes fires despite unchanged color
+                            if (event.color !== this.props.backgroundColor) {
+                              this.props.onChangeObjectColor(o, event.color);
+                            }
+                          }}
+                        />
+                      </div>
                     </Form.Item>
                   </Form>
                 );

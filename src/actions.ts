@@ -11,6 +11,7 @@ export type Action = (
   ChangeSpherePositionAction |
   ChangeSphereScalingAction |
   ChangeSphereIsScalingProportionalAction |
+  ChangeObjectColorAction |
   ChangeGridAction |
   ChangeBackgroundColorAction |
   ChangeSelectionColorAction
@@ -75,6 +76,14 @@ export interface ChangeSphereIsScalingProportionalAction extends redux.Action {
   payload: {
     objectId: string;
     isScalingProportional: boolean;
+  }
+}
+
+export interface ChangeObjectColorAction extends redux.Action {
+  type: 'CHANGE_OBJECT_COLOR';
+  payload: {
+    objectId: string;
+    color: HexColor3;
   }
 }
 
