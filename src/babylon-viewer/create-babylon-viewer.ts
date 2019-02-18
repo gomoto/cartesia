@@ -3,7 +3,7 @@ import { createGrid } from './create-grid';
 import { createMaterials } from './materials';
 import { createMiscellaneous } from './create-miscellaneous';
 import { createScene } from './create-scene';
-import { updateClearColor } from './update-clear-color';
+import { setBackgroundColor } from './set-background-color';
 import { onMeshClick } from './on-mesh-click';
 
 export function createBabylonViewer(canvas: HTMLCanvasElement, input: BabylonViewerInput, listeners: Listeners): BabylonViewer {
@@ -22,7 +22,7 @@ export function createBabylonViewer(canvas: HTMLCanvasElement, input: BabylonVie
 
   // Create scene
   const scene = createScene(engine);
-  updateClearColor(scene, input.backgroundColor);
+  setBackgroundColor(scene, input.backgroundColor);
   const highlightLayer = new BABYLON.HighlightLayer('highlight', scene);
   createMaterials(scene);
   const gridMesh = createGrid(scene, input.grid);

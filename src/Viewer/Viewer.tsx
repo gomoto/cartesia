@@ -22,6 +22,8 @@ export class Viewer extends React.Component<ViewerProps> {
       }
     });
 
+    this.previousProps = this.props;
+
     // Resize the babylon engine when the window is resized
     window.addEventListener('resize', this.onResizeWindow);
   }
@@ -32,11 +34,9 @@ export class Viewer extends React.Component<ViewerProps> {
 
   // When props update, update scene.
   componentDidUpdate() {
-    // componentDidMount, where viewer is initialized, is
-    // guaranteed to be called before componentDidUpdate
-    const currentInput = this.props.readable;
-    const previousInput = this.previousProps ? this.previousProps.readable : this.props.readable;
-    updateBabylonViewer(this.viewer!, currentInput, previousInput);
+    // componentDidMount guaranteed to be called before componentDidUpdate
+    // this.viewer and this.previousProps are initialized there.
+    updateBabylonViewer(this.viewer!, this.props.readable, this.previousProps!.readable);
     this.previousProps = this.props; // save for next time
   }
 
