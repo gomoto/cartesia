@@ -19,6 +19,7 @@ export interface CartesianSphere {
   position: Vector3;
   scaling: Vector3;
   isScalingProportional: boolean;
+  color: HexColor3;
 }
 
 export interface CartesianLine {

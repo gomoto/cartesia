@@ -5,8 +5,8 @@ import {
   intersectionBy as _intersectionBy,
   keyBy as _keyBy,
 } from 'lodash';
-import { updateSphere } from './update-sphere';
 import { createSphere } from './create-sphere';
+import { updateSphere } from './update-sphere';
 
 /**
  * Modify objects in scene based on current and previous application state.
@@ -44,7 +44,7 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
         const currentSphere = o;
         const previousSphere = <CartesianSphere | undefined> updatingPreviousObjectsById[o.id];
         if (currentSphere !== previousSphere) {
-          updateSphere(objectMesh, currentSphere);
+          updateSphere(scene, currentSphere);
         }
         break;
       }
