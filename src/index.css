@@ -27,3 +27,13 @@
 .ViewerContainer {
   flex: 1 0 auto;
 }
+
+/* Shared styles */
+.ColorPicker-container {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.ColorPicker-container .rc-color-picker-trigger {
+  display: block;
+}

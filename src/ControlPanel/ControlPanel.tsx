@@ -46,7 +46,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
 
         <Form>
           <Form.Item label="Background color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <div className="ControlPanel-ColorPicker-container">
+            <div className="ColorPicker-container">
               <ColorPicker
                 animation="slide-up"
                 color={this.props.backgroundColor}
@@ -61,7 +61,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
             </div>
           </Form.Item>
           <Form.Item label="Selection color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <div className="ControlPanel-ColorPicker-container">
+            <div className="ColorPicker-container">
               <ColorPicker
                 animation="slide-up"
                 color={this.props.selectionColor}
@@ -122,7 +122,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
             </Input.Group>
           </Form.Item>
           <Form.Item label="Minor color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <div className="ControlPanel-ColorPicker-container">
+            <div className="ColorPicker-container">
               <ColorPicker
                 animation="slide-up"
                 color={this.props.grid.colorMinor}
@@ -137,7 +137,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
             </div>
           </Form.Item>
           <Form.Item label="Major color" labelCol={labelCol} wrapperCol={wrapperCol}>
-            <div className="ControlPanel-ColorPicker-container">
+            <div className="ColorPicker-container">
               <ColorPicker
                 animation="slide-up"
                 color={this.props.grid.colorMajor}

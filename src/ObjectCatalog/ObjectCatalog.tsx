@@ -92,7 +92,7 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                       />
                     </Form.Item>
                     <Form.Item label="Color">
-                      <div className="ControlPanel-ColorPicker-container">
+                      <div className="ColorPicker-container">
                         <ColorPicker
                           animation="slide-up"
                           color={o.color}
