@@ -6,15 +6,20 @@ import { CartesianGrid, CartesianObject, Vector3, HexColor3 } from '../state';
 const ColorPicker = require('rc-color-picker');
 import 'rc-color-picker/assets/index.css';
 
-export interface ControlPanelProps {
+export type ControlPanelProps = ControlPanelReadableProps & ControlPanelCallableProps;
+
+export interface ControlPanelReadableProps {
   backgroundColor: HexColor3;
-  onBackgroundColorChange(color: HexColor3): void;
   selectionColor: HexColor3;
-  onSelectionColorChange(color: HexColor3): void;
   grid: CartesianGrid;
-  onGridChange(grid: CartesianGrid): void;
   objects: CartesianObject[];
   numberOfSelectedObjects: number;
+}
+
+export interface ControlPanelCallableProps {
+  onBackgroundColorChange(color: HexColor3): void;
+  onSelectionColorChange(color: HexColor3): void;
+  onGridChange(grid: CartesianGrid): void;
   onSelectObject(object: CartesianObject): void;
   onSpherePositionChange(object: CartesianObject, position: Vector3): void;
   onSphereScalingChange(object: CartesianObject, scaling: Vector3): void;

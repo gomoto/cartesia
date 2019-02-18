@@ -1,24 +1,21 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State, CartesianObject, Vector3, CartesianGrid, HexColor3 } from '../state';
-import { ControlPanel } from './ControlPanel';
-import { AddSphereAction, SelectObjectAction, UnselectObjectAction, ChangeSpherePositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction, ChangeSphereScalingAction, RemoveSelectedObjectsAction, RemoveAllObjectsAction } from '../actions';
-import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-undo';
+import { ControlPanel, ControlPanelReadableProps, ControlPanelCallableProps } from './ControlPanel';
+import { SelectObjectAction, UnselectObjectAction, ChangeSpherePositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction, ChangeSphereScalingAction } from '../actions';
+import { StateWithHistory } from 'redux-undo';
 import { countSelectedObjects } from '../selector';
 
-const mapStateToProps = (state: StateWithHistory<State>) => {
+const mapStateToProps = (state: StateWithHistory<State>): ControlPanelReadableProps => {
   return {
     backgroundColor: state.present.backgroundColor,
     selectionColor: state.present.selectionColor,
     grid: state.present.grid,
     objects: state.present.objects,
-    canUndo: state.past.length > 0,
-    canRedo: state.future.length > 0,
-    canRemoveSelectedObjects: countSelectedObjects(state.present) > 0,
     numberOfSelectedObjects: countSelectedObjects(state.present),
   };
 };
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch): ControlPanelCallableProps => {
   return {
     onBackgroundColorChange: (color: HexColor3) => {
       dispatch<ChangeBackgroundColorAction>({
@@ -37,17 +34,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         type: 'CHANGE_GRID',
         payload: {grid},
       });
-    },
-    onAddSphere: () => {
-      dispatch<AddSphereAction>({
-        type: 'ADD_SPHERE',
-      });
-    },
-    onRemoveSelectedObjects: () => {
-      dispatch<RemoveSelectedObjectsAction>({type: 'REMOVE_SELECTED_OBJECTS'});
-    },
-    onRemoveAllObjects: () => {
-      dispatch<RemoveAllObjectsAction>({type: 'REMOVE_ALL_OBJECTS'});
     },
     onSelectObject: (o: CartesianObject) => {
       if (o.isSelected) {
@@ -73,12 +59,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         type: 'CHANGE_SPHERE_SCALING',
         payload: {objectId: o.id, scaling},
       });
-    },
-    onUndo: () => {
-      dispatch({type: ReduxUndoActionTypes.UNDO});
-    },
-    onRedo: () => {
-      dispatch({type: ReduxUndoActionTypes.REDO});
     },
   }
 };
