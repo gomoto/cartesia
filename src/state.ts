@@ -11,9 +11,9 @@ export interface Vector3 {
   z: number;
 }
 
-export interface CartesianPoint {
+export interface CartesianSphere {
   id: string;
-  objectType: 'point';
+  objectType: 'sphere';
   isSelected: boolean;
   position: Vector3;
 }
@@ -27,7 +27,7 @@ export interface CartesianLine {
 }
 
 export type CartesianObject = (
-  CartesianPoint |
+  CartesianSphere |
   CartesianLine
 );
 

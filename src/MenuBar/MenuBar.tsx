@@ -3,7 +3,7 @@ import { Dropdown, Menu } from 'antd';
 import './MenuBar.css';
 
 export interface MenuBarProps {
-  onAddPoint(): void;
+  onAddSphere(): void;
   onRemoveAllObjects(): void;
   canRemoveAllObjects: boolean;
   onRemoveSelectedObjects(): void;
@@ -35,7 +35,7 @@ export class MenuBar extends React.Component<MenuBarProps> {
         </Menu.SubMenu>
         <Menu.Divider />
         <Menu.Item className="MenuBar-MenuItem" disabled>Add plane</Menu.Item>
-        <Menu.Item className="MenuBar-MenuItem" onClick={this.props.onAddPoint.bind(this)}>Add sphere</Menu.Item>
+        <Menu.Item className="MenuBar-MenuItem" onClick={this.props.onAddSphere.bind(this)}>Add sphere</Menu.Item>
         <Menu.Item className="MenuBar-MenuItem" disabled>Add tube</Menu.Item>
         <Menu.Divider />
         <Menu.Item className="MenuBar-MenuItem" disabled>Add directional light</Menu.Item>

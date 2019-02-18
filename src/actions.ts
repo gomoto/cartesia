@@ -2,23 +2,23 @@ import * as redux from 'redux';
 import { Vector3, CartesianGrid, HexColor3 } from './state';
 
 export type Action = (
-  AddPointAction |
+  AddSphereAction |
   RemoveSelectedObjectsAction |
   RemoveAllObjectsAction |
   SelectObjectAction |
   UnselectObjectAction |
   TranslateSelectedObjectsAction |
-  ChangePointPositionAction |
+  ChangeSpherePositionAction |
   ChangeGridAction |
   ChangeBackgroundColorAction |
   ChangeSelectionColorAction
 );
 
 /**
- * Add new point at (0, 0, 0)
+ * Add new sphere at (0, 0, 0)
  */
-export interface AddPointAction extends redux.Action {
-  type: 'ADD_POINT';
+export interface AddSphereAction extends redux.Action {
+  type: 'ADD_SPHERE';
 }
 
 export interface RemoveSelectedObjectsAction extends redux.Action {
@@ -52,8 +52,8 @@ export interface TranslateSelectedObjectsAction extends redux.Action {
   }
 }
 
-export interface ChangePointPositionAction extends redux.Action {
-  type: 'CHANGE_POINT_POSITION';
+export interface ChangeSpherePositionAction extends redux.Action {
+  type: 'CHANGE_SPHERE_POSITION';
   payload: {
     objectId: string;
     position: Vector3;

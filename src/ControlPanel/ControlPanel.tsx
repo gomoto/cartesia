@@ -16,7 +16,7 @@ export interface ControlPanelProps {
   objects: CartesianObject[];
   numberOfSelectedObjects: number;
   onSelectObject(object: CartesianObject): void;
-  onPointPositionChange(object: CartesianObject, position: Vector3): void;
+  onSpherePositionChange(object: CartesianObject, position: Vector3): void;
 }
 
 export class ControlPanel extends React.Component<ControlPanelProps> {
@@ -45,13 +45,13 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
             let displayObjectType: string;
             let objectSpecificContent: React.ReactNode;
             switch (o.objectType) {
-              case 'point': {
-                displayObjectType = 'Point';
+              case 'sphere': {
+                displayObjectType = 'sphere';
                 objectSpecificContent = (
                   <div>
-                    <InputNumber value={o.position.x} onChange={(x = 0) => this.props.onPointPositionChange(o, {...o.position, x})} />
-                    <InputNumber value={o.position.y} onChange={(y = 0) => this.props.onPointPositionChange(o, {...o.position, y})} />
-                    <InputNumber value={o.position.z} onChange={(z = 0) => this.props.onPointPositionChange(o, {...o.position, z})} />
+                    <InputNumber value={o.position.x} onChange={(x = 0) => this.props.onSpherePositionChange(o, {...o.position, x})} />
+                    <InputNumber value={o.position.y} onChange={(y = 0) => this.props.onSpherePositionChange(o, {...o.position, y})} />
+                    <InputNumber value={o.position.z} onChange={(z = 0) => this.props.onSpherePositionChange(o, {...o.position, z})} />
                   </div>
                 );
                 break;

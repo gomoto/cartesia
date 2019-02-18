@@ -1,11 +1,11 @@
-import { CartesianObject, CartesianPoint } from '../state';
+import { CartesianObject, CartesianSphere } from '../state';
 import {
   differenceBy as _differenceBy,
   forEach as _forEach,
   intersectionBy as _intersectionBy,
   keyBy as _keyBy,
 } from 'lodash';
-import { updatePoint } from './update-point';
+import { updateSphere } from './update-sphere';
 
 /**
  * Modify objects in scene based on current and previous application state.
@@ -23,7 +23,7 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
   });
   _forEach(enteringObjects, (o) => {
     switch (o.objectType) {
-      case 'point': {
+      case 'sphere': {
         BABYLON.Mesh.CreateSphere(o.id, 8, 0.2, scene, false, BABYLON.Mesh.FRONTSIDE);
         break;
       }
@@ -39,10 +39,10 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
       return;
     }
     switch (o.objectType) {
-      case 'point': {
-        const currentPoint = o;
-        const previousPoint = updatingPreviousObjectsById[o.id] as CartesianPoint;
-        updatePoint(objectMesh, currentPoint, previousPoint);
+      case 'sphere': {
+        const currentSphere = o;
+        const previousSphere = updatingPreviousObjectsById[o.id] as CartesianSphere;
+        updateSphere(objectMesh, currentSphere, previousSphere);
         break;
       }
     }

@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State, CartesianObject, Vector3, CartesianGrid, HexColor3 } from '../state';
 import { ControlPanel } from './ControlPanel';
-import { AddPointAction, SelectObjectAction, UnselectObjectAction, ChangePointPositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction } from '../actions';
+import { AddSphereAction, SelectObjectAction, UnselectObjectAction, ChangeSpherePositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction } from '../actions';
 import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-undo';
 import { countSelectedObjects } from '../selector';
 
@@ -39,9 +39,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
       };
       dispatch(action);
     },
-    onAddPoint: () => {
-      const action: AddPointAction = {
-        type: 'ADD_POINT',
+    onAddSphere: () => {
+      const action: AddSphereAction = {
+        type: 'ADD_SPHERE',
       };
       dispatch(action);
     },
@@ -66,9 +66,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
         dispatch(action);
       }
     },
-    onPointPositionChange: (o: CartesianObject, position: Vector3) => {
-      const action: ChangePointPositionAction = {
-        type: 'CHANGE_POINT_POSITION',
+    onSpherePositionChange: (o: CartesianObject, position: Vector3) => {
+      const action: ChangeSpherePositionAction = {
+        type: 'CHANGE_SPHERE_POSITION',
         payload: {objectId: o.id, position},
       };
       dispatch(action);

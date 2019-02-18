@@ -1,4 +1,4 @@
-import { State, CartesianPoint } from './state';
+import { State, CartesianSphere } from './state';
 import { Action } from './actions';
 const uuidv4 = require('uuid/v4');
 
@@ -27,10 +27,10 @@ const initialState: State = {
 
 export function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
-    case 'ADD_POINT': {
-      const newPoint: CartesianPoint = {
+    case 'ADD_SPHERE': {
+      const newSphere: CartesianSphere = {
         id: uuidv4(),
-        objectType: 'point',
+        objectType: 'sphere',
         isSelected: false,
         position: {
           x: 0,
@@ -40,7 +40,7 @@ export function reducer(state: State = initialState, action: Action): State {
       };
       const newObjects = [
         ...state.objects,
-        newPoint,
+        newSphere,
       ];
       return {
         ...state,
@@ -101,7 +101,7 @@ export function reducer(state: State = initialState, action: Action): State {
         if (o.isSelected) {
           const { dx = 0, dy = 0, dz = 0 } = action.payload;
           switch (o.objectType) {
-            case 'point': {
+            case 'sphere': {
               return {
                 ...o,
                 position: {
@@ -120,13 +120,13 @@ export function reducer(state: State = initialState, action: Action): State {
         objects: newObjects,
       };
     }
-    case 'CHANGE_POINT_POSITION': {
+    case 'CHANGE_SPHERE_POSITION': {
       const newObjects = state.objects.map(o => {
         if (o.id === action.payload.objectId) {
-          // action implies object is CartesianPoint
-          const point = o as CartesianPoint;
+          // action implies object is CartesianSphere
+          const sphere = o as CartesianSphere;
           return {
-            ...point,
+            ...sphere,
             position: action.payload.position,
           };
         }
