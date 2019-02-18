@@ -6,6 +6,7 @@ import {
   keyBy as _keyBy,
 } from 'lodash';
 import { updateSphere } from './update-sphere';
+import { createSphere } from './create-sphere';
 
 /**
  * Modify objects in scene based on current and previous application state.
@@ -24,12 +25,7 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
   _forEach(enteringObjects, (o) => {
     switch (o.objectType) {
       case 'sphere': {
-        BABYLON.MeshBuilder.CreateSphere(o.id, {
-          segments: 16,
-          diameter: 1,
-          updatable: false,
-          sideOrientation: BABYLON.Mesh.FRONTSIDE,
-        }, scene);
+        createSphere(scene, o);
         break;
       }
     }
@@ -46,8 +42,10 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
     switch (o.objectType) {
       case 'sphere': {
         const currentSphere = o;
-        const previousSphere = updatingPreviousObjectsById[o.id] as CartesianSphere;
-        updateSphere(objectMesh, currentSphere, previousSphere);
+        const previousSphere = <CartesianSphere | undefined> updatingPreviousObjectsById[o.id];
+        if (currentSphere !== previousSphere) {
+          updateSphere(objectMesh, currentSphere);
+        }
         break;
       }
     }

@@ -37,6 +37,11 @@ export function reducer(state: State = initialState, action: Action): State {
           y: 0,
           z: 0,
         },
+        scaling: {
+          x: 2,
+          y: 2,
+          z: 2,
+        },
       };
       const newObjects = [
         ...state.objects,

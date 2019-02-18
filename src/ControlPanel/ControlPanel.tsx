@@ -46,7 +46,7 @@ export class ControlPanel extends React.Component<ControlPanelProps> {
             let objectSpecificContent: React.ReactNode;
             switch (o.objectType) {
               case 'sphere': {
-                displayObjectType = 'sphere';
+                displayObjectType = 'Sphere';
                 objectSpecificContent = (
                   <div>
                     <InputNumber value={o.position.x} onChange={(x = 0) => this.props.onSpherePositionChange(o, {...o.position, x})} />
