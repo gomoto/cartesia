@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, Checkbox, Form, List, InputNumber, Tooltip } from 'antd';
 import { CartesianObject, Vector3, HexColor3, CartesianLine } from '../state';
 import { computeLineLength } from './compute-line-length';
-import { copyToClipboard } from '../util/copy-to-clipboard';
+import { copyToClipboard, ClipboardObject } from '../util/copy-to-clipboard';
 import './ObjectCatalog.css';
 
 const ColorPicker = require('rc-color-picker');
@@ -58,7 +58,7 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                       <Tooltip placement="top" title="Paste">
                         {/* Look into why extra element needed to trigger tooltip */}
                         <span>
-                          <InputPaste onPaste={(content) => console.log(content)} />
+                          <InputPaste onPaste={(content) => this.onPasteVector3(content, this.props.onSpherePositionChange.bind(this, o))} />
                         </span>
                       </Tooltip>
                     </Form.Item>
@@ -136,6 +136,12 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                       <Tooltip placement="top" title="Copy">
                         <Button icon="copy" onClick={() => copyToClipboard({type: 'Vector3', data: o.start})} />
                       </Tooltip>
+                      <Tooltip placement="top" title="Paste">
+                        {/* Look into why extra element needed to trigger tooltip */}
+                        <span>
+                          <InputPaste onPaste={(content) => this.onPasteVector3(content, this.props.onChangeLineStart.bind(this, o))} />
+                        </span>
+                      </Tooltip>
                     </Form.Item>
                     <Form.Item label="End">
                       <InputNumber value={o.end.x} onChange={(x = 0) => this.props.onChangeLineEnd(o, {...o.end, x})} />
@@ -143,6 +149,12 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                       <InputNumber value={o.end.z} onChange={(z = 0) => this.props.onChangeLineEnd(o, {...o.end, z})} />
                       <Tooltip placement="top" title="Copy">
                         <Button icon="copy" onClick={() => copyToClipboard({type: 'Vector3', data: o.end})} />
+                      </Tooltip>
+                      <Tooltip placement="top" title="Paste">
+                        {/* Look into why extra element needed to trigger tooltip */}
+                        <span>
+                          <InputPaste onPaste={(content) => this.onPasteVector3(content, this.props.onChangeLineEnd.bind(this, o))} />
+                        </span>
                       </Tooltip>
                     </Form.Item>
                     <Form.Item label="Color">
@@ -191,5 +203,16 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
         />
       </div>
     );
+  }
+
+  /**
+   * Call callback if clipboard content is of type Vector3.
+   */
+  private onPasteVector3(clipboardContent: string, callback: (vector3: Vector3) => void): void {
+    const clipboardObject = JSON.parse(clipboardContent) as ClipboardObject;
+    if (clipboardObject && clipboardObject.type === 'Vector3') {
+      const vector3 = clipboardObject.data;
+      callback(vector3);
+    }
   }
 }
