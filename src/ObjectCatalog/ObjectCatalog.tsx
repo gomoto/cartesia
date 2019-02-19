@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Checkbox, Form, List, InputNumber } from 'antd';
 import { CartesianObject, Vector3, HexColor3 } from '../state';
+import './ObjectCatalog.css';
 
 const ColorPicker = require('rc-color-picker');
 import 'rc-color-picker/assets/index.css';
