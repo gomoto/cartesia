@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Checkbox, Form, List, InputNumber } from 'antd';
+import { Button, Checkbox, Form, List, InputNumber, Tooltip } from 'antd';
 import { CartesianObject, Vector3, HexColor3, CartesianLine } from '../state';
 import { computeLineLength } from './compute-line-length';
+import { copyToClipboard } from '../util/copy-to-clipboard';
 import './ObjectCatalog.css';
 
 const ColorPicker = require('rc-color-picker');
@@ -50,6 +51,9 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                       <InputNumber value={o.position.x} onChange={(x = 0) => this.props.onSpherePositionChange(o, {...o.position, x})} />
                       <InputNumber value={o.position.y} onChange={(y = 0) => this.props.onSpherePositionChange(o, {...o.position, y})} />
                       <InputNumber value={o.position.z} onChange={(z = 0) => this.props.onSpherePositionChange(o, {...o.position, z})} />
+                      <Tooltip placement="top" title="Copy">
+                        <Button icon="copy" onClick={() => copyToClipboard({type: 'Vector3', data: o.position})} />
+                      </Tooltip>
                     </Form.Item>
                     <Form.Item label="Scaling">
                       <InputNumber value={o.scaling.x} onChange={(x = 0) => {
@@ -122,11 +126,17 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                       <InputNumber value={o.start.x} onChange={(x = 0) => this.props.onChangeLineStart(o, {...o.start, x})} />
                       <InputNumber value={o.start.y} onChange={(y = 0) => this.props.onChangeLineStart(o, {...o.start, y})} />
                       <InputNumber value={o.start.z} onChange={(z = 0) => this.props.onChangeLineStart(o, {...o.start, z})} />
+                      <Tooltip placement="top" title="Copy">
+                        <Button icon="copy" onClick={() => copyToClipboard({type: 'Vector3', data: o.start})} />
+                      </Tooltip>
                     </Form.Item>
                     <Form.Item label="End">
                       <InputNumber value={o.end.x} onChange={(x = 0) => this.props.onChangeLineEnd(o, {...o.end, x})} />
                       <InputNumber value={o.end.y} onChange={(y = 0) => this.props.onChangeLineEnd(o, {...o.end, y})} />
                       <InputNumber value={o.end.z} onChange={(z = 0) => this.props.onChangeLineEnd(o, {...o.end, z})} />
+                      <Tooltip placement="top" title="Copy">
+                        <Button icon="copy" onClick={() => copyToClipboard({type: 'Vector3', data: o.end})} />
+                      </Tooltip>
                     </Form.Item>
                     <Form.Item label="Color">
                       <div className="ColorPicker-container">
