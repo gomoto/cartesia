@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Checkbox, Form, List, InputNumber } from 'antd';
 import { CartesianObject, Vector3, HexColor3, CartesianLine } from '../state';
+import { computeLineLength } from './compute-line-length';
 import './ObjectCatalog.css';
 
 const ColorPicker = require('rc-color-picker');
@@ -141,6 +142,9 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                           }}
                         />
                       </div>
+                    </Form.Item>
+                    <Form.Item label="Length">
+                      <span>{computeLineLength(o)}</span>
                     </Form.Item>
                   </Form>
                 );
