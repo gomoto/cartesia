@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State, CartesianObject, Vector3, CartesianGrid, HexColor3, CartesianLine } from '../state';
 import { ControlPanel, ControlPanelReadableProps, ControlPanelCallableProps } from './ControlPanel';
-import { SelectObjectAction, UnselectObjectAction, ChangeSpherePositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction, ChangeSphereScalingAction, ChangeSphereIsScalingProportionalAction, ChangeObjectColorAction } from '../actions';
+import { SelectObjectAction, UnselectObjectAction, ChangeSpherePositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction, ChangeSphereScalingAction, ChangeSphereIsScalingProportionalAction, ChangeObjectColorAction, ChangeLineStartAction, ChangeLineEndAction } from '../actions';
 import { StateWithHistory } from 'redux-undo';
 import { countSelectedObjects } from '../selector';
 
@@ -73,8 +73,16 @@ const mapDispatchToProps = (dispatch: Dispatch): ControlPanelCallableProps => {
       });
     },
     onChangeLineStart: (line: CartesianLine, start: Vector3) => {
+      dispatch<ChangeLineStartAction>({
+        type: 'CHANGE_LINE_START',
+        payload: {objectId: line.id, start},
+      });
     },
     onChangeLineEnd: (line: CartesianLine, end: Vector3) => {
+      dispatch<ChangeLineEndAction>({
+        type: 'CHANGE_LINE_END',
+        payload: {objectId: line.id, end},
+      });
     },
   }
 };

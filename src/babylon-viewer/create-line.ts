@@ -6,6 +6,7 @@ export function createLine(scene: BABYLON.Scene, line: CartesianLine): BABYLON.M
     points: [
       new BABYLON.Vector3(line.start.x, line.start.y, line.start.z),
       new BABYLON.Vector3(line.end.x, line.end.y, line.end.z),
-    ]
+    ],
+    updatable: true,
   }, scene);
 }

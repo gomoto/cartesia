@@ -8,7 +8,7 @@ import {
 import { createSphere } from './create-sphere';
 import { updateSphere } from './update-sphere';
 import { createLine } from './create-line';
-// import { updateLine } from './update-line';
+import { updateLine } from './update-line';
 
 /**
  * Modify objects in scene based on current and previous application state.
@@ -58,7 +58,7 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
         const currentLine = o;
         const previousLine = <CartesianLine | undefined> updatingPreviousObjectsById[o.id];
         if (currentLine !== previousLine) {
-          // updateLine(scene, currentLine, previousLine);
+          updateLine(scene, currentLine, previousLine);
         }
       }
     }

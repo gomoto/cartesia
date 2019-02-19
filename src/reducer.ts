@@ -220,6 +220,40 @@ export function reducer(state: State = initialState, action: Action): State {
         objects: newObjects,
       };
     }
+    case 'CHANGE_LINE_START': {
+      const newObjects = state.objects.map(o => {
+        if (o.id === action.payload.objectId) {
+          // action implies object is CartesianSphere
+          const line = o as CartesianLine;
+          return {
+            ...line,
+            start: action.payload.start,
+          };
+        }
+        return o;
+      });
+      return {
+        ...state,
+        objects: newObjects,
+      };
+    }
+    case 'CHANGE_LINE_END': {
+      const newObjects = state.objects.map(o => {
+        if (o.id === action.payload.objectId) {
+          // action implies object is CartesianSphere
+          const line = o as CartesianLine;
+          return {
+            ...line,
+            end: action.payload.end,
+          };
+        }
+        return o;
+      });
+      return {
+        ...state,
+        objects: newObjects,
+      };
+    }
     case 'CHANGE_GRID': {
       return {
         ...state,

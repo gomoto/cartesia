@@ -13,6 +13,8 @@ export type Action = (
   ChangeSphereScalingAction |
   ChangeSphereIsScalingProportionalAction |
   ChangeObjectColorAction |
+  ChangeLineStartAction |
+  ChangeLineEndAction |
   ChangeGridAction |
   ChangeBackgroundColorAction |
   ChangeSelectionColorAction
@@ -89,6 +91,22 @@ export interface ChangeObjectColorAction extends redux.Action {
   payload: {
     objectId: string;
     color: HexColor3;
+  }
+}
+
+export interface ChangeLineStartAction extends redux.Action {
+  type: 'CHANGE_LINE_START';
+  payload: {
+    objectId: string;
+    start: Vector3;
+  }
+}
+
+export interface ChangeLineEndAction extends redux.Action {
+  type: 'CHANGE_LINE_END';
+  payload: {
+    objectId: string;
+    end: Vector3;
   }
 }
 
