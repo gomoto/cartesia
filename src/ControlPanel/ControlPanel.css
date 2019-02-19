@@ -12,7 +12,7 @@
 .ControlPanel-tab {
   flex: 0 0 auto;
   height: var(--tab-height);
-  width: 80px;
+  min-width: 80px;
   padding: 0 16px;
   cursor: pointer;
   display: flex;
@@ -21,4 +21,13 @@
 }
 .ControlPanel-active-tab {
   color: var(--primary-color);
+  position: relative;
+}
+.ControlPanel-active-tab::after {
+  content: '';
+  height: 1px;
+  width :100%;
+  position: absolute;
+  bottom: -1px;
+  background-color: var(--primary-color);
 }
