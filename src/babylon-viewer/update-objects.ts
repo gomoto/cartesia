@@ -40,7 +40,7 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
   // reformat list as map for fast access by id
   const updatingPreviousObjectsById = _keyBy(updatingPreviousObjects, o => o.id);
 
-  _forEach([...enteringObjects, ...updatingCurrentObjects], (o) => {
+  _forEach(updatingCurrentObjects, (o) => {
     const objectMesh = scene.getMeshByName(o.id);
     if (!objectMesh) {
       return;
