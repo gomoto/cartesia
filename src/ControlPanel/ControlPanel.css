@@ -35,3 +35,6 @@
   height: calc(100% - var(--tab-height));
   overflow-y: auto;
 }
+.ControlPanel-object-count .ant-badge-count {
+  background-color: var(--primary-color);
+}

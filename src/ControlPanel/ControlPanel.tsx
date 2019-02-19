@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Badge } from 'antd';
 import './ControlPanel.css';
 import { CartesianGrid, CartesianObject, Vector3, HexColor3, CartesianLine } from '../state';
 import { ObjectCatalog } from '../ObjectCatalog/ObjectCatalog';
@@ -69,7 +70,13 @@ export class ControlPanel extends React.Component<ControlPanelProps, ControlPane
           <div
             className={`ControlPanel-tab ${this.state.activeTabType === 'objects' && 'ControlPanel-active-tab'}`}
             onClick={this.setActiveTabType.bind(this, 'objects')}>
-            <span>Objects</span>
+            <span style={{marginRight: '4px'}}>Objects</span>
+            <Badge
+              className="ControlPanel-object-count"
+              count={this.props.objects.length}
+              showZero={true}
+              title="Number of objects"
+            />
           </div>
           <div
             className={`ControlPanel-tab ${this.state.activeTabType === 'preferences' && 'ControlPanel-active-tab'}`}
