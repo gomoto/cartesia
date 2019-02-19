@@ -19,3 +19,6 @@
   align-items: center;
   justify-content: center;
 }
+.ControlPanel-active-tab {
+  color: var(--primary-color);
+}

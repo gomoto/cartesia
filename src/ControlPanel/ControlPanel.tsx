@@ -64,8 +64,16 @@ export class ControlPanel extends React.Component<ControlPanelProps, ControlPane
     return (
       <div className="ControlPanel">
         <nav className="ControlPanel-tabs">
-          <div className="ControlPanel-tab" onClick={this.setActiveTabType.bind(this, 'objects')}>Objects</div>
-          <div className="ControlPanel-tab" onClick={this.setActiveTabType.bind(this, 'preferences')}>Preferences</div>
+          <div
+            className={`ControlPanel-tab ${this.state.activeTabType === 'objects' && 'ControlPanel-active-tab'}`}
+            onClick={this.setActiveTabType.bind(this, 'objects')}>
+            <span>Objects</span>
+          </div>
+          <div
+            className={`ControlPanel-tab ${this.state.activeTabType === 'preferences' && 'ControlPanel-active-tab'}`}
+            onClick={this.setActiveTabType.bind(this, 'preferences')}>
+            <span>Preferences</span>
+          </div>
         </nav>
         <div className="ControlPanel-content">
           {this.getContent()}
