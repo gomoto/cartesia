@@ -7,6 +7,7 @@ import './ObjectCatalog.css';
 
 const ColorPicker = require('rc-color-picker');
 import 'rc-color-picker/assets/index.css';
+import { InputPaste } from '../InputPaste/InputPaste';
 
 export type ObjectCatalogProps = ObjectCatalogReadableProps & ObjectCatalogCallableProps;
 
@@ -53,6 +54,12 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                       <InputNumber value={o.position.z} onChange={(z = 0) => this.props.onSpherePositionChange(o, {...o.position, z})} />
                       <Tooltip placement="top" title="Copy">
                         <Button icon="copy" onClick={() => copyToClipboard({type: 'Vector3', data: o.position})} />
+                      </Tooltip>
+                      <Tooltip placement="top" title="Paste">
+                        {/* Look into why extra element needed to trigger tooltip */}
+                        <span>
+                          <InputPaste onPaste={(content) => console.log(content)} />
+                        </span>
                       </Tooltip>
                     </Form.Item>
                     <Form.Item label="Scaling">

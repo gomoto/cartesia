@@ -1,0 +1,19 @@
+.InputPaste {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.InputPaste-input {
+  position: absolute;
+  border: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  color: #ffffff;
+}
+.InputPaste-button {
+  position: relative;
+  flex: 0 0 auto;
+  pointer-events: none;
+}
