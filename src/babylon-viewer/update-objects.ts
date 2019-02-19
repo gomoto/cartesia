@@ -18,6 +18,8 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
   const exitingObjects = _differenceBy(previousObjects, currentObjects, o => o.id);
   const updatingCurrentObjects = _intersectionBy(currentObjects, previousObjects, o => o.id);
   const updatingPreviousObjects = _intersectionBy(previousObjects, currentObjects, o => o.id);
+  // reformat list as map for fast access by id
+  const updatingPreviousObjectsById = _keyBy(updatingPreviousObjects, o => o.id);
   _forEach(exitingObjects, (o) => {
     const sphere = scene.getMeshByName(o.id);
     if (sphere) {
@@ -36,10 +38,6 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
       }
     }
   });
-
-  // reformat list as map for fast access by id
-  const updatingPreviousObjectsById = _keyBy(updatingPreviousObjects, o => o.id);
-
   _forEach(updatingCurrentObjects, (o) => {
     const objectMesh = scene.getMeshByName(o.id);
     if (!objectMesh) {
