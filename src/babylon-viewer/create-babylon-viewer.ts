@@ -27,7 +27,7 @@ export function createBabylonViewer(canvas: HTMLCanvasElement, input: BabylonVie
   createMaterials(scene);
   const gridMesh = createGrid(scene, input.grid);
   gridMesh.isPickable = false;
-  createMiscellaneous(scene);
+  // createMiscellaneous(scene);
   onMeshClick(scene, (mesh) => {
     if (mesh) {
       listeners.onObjectClick(mesh.name);
