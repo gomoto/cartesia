@@ -31,3 +31,7 @@
   bottom: -1px;
   background-color: var(--primary-color);
 }
+.ControlPanel-content {
+  height: calc(100% - var(--tab-height));
+  overflow-y: auto;
+}
