@@ -1,4 +1,4 @@
-import { State, CartesianSphere } from './state';
+import { State, CartesianSphere, CartesianLine } from './state';
 import { Action } from './actions';
 const uuidv4 = require('uuid/v4');
 
@@ -48,6 +48,31 @@ export function reducer(state: State = initialState, action: Action): State {
       const newObjects = [
         ...state.objects,
         newSphere,
+      ];
+      return {
+        ...state,
+        objects: newObjects,
+      };
+    }
+    case 'ADD_LINE': {
+      const newLine: CartesianLine = {
+        id: uuidv4(),
+        objectType: 'line',
+        isSelected: false,
+        start: {
+          x: 0,
+          y: 0,
+          z: 0,
+        },
+        end: {
+          x: 1,
+          y: 1,
+          z: 1,
+        },
+      };
+      const newObjects = [
+        ...state.objects,
+        newLine,
       ];
       return {
         ...state,

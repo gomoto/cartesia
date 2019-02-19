@@ -1,4 +1,4 @@
-import { CartesianObject, CartesianSphere } from '../state';
+import { CartesianObject, CartesianSphere, CartesianLine } from '../state';
 import {
   differenceBy as _differenceBy,
   forEach as _forEach,
@@ -7,6 +7,8 @@ import {
 } from 'lodash';
 import { createSphere } from './create-sphere';
 import { updateSphere } from './update-sphere';
+import { createLine } from './create-line';
+// import { updateLine } from './update-line';
 
 /**
  * Modify objects in scene based on current and previous application state.
@@ -28,6 +30,10 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
         createSphere(scene, o);
         break;
       }
+      case 'line': {
+        createLine(scene, o);
+        break;
+      }
     }
   });
 
@@ -47,6 +53,13 @@ export function updateObjects(scene: BABYLON.Scene, currentObjects: CartesianObj
           updateSphere(scene, currentSphere, previousSphere);
         }
         break;
+      }
+      case 'line': {
+        const currentLine = o;
+        const previousLine = <CartesianLine | undefined> updatingPreviousObjectsById[o.id];
+        if (currentLine !== previousLine) {
+          // updateLine(scene, currentLine, previousLine);
+        }
       }
     }
   });

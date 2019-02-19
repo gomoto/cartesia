@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State } from '../state';
 import { MenuBar } from './MenuBar';
-import { AddSphereAction, RemoveSelectedObjectsAction, RemoveAllObjectsAction } from '../actions';
+import { AddSphereAction, RemoveSelectedObjectsAction, RemoveAllObjectsAction, AddLineAction } from '../actions';
 import { StateWithHistory, ActionTypes as ReduxUndoActionTypes } from 'redux-undo';
 import { countObjects, countSelectedObjects } from '../selector';
 
@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     onAddSphere: () => {
       dispatch<AddSphereAction>({type: 'ADD_SPHERE'});
+    },
+    onAddLine: () => {
+      dispatch<AddLineAction>({type: 'ADD_LINE'});
     },
     onRemoveSelectedObjects: () => {
       dispatch<RemoveSelectedObjectsAction>({type: 'REMOVE_SELECTED_OBJECTS'});

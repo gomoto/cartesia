@@ -3,6 +3,7 @@ import { Vector3, CartesianGrid, HexColor3 } from './state';
 
 export type Action = (
   AddSphereAction |
+  AddLineAction |
   RemoveSelectedObjectsAction |
   RemoveAllObjectsAction |
   SelectObjectAction |
@@ -22,6 +23,10 @@ export type Action = (
  */
 export interface AddSphereAction extends redux.Action {
   type: 'ADD_SPHERE';
+}
+
+export interface AddLineAction extends redux.Action {
+  type: 'ADD_LINE';
 }
 
 export interface RemoveSelectedObjectsAction extends redux.Action {

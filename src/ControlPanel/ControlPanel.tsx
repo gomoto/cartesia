@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './ControlPanel.css';
-import { CartesianGrid, CartesianObject, Vector3, HexColor3 } from '../state';
+import { CartesianGrid, CartesianObject, Vector3, HexColor3, CartesianLine } from '../state';
 import { ObjectCatalog } from '../ObjectCatalog/ObjectCatalog';
 import { PreferenceCatalog } from '../PreferenceCatalog/PreferenceCatalog';
 
@@ -23,6 +23,8 @@ export interface ControlPanelCallableProps {
   onSphereScalingChange(object: CartesianObject, scaling: Vector3): void;
   onChangeSphereIsScalingProportional(object: CartesianObject, isScalingProportional: boolean): void;
   onChangeObjectColor(object: CartesianObject, color: HexColor3): void;
+  onChangeLineStart(line: CartesianLine, start: Vector3): void;
+  onChangeLineEnd(line: CartesianLine, end: Vector3): void;
 }
 
 // Maintain internal state for now

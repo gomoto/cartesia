@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Checkbox, Form, List, InputNumber } from 'antd';
-import { CartesianObject, Vector3, HexColor3 } from '../state';
+import { CartesianObject, Vector3, HexColor3, CartesianLine } from '../state';
 import './ObjectCatalog.css';
 
 const ColorPicker = require('rc-color-picker');
@@ -19,6 +19,8 @@ export interface ObjectCatalogCallableProps {
   onSphereScalingChange(object: CartesianObject, scaling: Vector3): void;
   onChangeSphereIsScalingProportional(object: CartesianObject, isScalingProportional: boolean): void;
   onChangeObjectColor(object: CartesianObject, color: HexColor3): void;
+  onChangeLineStart(line: CartesianLine, start: Vector3): void;
+  onChangeLineEnd(line: CartesianLine, end: Vector3): void;
 }
 
 export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
@@ -107,6 +109,39 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                         />
                       </div>
                     </Form.Item>
+                  </Form>
+                );
+                break;
+              }
+              case 'line': {
+                displayObjectType = 'Line';
+                objectSpecificContent = (
+                  <Form>
+                    <Form.Item label="Start">
+                      <InputNumber value={o.start.x} onChange={(x = 0) => this.props.onChangeLineStart(o, {...o.start, x})} />
+                      <InputNumber value={o.start.y} onChange={(y = 0) => this.props.onChangeLineStart(o, {...o.start, y})} />
+                      <InputNumber value={o.start.z} onChange={(z = 0) => this.props.onChangeLineStart(o, {...o.start, z})} />
+                    </Form.Item>
+                    <Form.Item label="End">
+                      <InputNumber value={o.end.x} onChange={(x = 0) => this.props.onChangeLineEnd(o, {...o.end, x})} />
+                      <InputNumber value={o.end.y} onChange={(y = 0) => this.props.onChangeLineEnd(o, {...o.end, y})} />
+                      <InputNumber value={o.end.z} onChange={(z = 0) => this.props.onChangeLineEnd(o, {...o.end, z})} />
+                    </Form.Item>
+                    {/* <Form.Item label="Color">
+                      <div className="ColorPicker-container">
+                        <ColorPicker
+                          animation="slide-up"
+                          color={o.color}
+                          enableAlpha={false}
+                          onChange={(event: {color: HexColor3}) => {
+                            // Color picker sometimes fires despite unchanged color
+                            if (event.color !== o.color) {
+                              this.props.onChangeObjectColor(o, event.color);
+                            }
+                          }}
+                        />
+                      </div>
+                    </Form.Item> */}
                   </Form>
                 );
                 break;

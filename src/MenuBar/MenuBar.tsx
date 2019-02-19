@@ -4,6 +4,7 @@ import './MenuBar.css';
 
 export interface MenuBarProps {
   onAddSphere(): void;
+  onAddLine(): void;
   onRemoveAllObjects(): void;
   canRemoveAllObjects: boolean;
   onRemoveSelectedObjects(): void;
@@ -34,6 +35,7 @@ export class MenuBar extends React.Component<MenuBarProps> {
           </Menu.Item>
         </Menu.SubMenu>
         <Menu.Divider />
+        <Menu.Item className="MenuBar-MenuItem" onClick={this.props.onAddLine.bind(this)}>Add line</Menu.Item>
         <Menu.Item className="MenuBar-MenuItem" disabled>Add plane</Menu.Item>
         <Menu.Item className="MenuBar-MenuItem" onClick={this.props.onAddSphere.bind(this)}>Add sphere</Menu.Item>
         <Menu.Item className="MenuBar-MenuItem" disabled>Add tube</Menu.Item>

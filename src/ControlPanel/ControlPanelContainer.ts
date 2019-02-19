@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { State, CartesianObject, Vector3, CartesianGrid, HexColor3 } from '../state';
+import { State, CartesianObject, Vector3, CartesianGrid, HexColor3, CartesianLine } from '../state';
 import { ControlPanel, ControlPanelReadableProps, ControlPanelCallableProps } from './ControlPanel';
 import { SelectObjectAction, UnselectObjectAction, ChangeSpherePositionAction, ChangeGridAction, ChangeBackgroundColorAction, ChangeSelectionColorAction, ChangeSphereScalingAction, ChangeSphereIsScalingProportionalAction, ChangeObjectColorAction } from '../actions';
 import { StateWithHistory } from 'redux-undo';
@@ -71,6 +71,10 @@ const mapDispatchToProps = (dispatch: Dispatch): ControlPanelCallableProps => {
         type: 'CHANGE_OBJECT_COLOR',
         payload: {objectId: o.id, color},
       });
+    },
+    onChangeLineStart: (line: CartesianLine, start: Vector3) => {
+    },
+    onChangeLineEnd: (line: CartesianLine, end: Vector3) => {
     },
   }
 };
