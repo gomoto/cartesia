@@ -28,6 +28,7 @@ export interface CartesianLine {
   isSelected: boolean;
   start: Vector3;
   end: Vector3;
+  color: HexColor3;
 }
 
 export type CartesianObject = (

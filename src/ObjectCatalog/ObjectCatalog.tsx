@@ -127,7 +127,7 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                       <InputNumber value={o.end.y} onChange={(y = 0) => this.props.onChangeLineEnd(o, {...o.end, y})} />
                       <InputNumber value={o.end.z} onChange={(z = 0) => this.props.onChangeLineEnd(o, {...o.end, z})} />
                     </Form.Item>
-                    {/* <Form.Item label="Color">
+                    <Form.Item label="Color">
                       <div className="ColorPicker-container">
                         <ColorPicker
                           animation="slide-up"
@@ -141,7 +141,7 @@ export class ObjectCatalog extends React.Component<ObjectCatalogProps> {
                           }}
                         />
                       </div>
-                    </Form.Item> */}
+                    </Form.Item>
                   </Form>
                 );
                 break;

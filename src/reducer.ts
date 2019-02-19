@@ -69,6 +69,7 @@ export function reducer(state: State = initialState, action: Action): State {
           y: 1,
           z: 1,
         },
+        color: '#FFFFFF',
       };
       const newObjects = [
         ...state.objects,
@@ -206,10 +207,8 @@ export function reducer(state: State = initialState, action: Action): State {
     case 'CHANGE_OBJECT_COLOR': {
       const newObjects = state.objects.map(o => {
         if (o.id === action.payload.objectId) {
-          // action implies object is CartesianSphere
-          const sphere = o as CartesianSphere;
           return {
-            ...sphere,
+            ...o,
             color: action.payload.color,
           };
         }
