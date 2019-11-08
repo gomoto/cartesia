@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Checkbox, Form, Input, InputNumber } from 'antd';
 import { CartesianGrid, HexColor3 } from '../state';
-
-const ColorPicker = require('rc-color-picker');
 import 'rc-color-picker/assets/index.css';
+const ColorPicker = require('rc-color-picker');
 
 export type PreferenceCatalogProps = PreferenceCatalogReadableProps & PreferenceCatalogCallableProps;
 

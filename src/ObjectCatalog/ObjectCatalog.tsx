@@ -4,10 +4,9 @@ import { CartesianObject, Vector3, HexColor3, CartesianLine } from '../state';
 import { computeLineLength } from './compute-line-length';
 import { copyToClipboard, ClipboardObject } from '../util/copy-to-clipboard';
 import './ObjectCatalog.css';
-
-const ColorPicker = require('rc-color-picker');
 import 'rc-color-picker/assets/index.css';
 import { InputPaste } from '../InputPaste/InputPaste';
+const ColorPicker = require('rc-color-picker');
 
 export type ObjectCatalogProps = ObjectCatalogReadableProps & ObjectCatalogCallableProps;
 

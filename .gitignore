@@ -1,2 +1,4 @@
 react-app-env.d.ts
+
+build/
 node_modules/
