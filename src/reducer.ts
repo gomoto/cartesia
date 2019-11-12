@@ -38,9 +38,9 @@ export function reducer(state: State = initialState, action: Action): State {
           z: 0,
         },
         scaling: {
-          x: 2,
-          y: 2,
-          z: 2,
+          x: 1,
+          y: 1,
+          z: 1,
         },
         isScalingProportional: true,
         color: '#FFFFFF',
