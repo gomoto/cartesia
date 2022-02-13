@@ -11,7 +11,7 @@
     "@types/react-dom": "~16.8.0",
     "@types/react-redux": "~7.0.1",
     "@types/uuid": "~3.4.4",
-    "ajv": "~6.8.1",
+    "ajv": "~6.12.3",
     "antd": "~3.13.4",
     "babylonjs": "~3.3.0",
     "clipboard": "~2.0.4",
