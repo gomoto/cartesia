@@ -27,7 +27,7 @@
     "uuid": "~3.3.2"
   },
   "devDependencies": {
-    "react-scripts": "~3.2.0",
+    "react-scripts": "~5.0.1",
     "surge": "^0.21.3",
     "typescript": "~3.3.1"
   },
